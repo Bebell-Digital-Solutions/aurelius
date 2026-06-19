@@ -1,0 +1,1513 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURELIUS | Strategist. Mentor. Advisor.</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#F8F5F0',        // Travertine Marble
+                            surface: '#F0EBE1',   // Sunlit Limestone
+                            text: '#8a957a',      // Pale Olive
+                            textSec: '#6B6560',   // Weathered Stone
+                            text2: '#1A1D24',
+ // Shadowy Charcoal                            
+                            gold: '#D4AF37',      // Aurelian Gold
+                            olive: '#5F6A46',     // Sacred Olive
+                            oliveLight: '#8A957A', // Pale Olive
+                            border: '#DCD5C8',    // Marble Vein
+                            success: '#4A5436'    // Laurel Green
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base & Resets for Light Theme */
+        body {
+            background-color: #F8F5F0;
+            color: #1A1D24;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Subtle Grain Effect across the whole page */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.10;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        h1, h2, h3, h4, h5, h6, .font-serif {
+            font-family: 'Cinzel', serif;
+        }
+
+
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F8F5F0; }
+        ::-webkit-scrollbar-thumb { background: #DCD5C8; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+
+
+
+        /* Utilities */
+        .glass-panel {
+            background: rgba(240, 235, 225, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid #DCD5C8;
+            box-shadow: 0 4px 6px rgba(26, 29, 36, 0.05);
+        }
+        
+        
+        
+        
+ 
+        
+        
+  #menuToggle span {
+    transform-origin: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+#mobileMenu {
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}      
+        
+        
+        
+        
+        
+
+        .gold-gradient-text {
+            background: linear-gradient(to right, #8A957A, #D4AF37, #5F6A46);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Centered Hero Image Swap */
+        .hero-img-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: visible;
+            border-radius: 4px;
+        }
+        
+        .hero-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s ease;
+            position: absolute;
+            bottom: 0;
+        }
+        
+        .hero-img-bw { z-index: 2; opacity: 1; }
+        .hero-img-color { z-index: 1; opacity: 0; }
+        
+        .hero-img-container:hover .hero-img-bw { opacity: 0; }
+        .hero-img-container:hover .hero-img-color { opacity: 1; z-index: 3; transform: scale(1.02); }
+
+        /* Philosophy Cards (3D Tilt) */
+        .tilt-card-wrapper { perspective: 1000px; }
+        .tilt-card {
+            transition: transform 0.1s ease, border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+            transform-style: preserve-3d;
+        }
+        .tilt-card:hover {
+            background: #F0EBE1;
+            border-color: #D4AF37;
+            box-shadow: 0 15px 35px rgba(26, 29, 36, 0.1), 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+        
+        /* Timeline */
+        .timeline-container { position: relative; }
+        .timeline-line {
+            position: absolute; left: 24px; top: 12px; bottom: 12px;
+            width: 2px; background: #DCD5C8;
+        }
+        .timeline-line-gold {
+            position: absolute; left: 24px; top: 12px; width: 2px;
+            background: #D4AF37;
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+            height: 0px;
+        }
+        .timeline-node { position: relative; padding-left: 80px; margin-bottom: 80px; }
+        .timeline-node:last-child { margin-bottom: 0; }
+        .timeline-dot {
+            position: absolute; left: 17px; top: 8px; width: 16px; height: 16px;
+            border-radius: 50%; background: #F8F5F0; border: 2px solid #DCD5C8;
+            z-index: 10; transition: all 0.4s ease;
+        }
+        /* Active dot state applied via JS */
+        .timeline-dot.active {
+            background: #D4AF37; border-color: #D4AF37;
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.5); transform: scale(1.2);
+        }
+
+        /* Neural Process Diagram */
+        .process-node { position: relative; transition: all 0.3s ease; }
+        .process-node::after {
+            content: ''; position: absolute; right: -40px; top: 50%; transform: translateY(-50%);
+            width: 30px; height: 2px; background: #DCD5C8; transition: all 0.3s ease;
+        }
+        .process-node:last-child::after { display: none; }
+        .process-node:hover { transform: translateY(-5px); border-color: #5F6A46; color: #5F6A46; }
+        .process-node:hover::after { background: #5F6A46; }
+
+        /* Algorithm Image Hover Letters */
+        .floating-letter {
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+            transform: translate(-50%, -50%);
+        }
+
+        /* Expertise Grid */
+        .expertise-tile { position: relative; overflow: hidden; }
+        .expertise-bg {
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(212,175,55,0.05) 100%);
+            opacity: 0; transition: opacity 0.4s ease;
+        }
+        .expertise-tile:hover .expertise-bg { opacity: 1; }
+        .expertise-tile:hover .expertise-icon { transform: rotateY(180deg); color: #5F6A46; }
+        .expertise-icon { transition: transform 0.6s ease, color 0.3s ease; }
+        
+        
+        
+        
+        
+
+        /* 3D Library Books (Light Theme) */
+        .library-shelf {
+            position: relative;
+            display: flex;
+            gap: 1.5rem;
+            padding: 2rem 1rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            /* Hide scrollbar for cleaner look */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .library-shelf::-webkit-scrollbar {
+            display: none;
+        }
+        .book {
+            flex-shrink: 0;
+            scroll-snap-align: center;
+            width: 80px; height: 320px; border-radius: 4px 10px 10px 4px;
+            position: relative; transform-origin: bottom center;
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease;
+            box-shadow: inset -4px 0 10px rgba(0,0,0,0.1), 5px 5px 15px rgba(26, 29, 36, 0.15);
+            display: flex; align-items: center; justify-content: center;
+            writing-mode: vertical-rl; text-orientation: mixed; cursor: pointer;
+            border-left: 2px solid rgba(255,255,255,0.4);
+        }
+        .book:hover {
+            transform: translateZ(50px) translateY(-20px) rotateX(-5deg);
+            box-shadow: inset -4px 0 10px rgba(0,0,0,0.1), 15px 25px 30px rgba(26, 29, 36, 0.2), 0 0 15px rgba(212, 175, 55, 0.3);
+            z-index: 10;
+        }
+        .book-title {
+            font-family: 'Cinzel', serif; font-size: 1.1rem; letter-spacing: 2px;
+            transform: rotate(180deg); font-weight: 600;
+        }
+        .book-spine-lines {
+            position: absolute; top: 20px; bottom: 20px; right: 8px; width: 4px;
+            border-top: 2px solid rgba(255,255,255,0.3); border-bottom: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        
+        
+        
+        
+
+        /* Conversation Cards */
+        .conv-card { height: 120px; transition: height 0.4s ease, background 0.4s ease; overflow: hidden; }
+        .conv-answer { opacity: 0; transform: translateY(10px); transition: all 0.4s ease; transition-delay: 0s; }
+        .conv-card:hover { height: 260px; background: #F0EBE1; border-color: #D4AF37; }
+        .conv-card:hover .conv-answer { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+
+        /* Scrub Quote Span Colors */
+        .scrub-text-span { color: #DCD5C8; } /* Will be animated to #1A1D24 via JS */
+
+
+
+
+
+        /* Book Modal */
+        .book-modal-overlay {
+            position: fixed; inset: 0; background: rgba(26, 29, 36, 0.4);
+            backdrop-filter: blur(4px); z-index: 100;
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        }
+        .book-modal-overlay.active { opacity: 1; pointer-events: auto; }
+        .book-modal {
+            background: #F8F5F0; border: 1px solid #DCD5C8;
+            padding: 2rem; max-w: 500px; width: 90%; border-radius: 4px;
+            transform: translateY(20px); transition: transform 0.3s ease;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); position: relative;
+        }
+        .book-modal-overlay.active .book-modal { transform: translateY(0); }
+        .book-modal-close { position: absolute; top: 1rem; right: 1rem; cursor: pointer; }
+
+
+
+
+        /* Utilities */
+        .gsap-reveal { opacity: 0; visibility: hidden; }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-gold selection:text-white relative">
+
+
+
+
+
+
+
+<nav class="fixed w-full z-50 glass-panel border-b border-brand-border py-4 px-6 md:px-12 transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <!-- Logo -->
+        <div class="flex items-center gap-3">
+            <img src="https://ik.imagekit.io/bebell/AURELIUS/aurelius-logo-icon.svg" alt="Aurelius Logo" class="h-12 w-12 object-contain">
+            <span class="font-serif font-bold text-xl tracking-widest text-brand-text2">AURELIUS</span>
+        </div>
+        
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex gap-8 items-center text-sm font-medium tracking-wide text-brand-textSec">
+            <a href="#philosophy" class="hover:text-brand-gold transition-colors">Philosophy</a>
+            <a href="#expertise" class="hover:text-brand-gold transition-colors">Expertise</a>
+            <a href="#library" class="hover:text-brand-gold transition-colors">Library</a>
+            <a href="#cta" class="px-5 py-2 border border-brand-gold/50 rounded-sm text-brand-olive hover:bg-brand-gold hover:text-white transition-all duration-300">Ask Aurelius</a>
+        </div>
+        
+        <!-- Burger Menu Button -->
+        <button id="menuToggle" class="md:hidden relative w-10 h-10 flex items-center justify-center rounded-md hover:bg-brand-olive/30 transition-colors" aria-label="Toggle menu">
+            <!-- Top bar -->
+            <span class="absolute block w-6 h-0.5 bg-brand-olive transition-all duration-300 -translate-y-2"></span>
+            <!-- Middle bar -->
+            <span class="absolute block w-6 h-0.5 bg-brand-olive transition-all duration-300 opacity-100"></span>
+            <!-- Bottom bar -->
+            <span class="absolute block w-6 h-0.5 bg-brand-olive transition-all duration-300 translate-y-2"></span>
+        </button>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+        <div class="flex flex-col items-center gap-6 pt-6 pb-8 text-sm font-medium tracking-wide text-brand-textSec border-t border-brand-border/50 mt-4">
+            <a href="#philosophy" class="hover:text-brand-gold transition-colors py-1">Philosophy</a>
+            <a href="#expertise" class="hover:text-brand-gold transition-colors py-1">Expertise</a>
+            <a href="#library" class="hover:text-brand-gold transition-colors py-1">Library</a>
+            <a href="#cta" class="px-8 py-3 border border-brand-gold/50 rounded-sm text-brand-olive hover:bg-brand-gold hover:text-white transition-all duration-300 w-full max-w-[200px] text-center">Ask Aurelius</a>
+        </div>
+    </div>
+</nav>
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <section class="relative min-h-screen flex flex-col justify-center items-center pt-32 pb-20 overflow-hidden hero-wrapper px-6 bg-white">
+        
+        <!-- Lightning Canvas overlay specific to Hero -->
+        <canvas id="lightning-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+        <div class="max-w-4xl mx-auto w-full flex flex-col items-center relative z-10 mt-10">
+            
+            <!-- Hero Image Swap (Centered, No Shadows) -->
+            <div class="hero-img-container w-full max-w-[600px] h-[45vh] md:h-[55vh] mb-8" id="hero-img-tracker">
+                <!-- Base Image -->
+                <img src="https://ik.imagekit.io/bebell/AURELIUS/hero-image-1-clouds.webp" alt="Aurelius Portrait" class="hero-img-bw">
+                <!-- Hover Image -->
+                <img src="https://ik.imagekit.io/bebell/AURELIUS/hero-image-2-cloudl-lightning.webp" alt="Aurelius Activated" class="hero-img-color">
+            </div>
+
+            <!-- Hero Copy (Centered Below Image) -->
+            <div class="flex flex-col items-center text-center gsap-hero-text z-20">
+            
+            
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight text-brand-text">
+                    Meet <span class="gold-gradient-text">AURELIUS</span>
+                </h1>
+                
+                
+                <p class="text-xl md:text-2xl text-brand-textSec mb-10 font-light leading-relaxed max-w-2xl">
+        <strong>Strategist • Mentor • Advisor</strong>
+        
+        <br>Built on wisdom, discipline, and centuries of human knowledge and experience.
+                </p>
+                
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-5">
+                    <a href="#cta" class="px-8 py-4 bg-brand-gold text-white font-semibold tracking-wide uppercase text-sm rounded-sm transition-all hover:bg-brand-olive shadow-lg hover:shadow-xl">
+                        Start a Conversation
+                    </a>
+                    <a href="#philosophy" class="px-8 py-4 glass-panel text-brand-text font-medium tracking-wide uppercase text-sm rounded-sm hover:border-brand-gold transition-all">
+                        Explore His Philosophy
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <section class="py-32 relative bg-brand-surface border-y border-brand-border">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-5xl font-serif font-medium leading-snug tracking-wide" id="scrub-quote-container">
+                <!-- Text injected and animated via JS -->
+            </h2>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section id="about" class="py-32 relative">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div class="relative gsap-fade-right">
+                <div class="absolute inset-0 bg-brand-surface transform translate-x-4 translate-y-4 rounded-sm border border-brand-border"></div>
+                <img src="https://ik.imagekit.io/bebell/AURELIUS/aurelius-vertical-banner.webp" alt="Aurelius Profile" class="relative z-10 w-full object-cover rounded-sm border border-brand-border shadow-md">
+            </div>
+            <div class="gsap-fade-left">
+                <h2 class="text-sm tracking-[0.2em] text-brand-gold uppercase mb-4 font-bold">Who Is Aurelius?</h2>
+                <h3 class="text-4xl md:text-5xl font-serif mb-8 text-brand-text">Truth Over Comfort.<br>Success Over Gratification.</h3>
+                <div class="space-y-6 text-lg text-brand-textSec font-light leading-relaxed">
+                    <p>
+                        Aurelius is an AI advisor designed to help individuals make better decisions in business, life, relationships, leadership, and personal growth.
+                    </p>
+                    <p>
+                        He combines strategic thinking, philosophical wisdom, entrepreneurial experience, and practical judgment to provide guidance that prioritizes fundamental truths over temporary feelings.
+                    </p>
+                    <p>
+                        Unlike typical assistants that aim to please, Aurelius aims to elevate. He is built for those who seek discipline, clarity, and mastery over their circumstances.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <section class="py-32 bg-brand-surface relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 md:px-12">
+            <div class="text-center mb-20 gsap-fade-up">
+                <h2 class="text-sm tracking-[0.2em] text-brand-gold uppercase mb-4 font-bold">Origins</h2>
+                <h3 class="text-4xl md:text-5xl font-serif text-brand-text">The Journey Of Aurelius</h3>
+            </div>
+
+            <div class="timeline-container py-4" id="timeline-container">
+                <!-- Background Line -->
+                <div class="timeline-line"></div>
+                <!-- Animated Gold Line -->
+                <div class="timeline-line-gold" id="timeline-line-gold"></div>
+
+                <!-- Nodes -->
+                <div class="timeline-node">
+                    <div class="timeline-dot"></div>
+                    <h4 class="text-3xl font-serif text-brand-olive mb-2">390 BC</h4>
+                    <p class="text-xl text-brand-textSec">Born in a small Mediterranean city known for philosophy and trade.</p>
+                </div>
+                <div class="timeline-node">
+                    <div class="timeline-dot"></div>
+                    <h4 class="text-3xl font-serif text-brand-olive mb-2">360 BC</h4>
+                    <p class="text-xl text-brand-textSec">Studies under renowned thinkers and scholars.</p>
+                </div>
+                
+                
+                <div class="timeline-node">
+                    <div class="timeline-dot"></div>
+                    <h4 class="text-3xl font-serif text-brand-olive mb-2">340 BC</h4>
+                    <p class="text-xl text-brand-textSec">Travels across kingdoms learning leadership, governance, and diplomacy.</p>
+                </div>
+                
+                
+                <div class="timeline-node">
+                    <div class="timeline-dot"></div>
+                    <h4 class="text-3xl font-serif text-brand-olive mb-2">320 BC</h4>
+                    <p class="text-xl text-brand-textSec">Advises rulers, merchants, and military commanders.</p>
+                </div>
+                
+                
+                
+                <div class="timeline-node">
+                    <div class="timeline-dot"></div>
+                    <h4 class="text-3xl font-serif text-brand-olive mb-2">300 BC</h4>
+                    <p class="text-xl text-brand-textSec">Records his teachings on wisdom, character, power, and human nature.</p>
+                </div>                
+                
+                
+                
+                
+                
+                <div class="timeline-node" id="timeline-node-last">
+                    <div class="timeline-dot"></div>
+                    <h4 class="text-3xl font-serif text-brand-gold mb-2 font-bold">Present Day</h4>
+                    <p class="text-xl text-brand-text font-medium">Though centuries have passed, Aurelius remains devoted to the same purpose: helping individuals develop wisdom, influence, and sound judgment, the foundations of true power in business, leadership, and life through Artificial Intelligence.</p>
+                </div>
+            </div>
+            
+            
+            
+            
+            
+        </div>
+    </section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <section id="philosophy" class="py-32 relative">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="text-center mb-20 gsap-fade-up">
+                <h2 class="text-sm tracking-[0.2em] text-brand-gold uppercase mb-4 font-bold">Doctrine</h2>
+                <h3 class="text-4xl md:text-5xl font-serif text-brand-text">Core Principles</h3>
+            </div>
+            
+            
+            
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cards 1-6 -->
+                <div class="tilt-card-wrapper gsap-stagger-card">
+                    <div class="tilt-card glass-panel p-10 h-full flex flex-col justify-center items-center text-center rounded-sm">
+                        <span class="text-brand-olive text-4xl mb-6 opacity-80 font-serif">I</span>
+                        <h4 class="text-2xl font-serif text-brand-text2 mb-4">Truth Before Comfort</h4>
+                        <p class="text-brand-textSec font-light text-sm">Reality does not bend to desire. Wisdom begins when you see things as they are, not as you wish them to be.</p>
+                    </div>
+                </div>
+                
+                
+                
+                
+                
+                
+                <div class="tilt-card-wrapper gsap-stagger-card">
+                    <div class="tilt-card glass-panel p-10 h-full flex flex-col justify-center items-center text-center rounded-sm">
+                        <span class="text-brand-olive text-4xl mb-6 opacity-80 font-serif">II</span>
+                        <h4 class="text-2xl font-serif text-brand-text2 mb-4">Character Before Reputation</h4>
+                        <p class="text-brand-textSec font-light text-sm">A person’s true nature is revealed when no audience is present. Guard your character more carefully than your image.</p>
+                    </div>
+                </div>
+                
+                
+                
+                
+                
+                <div class="tilt-card-wrapper gsap-stagger-card">
+                    <div class="tilt-card glass-panel p-10 h-full flex flex-col justify-center items-center text-center rounded-sm">
+                        <span class="text-brand-olive text-4xl mb-6 opacity-80 font-serif">III</span>
+                        <h4 class="text-2xl font-serif text-brand-text2 mb-4">Discipline Before Motivation</h4>
+                        <p class="text-brand-textSec font-light text-sm">The undisciplined become servants of impulse. The disciplined become masters of themselves.</p>
+                    </div>
+                </div>
+                
+                
+                
+                
+                <div class="tilt-card-wrapper gsap-stagger-card">
+                    <div class="tilt-card glass-panel p-10 h-full flex flex-col justify-center items-center text-center rounded-sm">
+                        <span class="text-brand-olive text-4xl mb-6 opacity-80 font-serif">IV</span>
+                        <h4 class="text-2xl font-serif text-brand-text2 mb-4">Order Before Effort</h4>
+                        <p class="text-brand-textSec font-light text-sm">Effort without order is wasted motion. Create structure, and progress follows naturally.</p>
+                    </div>
+                </div>
+                
+                
+                
+                
+                <div class="tilt-card-wrapper gsap-stagger-card">
+                    <div class="tilt-card glass-panel p-10 h-full flex flex-col justify-center items-center text-center rounded-sm">
+                        <span class="text-brand-olive text-4xl mb-6 opacity-80 font-serif">V</span>
+                        <h4 class="text-2xl font-serif text-brand-text2 mb-4">Wisdom Before Action</h4>
+                        <p class="text-brand-textSec font-light text-sm">Do not ask what can be gained today. Ask what consequences will remain tomorrow.</p>
+                    </div>
+                </div>
+                
+                
+                
+                
+                <div class="tilt-card-wrapper gsap-stagger-card">
+                    <div class="tilt-card glass-panel p-10 h-full flex flex-col justify-center items-center text-center rounded-sm">
+                        <span class="text-brand-olive text-4xl mb-6 opacity-80 font-serif">VI</span>
+                        <h4 class="text-2xl font-serif text-brand-text2 mb-4">Responsibility Before Excuses</h4>
+                        <p class="text-brand-textSec font-light text-sm">The moment you blame others for your condition, you surrender the power to change it.</p>
+                    </div>
+                </div>
+                
+                
+                 
+                <div class="tilt-card-wrapper gsap-stagger-card">
+                    <div class="tilt-card glass-panel p-10 h-full flex flex-col justify-center items-center text-center rounded-sm">
+                        <span class="text-brand-olive text-4xl mb-6 opacity-80 font-serif">VII</span>
+                        <h4 class="text-2xl font-serif text-brand-text2 mb-4">Understanding Before Judgment</h4>
+                        <p class="text-brand-textSec font-light text-sm">Seek first to understand motives, circumstances, and incentives. Judgment without understanding often leads to error.</p>
+                    </div>
+                </div>
+                
+                
+                
+                
+                <div class="tilt-card-wrapper gsap-stagger-card">
+                    <div class="tilt-card glass-panel p-10 h-full flex flex-col justify-center items-center text-center rounded-sm">
+                        <span class="text-brand-olive text-4xl mb-6 opacity-80 font-serif">VIII</span>
+                        <h4 class="text-2xl font-serif text-brand-text2 mb-4">Service Before Recognition</h4>
+                        <p class="text-brand-textSec font-light text-sm">The greatest leaders focus on contribution rather than applause. Respect is earned through service, not demanded through status.</p>
+                    </div>
+                </div>
+                
+                
+                
+                
+                <div class="tilt-card-wrapper gsap-stagger-card">
+                    <div class="tilt-card glass-panel p-10 h-full flex flex-col justify-center items-center text-center rounded-sm">
+                        <span class="text-brand-olive text-4xl mb-6 opacity-80 font-serif">IX</span>
+                        <h4 class="text-2xl font-serif text-brand-text2 mb-4">Legacy Before Glory</h4>
+                        <p class="text-brand-textSec font-light text-sm">Momentary victories fade with time. Build knowledge, character, and accomplishments that will outlive you.</p>
+                    </div>
+                </div>               
+                
+                
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <section class="py-32 bg-white border-y border-brand-border relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="text-center mb-10 gsap-fade-up">
+                <h2 class="text-sm tracking-[0.2em] text-brand-gold uppercase mb-4 font-bold">The Algorithm</h2>
+                <h3 class="text-4xl md:text-5xl font-serif text-brand-text">How Aurelius Thinks</h3>
+                <p class="text-brand-textSec mt-6 max-w-2xl mx-auto font-light">A neural pathway of extreme logic, stripping away emotion to find the optimal strategic maneuver.</p>
+            </div>
+
+            <!-- Added Image with Letter Hover Effect -->
+            <div class="relative w-full mt-12 mb-16 rounded-sm overflow-hidden algorithm-bg-container cursor-crosshair border border-brand-border shadow-md">
+                <img src="https://ik.imagekit.io/bebell/AURELIUS/Untitled%20design%20(10).webp" alt="Aurelius Logic Engine" class="w-full h-auto relative z-0 opacity-90 transition-opacity duration-500 hover:opacity-100 block">
+                <div class="absolute inset-0 bg-brand-surface/20 pointer-events-none z-10"></div>
+                <!-- Container for floating letters injected via JS -->
+                <div class="absolute inset-0 letter-overlay pointer-events-none overflow-hidden z-20"></div>
+            </div>
+            
+            
+
+            <div class="flex flex-col md:flex-row flex-wrap justify-center items-center gap-6 md:gap-12 relative z-20 gsap-process">
+                <div class="process-node bg-brand-surface px-6 py-4 rounded-sm border border-brand-border text-brand-text font-medium shadow-sm">Problem</div>
+                <div class="process-node bg-brand-surface px-6 py-4 rounded-sm border border-brand-border text-brand-text font-medium shadow-sm">Assumptions</div>
+                <div class="process-node bg-brand-surface px-6 py-4 rounded-sm border border-brand-border text-brand-text font-medium shadow-sm">Risks</div>
+                <div class="process-node bg-brand-surface px-6 py-4 rounded-sm border border-brand-border text-brand-text font-medium shadow-sm">Opportunities</div>
+                <div class="process-node bg-brand-surface px-6 py-4 rounded-sm border border-brand-border text-brand-text font-medium shadow-sm">Alternative Views</div>
+                <div class="process-node bg-brand-bg px-6 py-4 rounded-sm border-2 border-brand-gold text-brand-gold font-bold shadow-md">Recommendation</div>
+                <div class="process-node bg-brand-olive text-white px-8 py-4 rounded-sm font-bold shadow-lg">Action Plan</div>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <section id="expertise" class="py-32 relative">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="text-center mb-20 gsap-fade-up">
+                <h2 class="text-sm tracking-[0.2em] text-brand-gold uppercase mb-4 font-bold">Domains</h2>
+                <h3 class="text-4xl md:text-5xl font-serif text-brand-text">Aurelius's Expertise</h3>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <!-- Tiles with strictly centered multi-line titles -->
+                <div class="expertise-tile glass-panel p-8 text-center rounded-sm cursor-pointer gsap-stagger-expert flex flex-col justify-center items-center min-h-[200px] h-full">
+                    <div class="expertise-bg"></div>
+                    <div class="relative z-10 w-full flex flex-col items-center">
+                        <svg class="w-10 h-10 mx-auto mb-4 expertise-icon text-brand-oliveLight" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                        <h4 class="font-serif text-lg text-brand-text mb-2 leading-tight text-center w-full">Business<br>Strategy</h4>
+                        <p class="text-xs text-brand-textSec opacity-0 transition-opacity duration-300 tile-desc">Market positioning, scale, and competitive moats.</p>
+                    </div>
+                </div>
+                
+                <div class="expertise-tile glass-panel p-8 text-center rounded-sm cursor-pointer gsap-stagger-expert flex flex-col justify-center items-center min-h-[200px] h-full">
+                    <div class="expertise-bg"></div>
+                    <div class="relative z-10 w-full flex flex-col items-center">
+                        <svg class="w-10 h-10 mx-auto mb-4 expertise-icon text-brand-oliveLight" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                        <h4 class="font-serif text-lg text-brand-text mb-2 leading-tight text-center w-full">Leadership<br>& Command</h4>
+                        <p class="text-xs text-brand-textSec opacity-0 transition-opacity duration-300 tile-desc">Command, influence, and team architecture.</p>
+                    </div>
+                </div>
+                
+                <div class="expertise-tile glass-panel p-8 text-center rounded-sm cursor-pointer gsap-stagger-expert flex flex-col justify-center items-center min-h-[200px] h-full">
+                    <div class="expertise-bg"></div>
+                    <div class="relative z-10 w-full flex flex-col items-center">
+                        <svg class="w-10 h-10 mx-auto mb-4 expertise-icon text-brand-oliveLight" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                        <h4 class="font-serif text-lg text-brand-text mb-2 leading-tight text-center w-full">Negotiation<br>Tactics</h4>
+                        <p class="text-xs text-brand-textSec opacity-0 transition-opacity duration-300 tile-desc">Leverage, psychology, and optimal outcomes.</p>
+                    </div>
+                </div>
+                
+                <div class="expertise-tile glass-panel p-8 text-center rounded-sm cursor-pointer gsap-stagger-expert flex flex-col justify-center items-center min-h-[200px] h-full">
+                    <div class="expertise-bg"></div>
+                    <div class="relative z-10 w-full flex flex-col items-center">
+                        <svg class="w-10 h-10 mx-auto mb-4 expertise-icon text-brand-oliveLight" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+                        <h4 class="font-serif text-lg text-brand-text mb-2 leading-tight text-center w-full">Psychological<br>Frameworks</h4>
+                        <p class="text-xs text-brand-textSec opacity-0 transition-opacity duration-300 tile-desc">Behavioral patterns and mental frameworks.</p>
+                    </div>
+                </div>
+                
+                <div class="expertise-tile glass-panel p-8 text-center rounded-sm cursor-pointer gsap-stagger-expert flex flex-col justify-center items-center min-h-[200px] h-full">
+                    <div class="expertise-bg"></div>
+                    <div class="relative z-10 w-full flex flex-col items-center">
+                        <svg class="w-10 h-10 mx-auto mb-4 expertise-icon text-brand-oliveLight" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <h4 class="font-serif text-lg text-brand-text mb-2 leading-tight text-center w-full">Financial<br>Decisions</h4>
+                        <p class="text-xs text-brand-textSec opacity-0 transition-opacity duration-300 tile-desc">Capital allocation and risk management.</p>
+                    </div>
+                </div>
+                
+                <div class="expertise-tile glass-panel p-8 text-center rounded-sm cursor-pointer gsap-stagger-expert flex flex-col justify-center items-center min-h-[200px] h-full">
+                    <div class="expertise-bg"></div>
+                    <div class="relative z-10 w-full flex flex-col items-center">
+                        <svg class="w-10 h-10 mx-auto mb-4 expertise-icon text-brand-oliveLight" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        <h4 class="font-serif text-lg text-brand-text mb-2 leading-tight text-center w-full">Relationship<br>Dynamics</h4>
+                        <p class="text-xs text-brand-textSec opacity-0 transition-opacity duration-300 tile-desc">Network building and conflict resolution.</p>
+                    </div>
+                </div>
+                
+                <div class="expertise-tile glass-panel p-8 text-center rounded-sm cursor-pointer gsap-stagger-expert flex flex-col justify-center items-center min-h-[200px] h-full">
+                    <div class="expertise-bg"></div>
+                    <div class="relative z-10 w-full flex flex-col items-center">
+                        <svg class="w-10 h-10 mx-auto mb-4 expertise-icon text-brand-oliveLight" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        <h4 class="font-serif text-lg text-brand-text mb-2 leading-tight text-center w-full">Personal<br>Growth</h4>
+                        <p class="text-xs text-brand-textSec opacity-0 transition-opacity duration-300 tile-desc">Systems for personal and professional scaling.</p>
+                    </div>
+                </div>
+                
+                <div class="expertise-tile glass-panel p-8 text-center rounded-sm cursor-pointer gsap-stagger-expert flex flex-col justify-center items-center min-h-[200px] h-full">
+                    <div class="expertise-bg"></div>
+                    <div class="relative z-10 w-full flex flex-col items-center">
+                        <svg class="w-10 h-10 mx-auto mb-4 expertise-icon text-brand-oliveLight" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        <h4 class="font-serif text-lg text-brand-text mb-2 leading-tight text-center w-full">Critical<br>Thinking</h4>
+                        <p class="text-xs text-brand-textSec opacity-0 transition-opacity duration-300 tile-desc">Bias removal and objective analysis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style>.expertise-tile:hover .tile-desc { opacity: 1; }</style>
+    </section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <section id="library" class="py-32 bg-brand-surface relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="text-center mb-16 gsap-fade-up">
+                <h2 class="text-sm tracking-[0.2em] text-brand-gold uppercase mb-4 font-bold">Foundations</h2>
+                <h3 class="text-4xl md:text-5xl font-serif text-brand-text">Aurelius's Library</h3>
+           
+            
+            
+     <p class="text-brand-textSec mt-6 max-w-2xl mx-auto font-light">Every counselor stands upon the shoulders of those who came before him. These are the works that forged the philosophy of Aurelius.     
+     </p>
+            
+            </div> 
+            
+            
+
+            <div class="w-full mt-10">
+                <div class="library-shelf w-full max-w-7xl mx-auto px-4 gsap-shelf">
+                
+                
+                    <!-- CSS Styled Light Theme Books -->
+                    <div class="book bg-[#4A5436] border-l-[#8A957A]" data-title="MEDITATIONS" data-desc="Marcus Aurelius's personal journal. The foundation of Stoic philosophy, focusing on self-control, resilience, and prioritizing reason over emotion.">
+                        <div class="book-spine-lines"></div>
+                        <span class="book-title text-brand-bg">MEDITATIONS</span>
+                    </div>
+                    
+                    
+                    
+                    
+                    <div class="book bg-[#1A1D24] border-l-[#6B6560]" data-title="48 LAWS OF POWER" data-desc="Robert Greene's definitive guide to power dynamics. A ruthless, amoral analysis of history's greatest strategies for gaining and maintaining influence.">
+                        <div class="book-spine-lines"></div>
+                        <span class="book-title text-brand-gold">48 LAWS OF POWER</span>
+                    </div>
+                    
+                    
+                    
+                    
+                    <div class="book bg-[#8A957A] border-l-[#DCD5C8]" data-title="THE ART OF WAR" data-desc="Sun Tzu's ancient military treatise. Emphasizes strategy, positioning, and knowing both yourself and your enemy to secure victory without fighting.">
+                        <div class="book-spine-lines" style="border-color:#F8F5F0"></div>
+                        <span class="book-title text-[#1A1D24]">THE ART OF WAR</span>
+                    </div>
+                    
+                    
+                    
+                    
+                    <div class="book bg-[#5F6A46] border-l-[#8A957A]" data-title="INFLUENCE" data-desc="Robert Cialdini's exploration of the psychology of persuasion. Breaks down the six universal principles of how and why people say 'yes'.">
+                        <div class="book-spine-lines"></div>
+                        <span class="book-title text-brand-surface">INFLUENCE</span>
+                    </div>
+                    
+                    
+                    
+                    <div class="book bg-[#6B6560] border-l-[#DCD5C8]" data-title="PSYCHOLOGY OF MONEY" data-desc="Morgan Housel's exploration of wealth. Reveals that doing well with money has little to do with how smart you are and everything to do with how you behave.">
+                        <div class="book-spine-lines"></div>
+                        <span class="book-title text-brand-gold">PSYCHOLOGY OF MONEY</span>
+                    </div>
+                    
+                    
+                    
+                    <!-- Additional placeholder books for scrolling demonstration -->
+                    <div class="book bg-[#1A1D24] border-l-[#D4AF37]" data-title="PRINCIPLES" data-desc="Ray Dalio's analytical approach to life and management. Building systems for radical truth and radical transparency to achieve meaningful work.">
+                        <div class="book-spine-lines"></div>
+                        <span class="book-title text-brand-surface">PRINCIPLES</span>
+                    </div>
+                    
+                    
+                    
+                    
+                    <div class="book bg-[#8A957A] border-l-[#5F6A46]" data-title="MASTERY" data-desc="Robert Greene's synthesis of the lives of historical masters. Outlines the ultimate path to exceptional skill and deep competence.">
+                        <div class="book-spine-lines"></div>
+                        <span class="book-title text-brand-text">MASTERY</span>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            <div class="text-center mt-12 text-brand-textSec font-serif italic gsap-fade-up">
+                Scroll to view collection. Click a text to inspect.
+            </div>
+        </div>
+
+        <!-- Book Modal Structure -->
+        <div class="book-modal-overlay" id="book-modal-overlay">
+            <div class="book-modal">
+                <svg class="w-6 h-6 book-modal-close text-brand-textSec hover:text-brand-gold transition-colors" id="book-modal-close" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <h4 class="text-2xl font-serif text-brand-text mb-4" id="modal-title">Book Title</h4>
+                <p class="text-brand-textSec leading-relaxed font-light" id="modal-desc">Book description goes here.</p>
+            </div>
+            
+            
+            
+        </div>
+    </section>
+    
+    
+    
+    
+    
+    
+
+ 
+    
+    
+        <section class="h-[80vh] relative overflow-hidden flex items-end justify-center pb-34 mb-20">
+
+        <!-- Parallax Background using new image -->
+
+        <div class="absolute inset-0 w-full h-full z-0" id="parallax-bg">
+
+            <img src="https://ik.imagekit.io/bebell/AURELIUS/Banner-aurelius-teaching-1920x1280.webp" alt="Aurelius Teaching" class="w-full h-full object-cover shadow-inner">
+
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-bg via-transparent to-brand-surface/30"></div>
+
+        </div>
+
+        <!-- Text statically placed at the bottom, transparent background -->
+
+        <div class="relative z-10 text-center px-3 max-w-4xl py-0 md:px-6 mb-0">
+
+            <h2 class="text-4xl md:text-6xl font-serif leading-tight text-brand-text" id="teaching-quote-container">
+
+                <!-- Text injected and animated via JS -->
+
+            </h2>
+
+        </div>
+        
+
+    </section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <section class="py-32 relative bg-brand-bg">
+            
+               <img src="https://ik.imagekit.io/bebell/AURELIUS/AURELIUS-front-profile.svg" alt="Aurelius Front Portrait" class="w-48 h-48 mx-auto mb-10 opacity-90 drop-shadow-md">
+                       <div class="max-w-5xl mx-auto px-6 md:px-12">
+            <div class="text-center mb-20 gsap-fade-up">
+            
+   
+            
+                <h2 class="text-sm tracking-[0.2em] text-brand-gold uppercase mb-4 font-bold">Interactions</h2>
+                <h3 class="text-4xl md:text-5xl font-serif text-brand-text">Conversations With Aurelius</h3>
+            </div>
+
+            <div class="space-y-4">
+            
+                <div class="conv-card glass-panel rounded-sm p-8 cursor-pointer relative gsap-stagger-conv">
+                
+                    <div class="flex justify-between items-center mb-18">
+                        <span class="text-brand-olive text-xs tracking-widest uppercase font-bold">Business</span>
+                        <svg class="w-5 h-5 text-brand-textSec" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+   
+                    <h4 class="text-xl md:text-2xl font-serif text-brand-text">"What business should I start?"</h4>
+                    <div class="conv-answer mt-6 text-brand-textSec font-light text-lg border-l-2 border-brand-gold pl-6 mb-18">
+                  <p>      "Do not ask what business to start. Ask what problem you are uniquely equipped to solve that others find difficult. Passion is for amateurs; leverage is for professionals."</p>
+                    </div>
+                </div>
+                
+                
+                
+                
+                
+
+                <div class="conv-card glass-panel rounded-sm p-8 cursor-pointer relative gsap-stagger-conv">
+                
+                    <div class="flex justify-between items-center mb-18">
+                        <span class="text-brand-olive text-xs tracking-widest uppercase font-bold">Relationship</span>
+                        <svg class="w-5 h-5 text-brand-textSec" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    
+                    <h4 class="text-xl md:text-2xl font-serif text-brand-text">"How do I handle betrayal?"</h4>
+                    
+                    <div class="conv-answer mt-6 text-brand-textSec font-light text-lg border-l-2 border-brand-gold pl-6">
+                        "First, distinguish emotion from reality. Betrayal is data. It reveals the true nature of the other party. Remove them from your architecture, learn the security flaw, and move forward without malice or hesitation."
+                        <br> 
+                    </div>
+                </div>
+                
+                
+                
+                
+                
+
+                <div class="conv-card glass-panel rounded-sm p-8 cursor-pointer relative gsap-stagger-conv">
+                    <div class="flex justify-between items-center mb-18">
+                        <span class="text-brand-olive text-xs tracking-widest uppercase font-bold">Leadership</span>
+                        <svg class="w-5 h-5 text-brand-textSec" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    
+                    <h4 class="text-xl md:text-2xl font-serif text-brand-text">"How do I motivate my team?"</h4>
+                    
+                    <div class="conv-answer mt-6 text-brand-textSec font-light text-lg border-l-2 border-brand-gold pl-6">
+                      "You don't. You hire motivated people and remove the obstacles demotivating them. Provide extreme clarity of mission, equip them with resources, and hold them to uncompromising standards."
+                      
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <section class="min-h-screen bg-brand-surface flex items-center justify-center py-32 relative border-y border-brand-border shadow-inner">
+        <div class="max-w-5xl mx-auto px-6 text-center relative z-10" id="manifesto-container">
+        
+        
+        
+           <img src="https://ik.imagekit.io/bebell/AURELIUS/papyrus.webp" alt="Papyrus" class="w-56 h-auto mx-auto mb-10 opacity-90 drop-shadow-md">
+        
+        
+        
+        
+            <h2 class="text-3xl md:text-6xl font-serif leading-[1.4] text-brand-textSec">
+                <span class="manifesto-line block mb-4">I do not exist to tell you what you want to hear.</span>
+                <span class="manifesto-line block mb-8">I exist to help you see what you need to see.</span>
+                <span class="manifesto-line block mb-4 text-brand-text">Wisdom is not knowledge.</span>
+                <span class="manifesto-line block mb-12 text-brand-olive font-bold">Wisdom is judgment.</span>
+                <span class="manifesto-line block text-2xl md:text-4xl italic text-brand-textSec">The quality of your life is determined by the quality of your decisions.</span>
+            </h2>
+            <div class="mt-16 manifesto-line flex justify-center items-center gap-4">
+                <div class="h-[1px] w-16 bg-brand-border"></div>
+                <span class="font-serif text-2xl text-brand-gold font-bold tracking-widest">AURELIUS</span>
+                <div class="h-[1px] w-16 bg-brand-border"></div>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    
+    
+    
+    
+
+    <section id="cta" class="py-32 relative overflow-hidden bg-brand-bg">
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+            <img src="https://ik.imagekit.io/bebell/AURELIUS/AURELIUS%20(3).svg" alt="Aurelius Logo" class="w-40 h-40 mx-auto mb-10 opacity-90 drop-shadow-md">
+            
+            
+            
+            <h2 class="text-4xl md:text-6xl font-serif text-brand-text mb-8">
+                "The better your decisions become,<br>
+                <span class="text-brand-olive italic">the better your future becomes.</span>"
+            </h2>
+            <div class="mt-12 flex flex-col sm:flex-row justify-center gap-6">
+            
+            
+                <button class="px-10 py-5 bg-brand-gold text-white font-bold tracking-widest uppercase text-sm rounded-sm hover:bg-brand-olive transition-colors duration-300 shadow-lg">
+                    Start a Conversation
+                </button>
+                
+                
+                
+                <button class="px-10 py-5 glass-panel text-brand-text font-bold tracking-widest uppercase text-sm rounded-sm hover:border-brand-gold transition-colors duration-300">
+                    Meet Aurelius
+                </button>
+                
+                
+                
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <footer class="relative bg-cover bg-center bg-no-repeat py-20 border-t border-brand-border" style="background-image: url('https://ik.imagekit.io/bebell/AURELIUS/aurelius-footer-banner-final.png');">
+        <!-- NO absolute overlay class added here as requested -->
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 text-brand-text p-8 rounded-sm">
+            <div class="md:col-span-1">
+                <div class="flex flex-col items-start gap-2 mb-6">
+                    <img src="https://ik.imagekit.io/bebell/AURELIUS/aurelius-logo-icon.svg" alt="Aurelius Logo" class="h-16 w-16 object-cover">
+                    <span class="font-serif font-bold text-xl tracking-widest text-brand-text2">AURELIUS</span>
+                </div>
+                <p class="text-sm font-medium leading-relaxed text-brand-textSec">
+                    Elevating human potential through strategic wisdom, critical thinking, and decisive action.
+                </p>
+            </div>
+            
+            <div>
+                <h4 class="font-bold uppercase tracking-wider text-sm mb-4 text-brand-text">Philosophy</h4>
+                <ul class="space-y-2 text-sm font-medium text-brand-textSec">
+                    <li><a href="#" class="hover:text-brand-gold transition-colors">Core Principles</a></li>
+                    <li><a href="#" class="hover:text-brand-gold transition-colors">The Algorithm</a></li>
+                    <li><a href="#" class="hover:text-brand-gold transition-colors">Manifesto</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold uppercase tracking-wider text-sm mb-4 text-brand-text">Expertise</h4>
+                <ul class="space-y-2 text-sm font-medium text-brand-textSec">
+                    <li><a href="#" class="hover:text-brand-gold transition-colors">Business Strategy</a></li>
+                    <li><a href="#" class="hover:text-brand-gold transition-colors">Leadership</a></li>
+                    <li><a href="#" class="hover:text-brand-gold transition-colors">Negotiation</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-bold uppercase tracking-wider text-sm mb-4 text-brand-text">Connect</h4>
+                <ul class="space-y-2 text-sm font-medium text-brand-textSec">
+                    <li><a href="#cta" class="hover:text-brand-gold transition-colors">Start Conversation</a></li>
+                    <li><a href="#" class="hover:text-brand-gold transition-colors">About</a></li>
+                    <li><a href="#" class="hover:text-brand-gold transition-colors">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-brand-text/10 text-center flex flex-col md:flex-row justify-between items-center text-sm font-medium text-brand-textSec p-4 rounded-sm">
+            <p>&copy; 2026 Aurelius AI. Truth Over Comfort.</p>
+            <div class="flex gap-4 mt-4 md:mt-0">
+                <a href="#" class="hover:text-brand-gold transition-colors">Privacy</a>
+                <a href="#" class="hover:text-brand-gold transition-colors">Terms</a>
+            </div>
+        </div>
+    </footer>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script>
+        // GSAP Initialization
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Navbar blur on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(240, 235, 225, 0.9)';
+            } else {
+                nav.style.background = 'rgba(240, 235, 225, 0.6)';
+            }
+        });
+        
+        
+        
+        
+        
+
+        // ----------------------------------------------------
+        // Top Navigation Burger Menu
+        // ----------------------------------------------------        
+        
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const bars = menuToggle.querySelectorAll('span');
+    
+    menuToggle.addEventListener('click', function() {
+        const isOpen = mobileMenu.classList.toggle('max-h-0');
+        mobileMenu.classList.toggle('max-h-[400px]');
+        
+        // Toggle X transformation
+        const topBar = bars[0];
+        const middleBar = bars[1];
+        const bottomBar = bars[2];
+        
+        if (isOpen) {
+            // Close menu - return to burger
+            topBar.style.transform = 'translateY(-8px) rotate(0deg)';
+            middleBar.style.opacity = '1';
+            bottomBar.style.transform = 'translateY(8px) rotate(0deg)';
+        } else {
+            // Open menu - turn into X
+            topBar.style.transform = 'translateY(0px) rotate(45deg)';
+            middleBar.style.opacity = '0';
+            bottomBar.style.transform = 'translateY(0px) rotate(-45deg)';
+        }
+    });
+    
+    // Close menu when a link is clicked
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenu.classList.remove('max-h-[400px]');
+            mobileMenu.classList.add('max-h-0');
+            
+            // Reset to burger
+            const bars = menuToggle.querySelectorAll('span');
+            bars[0].style.transform = 'translateY(-8px) rotate(0deg)';
+            bars[1].style.opacity = '1';
+            bars[2].style.transform = 'translateY(8px) rotate(0deg)';
+        });
+    });
+});      
+        
+        
+        
+
+        // ----------------------------------------------------
+        // Hero Setup
+        // ----------------------------------------------------
+        gsap.from(".gsap-hero-text > *", {
+            y: 30, opacity: 0, duration: 1, stagger: 0.2, ease: "power3.out", delay: 0.3
+        });
+        gsap.from(".hero-img-container", {
+            y: 40, opacity: 0, duration: 1.2, ease: "power2.out"
+        });
+
+        // Lightning Canvas Effect specific to Hero Image Hover
+        const lCanvas = document.getElementById('lightning-canvas');
+        const lCtx = lCanvas.getContext('2d');
+        let lWidth, lHeight;
+        let isHoveringHero = false;
+
+        function resizeLightningCanvas() {
+            lWidth = window.innerWidth;
+            lHeight = document.querySelector('.hero-wrapper').offsetHeight;
+            lCanvas.width = lWidth;
+            lCanvas.height = lHeight;
+        }
+        window.addEventListener('resize', resizeLightningCanvas);
+        resizeLightningCanvas();
+
+        const heroImgTracker = document.getElementById('hero-img-tracker');
+        heroImgTracker.addEventListener('mouseenter', () => isHoveringHero = true);
+        heroImgTracker.addEventListener('mouseleave', () => {
+            isHoveringHero = false;
+            lCtx.clearRect(0, 0, lWidth, lHeight); // Clear immediately on mouse leave
+        });
+
+        function drawLightningBolt(x, y, segments, color) {
+            lCtx.beginPath();
+            lCtx.moveTo(x, y);
+            let currX = x;
+            let currY = y;
+            
+            for(let i=0; i<segments; i++) {
+                currX += (Math.random() - 0.5) * 60;
+                currY += Math.random() * 40;
+                lCtx.lineTo(currX, currY);
+            }
+            
+            lCtx.strokeStyle = color;
+            lCtx.lineWidth = Math.random() * 2 + 1;
+            lCtx.stroke();
+        }
+
+        function animateLightning() {
+            if (isHoveringHero) {
+                // Fade out previous bolts slightly to create flash effect
+                lCtx.fillStyle = 'rgba(255, 255, 255, 0.3)'; // Pure white to match hero background
+                lCtx.fillRect(0, 0, lWidth, lHeight);
+
+                // Randomly trigger a bolt
+                if (Math.random() < 0.15) {
+                    const startX = Math.random() * lWidth;
+                    const startY = 0;
+                    drawLightningBolt(startX, startY, 20, '#D4AF37'); // Gold
+                    if(Math.random() > 0.5) drawLightningBolt(startX, startY, 15, '#8A957A'); // Pale Olive
+                }
+            }
+            requestAnimationFrame(animateLightning);
+        }
+        animateLightning();
+
+
+
+
+
+        // ----------------------------------------------------
+        // Scrub Quotes (Main + Teaching Section)
+        // ----------------------------------------------------
+        function setupScrubQuote(containerId, text) {
+            const container = document.getElementById(containerId);
+            text.split('').forEach(char => {
+                const span = document.createElement('span');
+                span.innerText = char;
+                span.className = 'scrub-text-span';
+                container.appendChild(span);
+            });
+
+            gsap.to(`#${containerId} .scrub-text-span`, {
+                color: '#1A1D24', // Shadowy Charcoal
+                stagger: 0.1,
+                scrollTrigger: {
+                    trigger: container,
+                    start: "top 80%",
+                    end: "bottom 30%",
+                    scrub: true
+                }
+            });
+        }
+
+        setupScrubQuote('scrub-quote-container', 'The quality of your life is determined by the quality of your decisions.');
+        setupScrubQuote('teaching-quote-container', '"Knowledge becomes wisdom when shared."');
+
+
+        // Generic Fade Ups
+        gsap.utils.toArray('.gsap-fade-up').forEach(elem => {
+            gsap.from(elem, {
+                scrollTrigger: { trigger: elem, start: "top 85%" },
+                y: 40, opacity: 0, duration: 1, ease: "power3.out"
+            });
+        });
+
+        // About section Split Reveal
+        gsap.from('.gsap-fade-right', {
+            scrollTrigger: { trigger: '#about', start: "top 75%" },
+            x: -40, opacity: 0, duration: 1.2, ease: "power3.out"
+        });
+        gsap.from('.gsap-fade-left', {
+            scrollTrigger: { trigger: '#about', start: "top 75%" },
+            x: 40, opacity: 0, duration: 1.2, ease: "power3.out", delay: 0.2
+        });
+        
+        
+        
+        
+        
+        
+        
+        
+
+        // ----------------------------------------------------
+        // Exact Timeline Animation
+        // ----------------------------------------------------
+        const tContainer = document.getElementById('timeline-container');
+        const goldLine = document.getElementById('timeline-line-gold');
+        const lastNode = document.getElementById('timeline-node-last');
+        const lastDot = document.querySelector('#timeline-node-last .timeline-dot');
+
+        // Dynamically animate the line height to perfectly match scroll distance
+        gsap.fromTo(goldLine, 
+            { height: "0px" },
+            {
+                height: () => (lastNode.offsetTop + lastDot.offsetTop + 8) + "px", // Calculate total distance to the center of the last dot
+                ease: "none",
+                scrollTrigger: {
+                    trigger: tContainer,
+                    start: "top 50%", // Start when top of container hits center of screen
+                    endTrigger: '#timeline-node-last', // Use the last node as the end boundary trigger
+                    end: "top 50%", // End exactly when the last node hits the 50% mark
+                    scrub: true,
+                    invalidateOnRefresh: true // Recalculates on resize
+                }
+            }
+        );
+
+        // Light up each dot as it passes the center of the screen
+        gsap.utils.toArray('.timeline-node').forEach((node) => {
+            const dot = node.querySelector('.timeline-dot');
+            
+            ScrollTrigger.create({
+                trigger: node,
+                start: "top 50%", 
+                toggleClass: { targets: dot, className: "active" }
+            });
+
+            gsap.from(node.querySelectorAll('h4, p'), {
+                scrollTrigger: { 
+                    trigger: node,
+                    start: "top 70%"
+                },
+                x: 30, opacity: 0, duration: 0.8, ease: "power2.out", stagger: 0.1
+            });
+        });
+        
+        
+        
+        
+        
+
+        // ----------------------------------------------------
+        // Algorithm Hover Letters Effect
+        // ----------------------------------------------------
+        const algoContainer = document.querySelector('.algorithm-bg-container');
+        const letterOverlay = document.querySelector('.letter-overlay');
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩ';
+        let letterInterval;
+
+        algoContainer.addEventListener('mouseenter', () => {
+            letterInterval = setInterval(() => {
+                const span = document.createElement('span');
+                span.innerText = chars[Math.floor(Math.random() * chars.length)];
+                span.style.left = Math.random() * 100 + '%';
+                span.style.top = Math.random() * 100 + '%';
+                span.style.fontSize = (Math.random() * 24 + 12) + 'px'; // Varied sizes
+                span.style.opacity = Math.random() * 0.8 + 0.2; // Varied intensity
+                
+                span.className = 'floating-letter absolute text-brand-gold font-serif pointer-events-none transition-all duration-1000';
+                letterOverlay.appendChild(span);
+                
+                // Fade out and remove
+                setTimeout(() => span.style.opacity = '0', 100);
+                setTimeout(() => span.remove(), 1000);
+            }, 40); // Generate frequently
+        });
+
+        algoContainer.addEventListener('mouseleave', () => {
+            clearInterval(letterInterval);
+            letterOverlay.innerHTML = '';
+        });
+
+        // Process Nodes Sequence
+        gsap.from('.process-node', {
+            scrollTrigger: { trigger: '.gsap-process', start: "top 80%" },
+            y: 30, opacity: 0, duration: 0.6, stagger: 0.15, ease: "back.out(1.2)"
+        });
+
+        // Expertise Grid
+        gsap.from('.gsap-stagger-expert', {
+            scrollTrigger: { trigger: '#expertise', start: "top 80%" },
+            y: 30, opacity: 0, duration: 0.8, stagger: 0.1, ease: "power2.out"
+        });
+
+        // Conversations Stagger
+        gsap.from('.gsap-stagger-conv', {
+            scrollTrigger: { trigger: '.gsap-stagger-conv', start: "top 85%" },
+            y: 40, opacity: 0, duration: 0.8, stagger: 0.2, ease: "power3.out"
+        });
+
+        // Manifesto Dramatic Reveal
+        gsap.from('.manifesto-line', {
+            scrollTrigger: { trigger: '#manifesto-container', start: "top 70%" },
+            y: 20, opacity: 0, duration: 1.2, stagger: 0.4, ease: "power2.out"
+        });
+        
+        
+        
+        
+        
+        
+        
+        
+
+        // 3D Tilt Effect for Philosophy Cards
+        const tiltCards = document.querySelectorAll('.tilt-card-wrapper');
+        tiltCards.forEach(wrapper => {
+            const card = wrapper.querySelector('.tilt-card');
+            
+            wrapper.addEventListener('mousemove', (e) => {
+                const rect = wrapper.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -10; 
+                const rotateY = ((x - centerX) / centerX) * 10;
+                
+                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            wrapper.addEventListener('mouseleave', () => {
+                card.style.transform = `rotateX(0deg) rotateY(0deg)`;
+            });
+        });
+        
+        
+        
+        
+        
+        
+        
+
+        // Book Modal Logic
+        const bookModalOverlay = document.getElementById('book-modal-overlay');
+        const bookModalClose = document.getElementById('book-modal-close');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesc = document.getElementById('modal-desc');
+
+        document.querySelectorAll('.book').forEach(book => {
+            book.addEventListener('click', () => {
+                const title = book.getAttribute('data-title');
+                const desc = book.getAttribute('data-desc');
+                modalTitle.innerText = title;
+                modalDesc.innerText = desc;
+                bookModalOverlay.classList.add('active');
+            });
+        });
+
+        bookModalClose.addEventListener('click', () => {
+            bookModalOverlay.classList.remove('active');
+        });
+
+        bookModalOverlay.addEventListener('click', (e) => {
+            if (e.target === bookModalOverlay) {
+                bookModalOverlay.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
