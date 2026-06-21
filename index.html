@@ -361,7 +361,7 @@ createNewFavicon("apple-touch-icon", "https://ik.imagekit.io/bebell/AURELIUS/Aur
   content: "Loading...\A⌰oading...\A⌰⍜ading...\A⌰⍜⏃ding...\A⌰⍜⏃⎅ing...\A⌰⍜⏃⎅⟟ng...\A⌰⍜⏃⎅⟟⋏g...\A⌰⍜⏃⎅⟟⋏☌...\A⌰⍜⏃⎅⟟⋏☌⟒..\A⌰⍜⏃⎅⟟⋏☌⟒⏁.\A⌰⍜⏃⎅⟟⋏☌⟒⏁⋔";
   white-space: pre;
   display: inline-block;
-  animation: l39 4s infinite steps(11) alternate;
+  animation: l39 1s infinite steps(11) alternate;
 }
 
 @keyframes l39 {
@@ -1650,19 +1650,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
 <!-- Page loader -->
 <script>
+// Force minimum display time
+let loaderStartTime = Date.now();
+const MIN_DISPLAY_TIME = 5000; // 5 seconds
+
 window.addEventListener('load', function() {
   const loader = document.getElementById('page-loader');
   if (loader) {
-    // Fade out
-    loader.style.opacity = '0';
-    // Remove from DOM after fade
+    const elapsed = Date.now() - loaderStartTime;
+    const remaining = Math.max(0, MIN_DISPLAY_TIME - elapsed);
+    
     setTimeout(() => {
-      loader.style.display = 'none';
-    }, 500);
+      loader.style.opacity = '0';
+      setTimeout(() => {
+        loader.style.display = 'none';
+      }, 500);
+    }, remaining);
   }
 });
 
-// Optional: Fallback timeout (in case load event is slow)
+// Fallback: Force hide after 6 seconds (safety net)
 setTimeout(function() {
   const loader = document.getElementById('page-loader');
   if (loader && loader.style.display !== 'none') {
@@ -1671,10 +1678,8 @@ setTimeout(function() {
       loader.style.display = 'none';
     }, 500);
   }
-}, 5000); // Hides after 5 seconds as fallback
+}, 6000);
 </script>
-
-
 
 
 
