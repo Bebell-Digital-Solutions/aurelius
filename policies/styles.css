@@ -1,1 +1,482 @@
+        /* Base & Resets for Light Theme */
+        body {
+            background-color: #F8F5F0;
+            color: #1A1D24;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        
+
+        /* Subtle Grain Effect across the whole page */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; 
+            left: 0; 
+            width: 100vw; 
+            height: 100vh;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.10;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        h1, h2, h3, h4, h5, h6, .font-serif {
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F8F5F0; }
+        ::-webkit-scrollbar-thumb { background: #DCD5C8; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+
+        /* Utilities */
+        .glass-panel {
+            background: rgba(240, 235, 225, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid #DCD5C8;
+            box-shadow: 0 4px 6px rgba(26, 29, 36, 0.05);
+        }
+
+ #menuToggle span {
+    transform-origin: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#mobileMenu {
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}      
+
+        .gold-gradient-text {
+            background: linear-gradient(to right, #8A957A, #D4AF37, #5F6A46);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Centered Hero Image Swap */
+        .hero-img-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: visible;
+            border-radius: 0px;
+            max-width: 600px;
+        }
+        
+        .hero-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s ease;
+            position: absolute;
+            bottom: 0;
+        }
+        
+        .hero-img-bw { 
+        z-index: 2; 
+        opacity: 1; 
+        }
+        
+        
+        .hero-img-color { 
+        z-index: 1; 
+        opacity: 0; 
+        }
+        
+        .hero-img-container:hover .hero-img-bw { 
+        opacity: 0; 
+        }
+        
+        
+        .hero-img-container:hover .hero-img-color { 
+        opacity: 1; 
+        z-index: 3; 
+        transform: scale(1.02); 
+        }
+        
+
+        /* Philosophy Cards (3D Tilt) */
+        .tilt-card-wrapper { 
+        perspective: 1000px; 
+        }
+        
+        
+        
+        .tilt-card {
+            transition: transform 0.1s ease, border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .tilt-card:hover {
+            background: #F0EBE1;
+            border-color: #D4AF37;
+            box-shadow: 0 15px 35px rgba(26, 29, 36, 0.1), 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+        
+        
+        
+        /* Timeline */
+        .timeline-container { position: relative; 
+        }
+        
+        
+        
+        
+        
+        .timeline-line {
+            position: absolute; 
+            left: 24px; 
+            top: 12px; 
+            bottom: 12px;
+            width: 2px; 
+            background: #DCD5C8;
+        }
+        
+        
+        .timeline-line-gold {
+            position: absolute; left: 24px; top: 12px; width: 2px;
+            background: #D4AF37;
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+            height: 0px;
+        }
+        
+        
+        .timeline-node { 
+        position: relative; 
+        padding-left: 80px; 
+        margin-bottom: 80px; 
+        }
+        
+        .timeline-node:last-child { 
+        margin-bottom: 0; 
+        }
+        
+        
+        .timeline-dot {
+            position: absolute; 
+            left: 17px; 
+            top: 8px; 
+            width: 16px; height: 16px;
+            border-radius: 50%; 
+            background: #F8F5F0; 
+            border: 2px solid #DCD5C8;
+            z-index: 10; 
+            transition: all 0.4s ease;
+        }
+        /* Active dot state applied via JS */
+        .timeline-dot.active {
+            background: #D4AF37; 
+            border-color: #D4AF37;
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.5); 
+            transform: scale(1.2);
+        }
+
+        /* Neural Process Diagram */
+        .process-node { 
+        position: relative; 
+        transition: all 0.3s ease; }
+        
+        
+        
+        .process-node::after {
+            content: ''; 
+            position: absolute; 
+            right: -40px; 
+            top: 50%; 
+            transform: translateY(-50%);
+            width: 30px; 
+            height: 2px; 
+            background: #DCD5C8; 
+            transition: all 0.3s ease;
+        }
+        
+        
+        
+        .process-node:last-child::after { 
+        display: none; 
+        }
+        
+        
+        
+        
+        .process-node:hover { 
+        transform: translateY(-5px); 
+        border-color: #5F6A46;
+        color: #5F6A46; 
+}
+
+
+
+        .process-node:hover::after { 
+        background: #5F6A46; 
+       
+        }
+        
+        
+        
+        
+        
+        
+
+        /* Algorithm Image Hover Letters */
+        .floating-letter {
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+            transform: translate(-50%, -50%);
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+
+        /* Expertise Grid */
+        .expertise-tile { 
+        position: relative; 
+        overflow: hidden; 
+        }
+        
+        
+        
+        .expertise-bg {
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(212,175,55,0.05) 100%);
+            opacity: 0; 
+            transition: opacity 0.4s ease;
+        }
+        
+        
+        
+        
+        .expertise-tile:hover .expertise-bg { 
+        opacity: 1; 
+        }
+        
+        
+        .expertise-tile:hover .expertise-icon { 
+        transform: rotateY(180deg); 
+        color: #5F6A46; 
+        }
+        
+        
+        
+        .expertise-icon { 
+        transition: transform 0.6s ease, color 0.3s ease; 
+        }
+        
+        
+        
+        
+        
+
+        /* 3D Library Books (Light Theme) */
+        .library-shelf {
+            position: relative;
+            display: flex;
+            gap: 1.5rem;
+            padding: 2rem 1rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            /* Hide scrollbar for cleaner look */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        
+        
+        .library-shelf::-webkit-scrollbar {
+            display: none;
+        }
+        
+        
+        
+        .book {
+            flex-shrink: 0;
+            scroll-snap-align: center;
+            width: 80px; 
+            height: 398px; 
+            border-radius: 4px 4px 4px 4px;
+            position: relative; 
+            transform-origin: bottom center;
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease;
+            box-shadow: inset -4px 0 10px rgba(0,0,0,0.1), 5px 5px 15px rgba(26, 29, 36, 0.15);
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            writing-mode: vertical-rl; 
+            text-orientation: mixed; 
+            cursor: pointer;
+            border-left: 2px solid rgba(255,255,255,0.4);
+        }
+        
+        
+        
+        
+        .book:hover {
+            transform: translateZ(50px) translateY(-20px) rotateX(-5deg);
+            box-shadow: inset -4px 0 10px rgba(0,0,0,0.1), 15px 25px 30px rgba(26, 29, 36, 0.2), 0 0 15px rgba(212, 175, 55, 0.3);
+            z-index: 10;
+        }
+        
+        
+        
+        .book-title {
+            font-family: 'Cinzel', serif; font-size: 1.1rem; letter-spacing: 2px;
+            transform: rotate(180deg); font-weight: 600;
+        }
+        
+        
+        .book-spine-lines {
+            position: absolute; 
+            top: 20px; 
+            bottom: 20px; 
+            right: 8px; 
+            width: 4px;
+            border-top: 2px solid rgba(255,255,255,0.3); 
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        
+   /* Book Modal */
+        .book-modal-overlay {
+            position: fixed; 
+            inset: 0; 
+            background: rgba(26, 29, 36, 0.4);
+            backdrop-filter: blur(4px); 
+            z-index: 100;
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            opacity: 0; 
+            pointer-events: none; 
+            transition: opacity 0.3s ease;
+        }
+        
+        
+        
+        .book-modal-overlay.active { 
+        opacity: 1; 
+        pointer-events: auto; }
+        
+        
+        .book-modal {
+            background: #F8F5F0; 
+            border: 1px solid #DCD5C8;
+            padding: 2rem; 
+            max-width: 600px; 
+            width: 90%; 
+            border-radius: 4px;
+            transform: translateY(20px); transition: transform 0.3s ease;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+            position: relative;
+        }
+        
+        
+        
+        
+        .book-modal-overlay.active .book-modal { 
+        transform: translateY(0); 
+        }
+        
+        .book-modal-close { 
+        position: absolute; 
+        top: 1rem; 
+        right: 1rem; 
+        cursor: pointer; 
+        }       
+        
+        
+        
+        
+        
+
+        /* Conversation Cards */
+        .conv-card { 
+        height: 120px; 
+        transition: height 0.4s ease, background 0.4s ease; 
+        overflow: hidden; 
+        }
+        
+        
+        .conv-answer { 
+        opacity: 0; 
+        transform: translateY(10px);
+        transition: all 0.4s ease;
+        transition-delay: 0s; 
+        }
+        
+        
+        .conv-card:hover { 
+        height: 260px; 
+        background: #F0EBE1; 
+        border-color: #D4AF37; }
+        
+        .conv-card:hover.conv-answer { 
+        opacity: 1; 
+        transform: translateY(0); 
+        transition-delay: 0.2s; 
+        }
+
+        /* Scrub Quote Span Colors */
+        .scrub-text-span { 
+        color: #DCD5C8; 
+        } /* Will be animated to #1A1D24 via JS */
+
+      
+
+        /* Utilities */
+        .gsap-reveal { opacity: 0; visibility: hidden; }
+        
+        
+        
+        
+
+/* Full-screen overlay */
+#page-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #F8F5F0; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+}
+
+
+
+
+/* Your original loader styles (slightly modified) */
+.loader {
+  width: fit-content;
+  font-weight: bold;
+  font-family: monospace;
+  white-space: pre;
+  font-size: 30px;
+  line-height: 1.2em;
+  height: 1.2em;
+  overflow: hidden;
+  color: #333; 
+}
+
+.loader:before {
+  content: "Loading...\A⌰oading...\A⌰⍜ading...\A⌰⍜⏃ding...\A⌰⍜⏃⎅ing...\A⌰⍜⏃⎅⟟ng...\A⌰⍜⏃⎅⟟⋏g...\A⌰⍜⏃⎅⟟⋏☌...\A⌰⍜⏃⎅⟟⋏☌⟒..\A⌰⍜⏃⎅⟟⋏☌⟒⏁.\A⌰⍜⏃⎅⟟⋏☌⟒⏁⋔";
+  white-space: pre;
+  display: inline-block;
+  animation: l39 1s infinite steps(11) alternate;
+}
+
+@keyframes l39 {
+  100% { transform: translateY(-100%) }
+}
 
