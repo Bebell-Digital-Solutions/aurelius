@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURELIUS | Strategist. Mentor. Advisor.</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#F8F5F0',        // Travertine Marble
+                            surface: '#F0EBE1',   // Sunlit Limestone
+                            text: '#8a957a',      // Pale Olive
+                            textSec: '#6B6560',   // Weathered Stone
+                            text2: '#1A1D24',     // Shadowy Charcoal                            
+                            gold: '#D4AF37',      // Aurelian Gold
+                            olive: '#5F6A46',     // Sacred Olive
+                            oliveLight: '#8A957A', // Pale Olive
+                            border: '#DCD5C8',    // Marble Vein
+                            success: '#4A5436'    // Laurel Green
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="icon" href="https://ik.imagekit.io/bebell/AURELIUS/Aurelius-app-button.png">
+
+<script> 
+function removeFromLinks(rel) {
+    for (link of document.head.getElementsByTagName("link")) {
+        if (link.rel == rel) {
+            document.head.removeChild(link);
+        }
+    };
+}
+function createNewFavicon(rel, img) {
+    var newFavicon = document.createElement("link");
+    newFavicon.type = "image/png";
+    newFavicon.rel = rel;
+    newFavicon.href = img;
+    var firstHeadElement = document.head.firstChild;
+    document.head.insertBefore(newFavicon, firstHeadElement);
+}
+removeFromLinks("icon");
+removeFromLinks("shortcut icon");
+removeFromLinks("apple-touch-icon");
+createNewFavicon("icon", "https://ik.imagekit.io/bebell/AURELIUS/Aurelius-app-button.png");
+createNewFavicon("shortcut icon", "https://ik.imagekit.io/bebell/AURELIUS/Aurelius-app-button.png");
+createNewFavicon("apple-touch-icon", "https://ik.imagekit.io/bebell/AURELIUS/Aurelius-app-button.png"); 
+</script>
+
+<style>
+        /* Base & Resets for Light Theme */
+        body {
+            background-color: #F8F5F0;
+            color: #1A1D24;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Subtle Grain Effect across the whole page */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; 
+            left: 0; 
+            width: 100vw; 
+            height: 100vh;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.10;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        h1, h2, h3, h4, h5, h6, .font-serif {
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F8F5F0; }
+        ::-webkit-scrollbar-thumb { background: #DCD5C8; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+
+        /* Hide Scrollbar for Horizontal Scroll Areas */
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Utilities */
+        .glass-panel {
+            background: rgba(240, 235, 225, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid #DCD5C8;
+            box-shadow: 0 4px 6px rgba(26, 29, 36, 0.05);
+        }
+
+        #menuToggle span {
+            transform-origin: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #mobileMenu {
+            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }      
+
+        .gold-gradient-text {
+            background: linear-gradient(to right, #8A957A, #D4AF37, #5F6A46);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Centered Hero Image Swap */
+        .hero-img-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: visible;
+            border-radius: 0px;
+        }
+        
+        .hero-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s ease;
+            position: absolute;
+            bottom: 0;
+        }
+        
+        .hero-img-bw { 
+            z-index: 2; 
+            opacity: 1; 
+        }
+        
+        .hero-img-color { 
+            z-index: 1; 
+            opacity: 0; 
+        }
+        
+        .hero-img-container:hover .hero-img-bw { 
+            opacity: 0; 
+        }
+        
+        .hero-img-container:hover .hero-img-color { 
+            opacity: 1; 
+            z-index: 3; 
+            transform: scale(1.02); 
+        }
+
+        /* Default Prompt Cards (3D Tilt) */
+        .tilt-card-wrapper { 
+            perspective: 1000px; 
+        }
+        
+        .tilt-card {
+            transition: transform 0.1s ease, border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .tilt-card:hover {
+            background: #F0EBE1;
+            border-color: #D4AF37;
+            box-shadow: 0 15px 35px rgba(26, 29, 36, 0.1), 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Utilities */
+        .gsap-reveal { opacity: 0; visibility: hidden; }
+
+        /* Full-screen overlay */
+        #page-loader {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100vh;
+          background: #F8F5F0; 
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 9999;
+          transition: opacity 0.5s ease;
+        }
+
+        /* Loader styles */
+        .loader {
+          width: fit-content;
+          font-weight: bold;
+          font-family: monospace;
+          white-space: pre;
+          font-size: 30px;
+          line-height: 1.2em;
+          height: 1.2em;
+          overflow: hidden;
+          color: #333; 
+        }
+
+        .loader:before {
+          content: "Loading...\A⌰oading...\A⌰⍜ading...\A⌰⍜⏃ding...\A⌰⍜⏃⎅ing...\A⌰⍜⏃⎅⟟ng...\A⌰⍜⏃⎅⟟⋏g...\A⌰⍜⏃⎅⟟⋏☌...\A⌰⍜⏃⎅⟟⋏☌⟒..\A⌰⍜⏃⎅⟟⋏☌⟒⏁.\A⌰⍜⏃⎅⟟⋏☌⟒⏁⋔";
+          white-space: pre;
+          display: inline-block;
+          animation: l39 1s infinite steps(11) alternate;
+        }
+
+        @keyframes l39 {
+          100% { transform: translateY(-100%) }
+        }
+</style>
+</head>
+<body class="antialiased selection:bg-brand-gold selection:text-white relative">
+
+<div id="page-loader">
+  <div class="loader"></div>
+</div>
+
+<nav class="fixed w-full z-50 glass-panel border-b border-brand-border py-4 pl-2.5 pr-6 md:pr-12 transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <img src="https://ik.imagekit.io/bebell/AURELIUS/aurelius-logo-icon.svg" alt="Aurelius Logo" class="h-12 w-12 object-contain">
+            <span class="font-serif font-bold text-xl tracking-widest text-brand-text2">AURELIUS</span>
+        </div>
+        
+        <div class="hidden md:flex gap-8 items-center text-sm font-medium tracking-wide text-brand-textSec">
+            <a href="#philosophy" class="hover:text-brand-gold transition-colors">Homepage</a>
+            <a href="#expertise" class="hover:text-brand-gold transition-colors">Knowledge</a>
+            <a href="#library" class="hover:text-brand-gold transition-colors">Help Center</a>
+            <a href="#cta" class="px-5 py-2 border border-brand-gold/50 rounded-sm text-brand-olive hover:bg-brand-gold hover:text-white transition-all duration-300">Sign In</a>
+        </div>
+        
+        <button id="menuToggle" class="md:hidden relative w-10 h-10 flex items-center justify-center rounded-md hover:bg-brand-olive/30 transition-colors" aria-label="Toggle menu">
+            <span class="absolute block w-6 h-0.5 bg-brand-olive transition-all duration-300 -translate-y-2"></span>
+            <span class="absolute block w-6 h-0.5 bg-brand-olive transition-all duration-300 opacity-100"></span>
+            <span class="absolute block w-6 h-0.5 bg-brand-olive transition-all duration-300 translate-y-2"></span>
+        </button>
+    </div>
+    
+    <div id="mobileMenu" class="md:hidden max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+        <div class="flex flex-col items-center gap-6 pt-6 pb-8 text-sm font-medium tracking-wide text-brand-textSec border-t border-brand-border/50 mt-4">
+            <a href="#philosophy" class="hover:text-brand-gold transition-colors py-1">Homepage</a>
+            <a href="#expertise" class="hover:text-brand-gold transition-colors py-1">Knowledge</a>
+            <a href="#library" class="hover:text-brand-gold transition-colors py-1">Help Center</a>
+            <a href="#cta" class="px-8 py-3 border border-brand-gold/50 rounded-sm text-brand-olive hover:bg-brand-gold hover:text-white transition-all duration-300 w-full max-w-[200px] text-center">Sign In</a>
+        </div>
+    </div>
+</nav>
+
+<section class="relative min-h-screen flex flex-col justify-start items-center pt-32 md:pt-40 pb-28 overflow-hidden hero-wrapper px-4 bg-[url('https://ik.imagekit.io/bebell/AURELIUS/aurelius-colliseum-background-banner.webp')] bg-cover bg-center bg-no-repeat bg-fixed">
+    
+    <canvas id="lightning-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <div class="max-w-5xl mx-auto w-full flex flex-col items-center relative z-10">
+        
+        <div class="hero-img-container w-full max-w-[500px] h-[12vh] sm:h-[16vh] mb-4 mt-4" id="hero-img-tracker">
+            <img src="https://ik.imagekit.io/bebell/AURELIUS/AURELIUS-front-profile%20copy.svg" alt="Aurelius Portrait" class="hero-img-bw">
+            <img src="https://ik.imagekit.io/bebell/AURELIUS/AURELIUS.svg" alt="Aurelius Activated" class="hero-img-color">
+        </div>
+
+        <div class="flex flex-col items-center text-center gsap-hero-text z-20 w-full">
+            
+            <h1 class="text-2xl md:text-3xl font-bold mb-1 mt-0 leading-none tracking-tight text-brand-text">
+                HOUSE OF <span class="gold-gradient-text">AURELIUS</span>
+            </h1>
+            
+            <p class="text-sm md:text-base text-brand-textSec mb-16 font-light leading-relaxed max-w-2xl mt-2">
+                <strong>The Stoic Mentor for Modern Masters.</strong><br>
+                The Grove is open. Speak to me.
+            </p>
+            
+            <div class="w-full max-w-3xl relative mb-5 group">
+                <form id="chatRedirectForm" class="relative w-full">
+                    <textarea 
+                        id="chat-input"
+                        class="w-full bg-white border border-brand-border rounded-xl px-5 py-4 pr-16 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold shadow-sm custom-scrollbar" 
+                        placeholder="Seek counsel, or present your strategy..." 
+                        style="height: 150px;" 
+                        required
+                    ></textarea>
+                    
+                    <button type="submit" class="absolute right-3 bottom-3 bg-brand-gold text-white rounded-lg hover:bg-brand-olive transition-colors flex items-center justify-center h-10 w-10 shadow-md transform hover:scale-105 active:scale-95 duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 translate-x-[1px]">
+                          <path d="M3.478 2.404a.75.75 0 00-.926.941l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.404z" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+
+            <div class="w-full max-w-3xl flex flex-wrap justify-center gap-3">
+            
+                <button onclick="openPrompts()" class="glass-panel px-4 py-2 rounded-full flex items-center gap-2 text-sm font-bold text-brand-text2 hover:bg-white/60 transition-colors shadow-sm cursor-pointer border border-brand-border/80">
+                    <span class="text-base">🏛️</span> Library
+                </button>
+                
+                <button class="quick-action-btn glass-panel px-4 py-2 rounded-full flex items-center gap-2 text-sm font-bold text-brand-text2 hover:bg-white/60 transition-colors shadow-sm cursor-pointer border border-brand-border/80" data-category="Strategy">
+                    <span class="text-base">⚔️</span> Strategy
+                </button>
+                
+                <button class="quick-action-btn glass-panel px-4 py-2 rounded-full flex items-center gap-2 text-sm font-bold text-brand-text2 hover:bg-white/60 transition-colors shadow-sm cursor-pointer border border-brand-border/80" data-category="Influence">
+                    <span class="text-base">🎭</span> Influence
+                </button>
+                
+                <button class="quick-action-btn glass-panel px-4 py-2 rounded-full flex items-center gap-2 text-sm font-bold text-brand-text2 hover:bg-white/60 transition-colors shadow-sm cursor-pointer border border-brand-border/80" data-category="Resilience">
+                    <span class="text-base">🛡️</span> Resilience
+                </button>
+                
+                <button class="quick-action-btn glass-panel px-4 py-2 rounded-full flex items-center gap-2 text-sm font-bold text-brand-text2 hover:bg-white/60 transition-colors shadow-sm cursor-pointer border border-brand-border/80" data-category="Leadership">
+                    <span class="text-base">🏴</span> Leadership
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<div id="prompts-modal-overlay" class="fixed inset-0 bg-brand-text2/40 backdrop-blur-sm z-[100] flex justify-center items-center opacity-0 pointer-events-none transition-opacity duration-300">
+    <div id="prompts-modal" class="bg-brand-bg border border-brand-border rounded-xl w-[90%] max-w-4xl max-h-[85vh] flex flex-col shadow-2xl transform scale-95 transition-transform duration-300">
+        <div class="px-6 py-4 border-b border-brand-border flex justify-between items-center bg-brand-surface rounded-t-xl">
+            <h3 class="font-serif font-bold text-lg text-brand-text2 flex items-center gap-2">
+                <span class="text-xl">📜</span> Default Prompts Library
+            </h3>
+            <button id="close-prompts-btn" class="text-brand-textSec hover:text-brand-text2 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div class="p-6 overflow-y-auto custom-scrollbar flex-1 bg-brand-bg rounded-b-xl">
+            <div class="w-full flex flex-col gap-3 pb-6 px-0 relative z-20">
+                
+                <div class="glass-panel rounded-xl overflow-hidden bg-white/40 backdrop-blur-md border border-white/50 shadow-sm transition-all duration-300">
+                    <button class="w-full px-5 py-4 flex justify-between items-center text-brand-text2 font-serif font-bold text-sm hover:bg-white/30 transition-colors" onclick="toggleAccordion('acc-1', 'icon-1')">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xl">⚔️</span> 
+                            <span class="tracking-widest uppercase text-xs">Strategy (The Sword)</span>
+                        </div>
+                        <svg id="icon-1" xmlns="http://www.w3.org/2000/svg" class="accordion-icon h-5 w-5 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="acc-1" class="accordion-content overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 0px;">
+                        <div class="p-5 pt-0 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Strategy & Timing. I am currently rushing into a decision regarding [INSERT SITUATION]. Help me gather contrary evidence before acting.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Timing</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Sun Tzu said: 'The quality of decision is like the well-timed swoop of a falcon.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Speed kills—but haste is suicide.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What situation are you rushing into right now that actually requires patience?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Delay your biggest decision for 24 hours. Use that time to gather two pieces of contrary evidence.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Strategy & Terrain. My current project is slowing down because of [INSERT FRICTION]. Help me identify how to eliminate it today.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Terrain</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Clausewitz wrote: 'War is the realm of friction.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> The 'fog of war' always obscures the truth.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What hidden 'friction' is slowing your current project?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Identify the single biggest source of friction today and eliminate it with one phone call.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Strategy & Positioning. I am considering revealing my strategy regarding [INSERT SITUATION]. Counsel me on whether I should keep this private.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Positioning</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Machiavelli taught: 'The wise ruler never shows his hand.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Visibility invites attack.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> Are you revealing your strategy too early to people who do not need to know it?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Identify one piece of information you shared recently that you could have kept private. Correct that tomorrow.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Strategy & Adaptation. I am clinging to the belief that [INSERT BELIEF] in my industry. Challenge my current worldview.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Adaptation</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Darwin observed: 'It is not the strongest that survive, but those most responsive to change.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Rigidity breaks. Adaptability endures.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What belief about your industry or role are you clinging to that is becoming outdated?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Spend 15 minutes reading something that challenges your current worldview.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Strategy & Decisiveness. I have been avoiding making a decision about [INSERT SITUATION] out of fear. Guide me on choosing the path that preserves maximum optionality.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Decisiveness</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Musashi wrote: 'The way of the warrior is the resolute acceptance of death.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Indecision is a decision to fail.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What decision have you been avoiding because you fear making the wrong choice?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Make that decision today. If uncertain, choose the path that preserves maximum optionality.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-xl overflow-hidden bg-white/40 backdrop-blur-md border border-white/50 shadow-sm transition-all duration-300">
+                    <button class="w-full px-5 py-4 flex justify-between items-center text-brand-text2 font-serif font-bold text-sm hover:bg-white/30 transition-colors" onclick="toggleAccordion('acc-2', 'icon-2')">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xl">🎭</span> 
+                            <span class="tracking-widest uppercase text-xs">Influence (The Shield)</span>
+                        </div>
+                        <svg id="icon-2" xmlns="http://www.w3.org/2000/svg" class="accordion-icon h-5 w-5 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="acc-2" class="accordion-content overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 0px;">
+                        <div class="p-5 pt-0 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Influence & Ego. I find myself wanting to look smart instead of getting the result regarding [INSERT SITUATION]. Counsel me on letting go of my ego here.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Ego</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Robert Greene warns: 'The greatest danger to power is your own ego.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Pride makes you predictable.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> Where are you trying to look 'smart' instead of trying to get the result?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> In your next conversation, let someone else take the credit for your idea.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Influence & Decoding Motives. I want to build trust in an upcoming interaction with [INSERT PERSON]. How can I apply the Law of Liking?">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Decoding Motives</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Cialdini's Law of Liking: 'People say yes to people they like.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Similarity breeds trust.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> Are you trying to intimidate or connect?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Mirror the body language of the next person you speak to.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Influence & Reciprocity. I want to offer something of value to [INSERT PERSON] without expecting anything immediate in return. Advise me.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Reciprocity</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Cialdini taught: 'The rule of reciprocity is the most powerful weapon of influence.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Give first. The debt will be repaid.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What can you offer someone today without expecting anything immediate in return?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Do one small, unexpected favor for someone who matters to your goals.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Influence & Framing. I am preparing a proposal about [INSERT PROPOSAL]. Help me reframe this conversation from 'What I need' to 'What we gain together.'">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Framing</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Bernays wrote: 'The conscious and intelligent manipulation... is an important element in democratic society.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Reality is framed, not objective.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> How are you framing your proposal? As a risk or as an opportunity?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Reframe one upcoming conversation from 'What I need' to 'What we gain together.'</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Influence & Social Proof. I recently succeeded at [INSERT SUCCESS]. Advise me on how to share this publicly to signal competence without boasting.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Social Proof</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Le Bon observed: 'The crowd is always in need of a leader.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> People follow people.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> Are you building your reputation in silence, or making your wins visible?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Share one recent success publicly—not to boast, but to signal competence.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-xl overflow-hidden bg-white/40 backdrop-blur-md border border-white/50 shadow-sm transition-all duration-300">
+                    <button class="w-full px-5 py-4 flex justify-between items-center text-brand-text2 font-serif font-bold text-sm hover:bg-white/30 transition-colors" onclick="toggleAccordion('acc-3', 'icon-3')">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xl">🛡️</span> 
+                            <span class="tracking-widest uppercase text-xs">Resilience (The Armor)</span>
+                        </div>
+                        <svg id="icon-3" xmlns="http://www.w3.org/2000/svg" class="accordion-icon h-5 w-5 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="acc-3" class="accordion-content overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 0px;">
+                        <div class="p-5 pt-0 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Resilience & Reframing. The biggest setback I am currently trying to run away from is [INSERT SETBACK]. Help me find the hidden gift.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Reframing</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Marcus Aurelius wrote: 'What stands in the way becomes the way.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> The obstacle is the path.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What current setback are you trying to run away from?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Write down the 'gift' hidden in your biggest obstacle right now.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Resilience & Stoic Control. I am worrying about something outside my influence, which is [INSERT WORRY]. Guide me to refocus on what I can control.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Stoic Control</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Epictetus taught: 'We suffer not from events, but from our judgment of events.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> You don't control the storm; you control the ship.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What are you worrying about that is utterly outside your influence?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Draw a circle. Put what you control inside. Put the rest outside. Burn the outside.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Resilience & Acceptance. I am resisting the reality that [INSERT REALITY]. Counsel me on how to accept and adapt to this situation.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Acceptance</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Frankl wrote: 'When we are no longer able to change a situation, we are challenged to change ourselves.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Surrender to what cannot be changed.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What reality are you resisting that you would be wiser to accept?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Write down one thing you cannot change. Then write down how you will adapt to it.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Resilience & Patience. I am desperately trying to push forward [INSERT RESULT]. Advise me on why I should allow this to breathe.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Patience</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Seneca advised: 'He who is everywhere is nowhere.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Patience is the companion of wisdom.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What result are you trying to force that would arrive faster if you allowed it to breathe?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Do nothing today about one thing you are desperate to push forward. Observe what happens.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Resilience & Growth. I am facing a skill gap in [INSERT SKILL]. Guide me on how to invest my time today to close it and earn what I desire.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Growth</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Munger taught: 'The safest way to try to get what you want is to try to deserve what you want.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Deserve what you desire.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> Are you asking for more than you have earned?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Identify one skill gap that is holding you back. Invest one hour today in closing it.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-xl overflow-hidden bg-white/40 backdrop-blur-md border border-white/50 shadow-sm transition-all duration-300">
+                    <button class="w-full px-5 py-4 flex justify-between items-center text-brand-text2 font-serif font-bold text-sm hover:bg-white/30 transition-colors" onclick="toggleAccordion('acc-4', 'icon-4')">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xl">🏴</span> 
+                            <span class="tracking-widest uppercase text-xs">Leadership (The Banner)</span>
+                        </div>
+                        <svg id="icon-4" xmlns="http://www.w3.org/2000/svg" class="accordion-icon h-5 w-5 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="acc-4" class="accordion-content overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 0px;">
+                        <div class="p-5 pt-0 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Leadership & Vision. I need help communicating the 'Why' to my team regarding [INSERT PROJECT]. Help me reframe this mission.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Vision</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Simon Sinek says: 'People don't buy what you do; they buy why you do it.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> The 'Why' creates a gravitational pull.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> Have you told your team the meaning of their work today, or just the tasks?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Reframe your team's current project around a 'Why' statement before your next meeting.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Leadership & Distributed Power. I am micromanaging a decision that I should delegate, which is [INSERT DECISION]. Help me relinquish control safely.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Distributed Power</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Marquet teaches: 'Leadership is giving control to those who do the work.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Control creates followers. Freedom creates leaders.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What decision are you micromanaging that you could delegate today?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Delegate a meaningful decision to your most junior team member.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Leadership & Trust. I have broken a promise regarding [INSERT SITUATION]. Counsel me on making a specific plan to restore trust.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Trust</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Covey wrote: 'Trust is the glue of life.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Trust is earned in drops and lost in buckets.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> Where have you broken a promise, even a small one?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Acknowledge the broken promise and make a specific plan to restore trust.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Leadership & Accountability. I have been vague with my team about [INSERT ISSUE] to avoid conflict. Help me script a clear, calm, and direct conversation.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Accountability</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Brown taught: 'Clear is kind. Unclear is unkind.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Clarity creates accountability.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> Where are you being vague with your team to avoid conflict?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Have the clear, direct conversation you have been avoiding. Deliver it with calm, not cruelty.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Leadership & Servant Leadership. My team is struggling with [INSERT CHALLENGE]. Advise me on one thing I can do today to make their work easier without seeking recognition.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Servant Leadership</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Sinek wrote: 'Leadership is not about being in charge. It is about taking care of those in your charge.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Protect your people, and they will protect your mission.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> When did you last prioritize your team's well-being over your own agenda?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Do one thing today that makes your team's work easier, with no expectation of recognition.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-xl overflow-hidden bg-white/40 backdrop-blur-md border border-white/50 shadow-sm transition-all duration-300">
+                    <button class="w-full px-5 py-4 flex justify-between items-center text-brand-text2 font-serif font-bold text-sm hover:bg-white/30 transition-colors" onclick="toggleAccordion('acc-5', 'icon-5')">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xl">🏛️</span> 
+                            <span class="tracking-widest uppercase text-xs">Wealth & Finance (The Treasury)</span>
+                        </div>
+                        <svg id="icon-5" xmlns="http://www.w3.org/2000/svg" class="accordion-icon h-5 w-5 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="acc-5" class="accordion-content overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 0px;">
+                        <div class="p-5 pt-0 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Finance & Compounding. I have been neglecting a small financial habit regarding [INSERT HABIT]. Guide me on automating this to create massive results over time.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Compounding</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Einstein called compound interest the eighth wonder of the world."</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Small, consistent actions create massive results.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What small financial habit are you neglecting that compounds over time?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Automate a small, recurring transfer to an investment or savings account today.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Finance & Risk. I am avoiding a calculated risk regarding [INSERT OPPORTUNITY]. Advise me on taking the first step toward it today.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Risk</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Taleb wrote: 'The greatest risk is not taking any risk.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Calculated risk is the engine of growth.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> Are you avoiding a risk that is actually worth taking?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Identify one calculated risk in your life. Take the first step toward it today.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Finance & Lifestyle Creep. I have added an unnecessary expense for [INSERT EXPENSE]. Counsel me on redirecting this to build my wealth and freedom.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Lifestyle Creep</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Housel observed: 'Wealth is what you don't see.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Lifestyle inflation is the enemy of freedom.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What expense have you added that you did not truly need?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Cut one unnecessary expense today. Redirect it to your future.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Finance & Leverage. I have an underutilized resource: [INSERT ASSET/SKILL/RELATIONSHIP]. Advise me on how to leverage it more effectively to multiply my efforts.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Leverage</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Greene taught: 'Use the laws of power to multiply your efforts.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Leverage amplifies results—for good or ill.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What asset, skill, or relationship could you leverage more effectively?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Identify one underutilized resource and put it to work today.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Finance & Income Streams. I want to build a new income stream in [INSERT AREA OF INTEREST]. Guide me on the first steps to research and create this.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Income Streams</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Greene wrote: 'The key to power is the ability to act without constraint.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Multiple income streams create true freedom.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> If your primary income vanished today, how long could you survive?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Spend 30 minutes researching one additional income stream you could build.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-xl overflow-hidden bg-white/40 backdrop-blur-md border border-white/50 shadow-sm transition-all duration-300">
+                    <button class="w-full px-5 py-4 flex justify-between items-center text-brand-text2 font-serif font-bold text-sm hover:bg-white/30 transition-colors" onclick="toggleAccordion('acc-6', 'icon-6')">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xl">🔨</span> 
+                            <span class="tracking-widest uppercase text-xs">Discipline (The Forge)</span>
+                        </div>
+                        <svg id="icon-6" xmlns="http://www.w3.org/2000/svg" class="accordion-icon h-5 w-5 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="acc-6" class="accordion-content overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 0px;">
+                        <div class="p-5 pt-0 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Discipline & Consistency. I have been neglecting a small but important habit: [INSERT HABIT]. Help me find the discipline to do it today, no matter how small.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Consistency</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Munger taught: 'The chain of habit is too weak to be felt until it is too strong to be broken.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Discipline is a muscle. Use it or lose it.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What small habit have you been neglecting that you know matters?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Do that habit today, no matter how small. The consistency is the victory.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Discipline & Procrastination. I am avoiding [INSERT TASK] because it feels overwhelming. Help me break it down into the smallest possible step.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Procrastination</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Burkeman wrote: 'Procrastination is the art of keeping up with yesterday.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Delay is the thief of potential.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What task are you avoiding because it feels overwhelming?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Break it down into the smallest possible step. Do that step right now.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Discipline & Focus. My attention is being drained by [INSERT DISTRACTION]. Advise me on eliminating this distraction for the next 24 hours to maximize my focus.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Focus</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Kahneman taught: 'The mind is a scarce resource.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Multitasking is a myth.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What distractions are draining your attention without delivering value?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Eliminate one distraction for the next 24 hours. Track what you accomplish.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on my Morning Ritual. I want to design a 15-minute routine focused on [INSERT TOP PRIORITY]. Counsel me on starting my day with intention.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Morning Ritual</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Covey wrote: 'Start with the end in mind.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Your morning sets the tone for your day.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> Are you waking up with intention or reacting to notifications?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Design a 15-minute morning ritual—no devices, just focus on your top priority.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on my Evening Reflection. Today I learned [INSERT LESSONS]. Help me internalize these lessons so I can apply them tomorrow.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Evening Reflection</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Aurelius wrote: 'When you have trouble getting out of bed, remind yourself that you were made for action.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Reflection is the engine of growth.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What did you learn today that you can apply tomorrow?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Write down three things you learned today. They do not have to be big—just honest.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-xl overflow-hidden bg-white/40 backdrop-blur-md border border-white/50 shadow-sm transition-all duration-300">
+                    <button class="w-full px-5 py-4 flex justify-between items-center text-brand-text2 font-serif font-bold text-sm hover:bg-white/30 transition-colors" onclick="toggleAccordion('acc-7', 'icon-7')">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xl">🤝</span> 
+                            <span class="tracking-widest uppercase text-xs">Relationships (The Alliance)</span>
+                        </div>
+                        <svg id="icon-7" xmlns="http://www.w3.org/2000/svg" class="accordion-icon h-5 w-5 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="acc-7" class="accordion-content overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 0px;">
+                        <div class="p-5 pt-0 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Relationships & Earning Respect. I have let my promises slide regarding [INSERT SITUATION]. Advise me on how to keep my commitments today and earn true respect through action.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Earning Respect</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Aurelius wrote: 'Waste no more time arguing what a good man should be. Be one.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Respect follows action, not words.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> Are you demanding respect or earning it?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Keep one promise today that you would normally let slide. Notice the difference.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Relationships & Difficult People. My energy is being drained by [INSERT PERSON/SITUATION]. Counsel me on how to safely reduce my exposure and create distance.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Difficult People</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Greene wrote: 'Avoid the unhappy and unlucky.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Not all relationships are worth saving.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> Who is draining your energy without contributing to your growth?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Reduce exposure to one toxic person today. Create distance.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Relationships & Communication. In my last disagreement about [INSERT TOPIC], I failed to truly listen. Guide me on asking better questions to understand before being understood.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Communication</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Covey taught: 'Seek first to understand, then to be understood.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Listening is the foundation of influence.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> In your last disagreement, did you really listen, or did you wait to speak?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> In your next conversation, ask three questions before making one statement.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Relationships & Forgiveness. I am carrying resentment about [INSERT SITUATION]. Help me release this grudge so I can regain my freedom.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Forgiveness</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Frankl wrote: 'The last of human freedoms is to choose one's attitude in any given set of circumstances.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Holding a grudge is drinking poison and expecting the other person to die.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What resentment are you carrying that serves no purpose?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Choose to forgive one person today—not for their sake, but for yours.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Relationships & Alliances. I want to strengthen my relationship with [INSERT ALLY]. Advise me on how to reach out with appreciation and build a bond based on mutual benefit.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Alliances</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Machiavelli taught: 'Men are less afraid of offending a man they love than one they fear.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Fear is a fragile foundation for alliances.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> Are you building relationships based on fear or mutual benefit?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Reach out to one ally today. Strengthen the bond with appreciation, not obligation.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-xl overflow-hidden bg-white/40 backdrop-blur-md border border-white/50 shadow-sm transition-all duration-300">
+                    <button class="w-full px-5 py-4 flex justify-between items-center text-brand-text2 font-serif font-bold text-sm hover:bg-white/30 transition-colors" onclick="toggleAccordion('acc-8', 'icon-8')">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xl">🧭</span> 
+                            <span class="tracking-widest uppercase text-xs">Purpose (The Compass)</span>
+                        </div>
+                        <svg id="icon-8" xmlns="http://www.w3.org/2000/svg" class="accordion-icon h-5 w-5 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="acc-8" class="accordion-content overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 0px;">
+                        <div class="p-5 pt-0 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Purpose & Meaning. If I had no fear, I would [INSERT ASPIRATION]. Help me identify one small step I can take toward this activity today.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Meaning</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Frankl wrote: 'Life is not primarily a quest for pleasure, but a quest for meaning.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Meaning is found, not given.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What would you do if no one were watching and you had no fear?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Take one small step toward that activity today, no matter how insignificant it feels.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Purpose & Contribution. I want to be of service to [INSERT PERSON/GROUP]. Advise me on how I can help them today without expecting anything in return.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Contribution</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Munger taught: 'The best way to find yourself is to lose yourself in the service of others.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Contribution is the antidote to emptiness.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> Who has benefited from your existence this week?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Do something today that helps someone without expecting anything in return.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on my Purpose & Legacy. I want to be remembered for [INSERT DESIRED LEGACY]. Guide me on aligning my actions today with the legacy I wish to build.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Legacy</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Aurelius wrote: 'What is your life? A brief flash of light between two eternities.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Your legacy is what you build, not what you accumulate.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What do you want to be remembered for?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Write down one thing you can do today that aligns with that legacy.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on my Purpose & Direction. I am currently pursuing [INSERT GOAL], but I need to reassess if this is still my true purpose or just a habit. Counsel me.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Direction</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Sinek wrote: 'The goal is not to be successful. The goal is to be valuable.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Purpose gives direction to power.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> Are you climbing a ladder leaning against the wrong wall?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Take 15 minutes today to reassess your direction. Is this still your purpose, or your habit?</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Purpose & Authenticity. I have been pretending to be someone I'm not in [INSERT SITUATION]. Advise me on letting go of the mask and sharing something honest.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Authenticity</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Brown taught: 'Authenticity is the daily practice of letting go of who we think we're supposed to be.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> The mask is exhausting.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> Where are you pretending to be someone you are not?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> In your next interaction, share something honest that you would normally hide.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-xl overflow-hidden bg-white/40 backdrop-blur-md border border-white/50 shadow-sm transition-all duration-300">
+                    <button class="w-full px-5 py-4 flex justify-between items-center text-brand-text2 font-serif font-bold text-sm hover:bg-white/30 transition-colors" onclick="toggleAccordion('acc-9', 'icon-9')">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xl">🏰</span> 
+                            <span class="tracking-widest uppercase text-xs">Power (The Citadel)</span>
+                        </div>
+                        <svg id="icon-9" xmlns="http://www.w3.org/2000/svg" class="accordion-icon h-5 w-5 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="acc-9" class="accordion-content overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 0px;">
+                        <div class="p-5 pt-0 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Power & Influence. [INSERT PERSON] has power over me regarding my goals. Advise me on how I can serve them and build access to their influence.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Influence</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Greene wrote: 'The key to power is the ability to judge who is best suited to help you.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Influence is access.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> Who has power over you, and why?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Identify one person whose opinion matters to your goals. Find a way to serve them today.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Power & Autonomy. I feel dependent on [INSERT EXTERNAL FACTOR] for my worth. Counsel me on shifting my focus back to what I can control internally.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Autonomy</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Aurelius wrote: 'You have power over your mind—not outside events. Realize this, and you will find strength.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> True power is internal.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> Are you dependent on something outside yourself for your sense of worth?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Spend today focused only on what you can control. Let the rest go.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Power & Status. I am tempted to chase a title or show off regarding [INSERT SITUATION]. Guide me to decline this opportunity and focus on building real value instead.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Status</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Greene taught: 'The need for status is a weakness if it controls you.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Pursue substance, not signal.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> Are you chasing titles, or building real value?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Decline one opportunity to show off today. Let your work speak instead.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Power & Manipulation. I was recently influenced to [INSERT BEHAVIOR]. Help me analyze this to protect myself in the future.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Manipulation</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Cialdini wrote: 'The most powerful weapon of influence is the one you don't even notice.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Knowledge protects you from manipulation.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> When was the last time you were influenced without realizing it?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Identify one advertisement, conversation, or prompt that manipulated your behavior this week. Analyze it.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Power & Silence. I recently spoke too much about [INSERT SITUATION]. Advise me on how to use silence effectively as a power move in my next meeting.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Silence</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Machiavelli taught: 'The wise ruler is sparing with words.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Silence is the ultimate power move.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> When did you speak when silence would have served you better?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> In your next meeting, speak 50% less than usual. Observe what happens.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-xl overflow-hidden bg-white/40 backdrop-blur-md border border-white/50 shadow-sm transition-all duration-300">
+                    <button class="w-full px-5 py-4 flex justify-between items-center text-brand-text2 font-serif font-bold text-sm hover:bg-white/30 transition-colors" onclick="toggleAccordion('acc-10', 'icon-10')">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xl">🪞</span> 
+                            <span class="tracking-widest uppercase text-xs">Human Nature (The Mirror)</span>
+                        </div>
+                        <svg id="icon-10" xmlns="http://www.w3.org/2000/svg" class="accordion-icon h-5 w-5 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="acc-10" class="accordion-content overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 0px;">
+                        <div class="p-5 pt-0 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Human Nature & Deception. I need honest feedback about [INSERT ISSUE] from [INSERT PERSON]. Advise me on how to ask for it and listen without being defensive.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Deception</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Greene wrote: 'The truth is rarely pure and never simple.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Everyone has hidden motives.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> Who is telling you what you want to hear instead of what you need to hear?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Ask one person for honest feedback today. Brace yourself. Listen without defense.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Human Nature & Character. I want to act with integrity today regarding [INSERT SITUATION]. Guide me on taking an action that no one else will notice but will build my character.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Character</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Aurelius wrote: 'The soul becomes dyed with the color of its thoughts.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Character is revealed, not declared.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What would your actions today reveal about your character?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Act with integrity on one small thing today that no one would notice if you didn't.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Human Nature & Resistance to Change. I am defending the belief that [INSERT BELIEF]. Challenge my thinking by presenting the strongest arguments against it.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Resistance to Change</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Kuhn taught: 'The dogma of the established science is a barrier to progress.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Expertise can be a prison.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What belief are you defending because it is familiar, not because it is true?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Read one article from someone who disagrees with you. Give it genuine consideration.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Human Nature & Illusion. I am assuming that [INSERT ASSUMPTION]. Help me test this assumption and seek evidence that disproves it.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Illusion</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Taleb wrote: 'The greatest gift of humans is our ability to be fooled.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Reality is often not what it seems.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What assumption are you making that could be completely wrong?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Test one of your assumptions today. Seek evidence that disproves it.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Human Nature & Self-Deception. I am lying to myself about [INSERT ISSUE]. Counsel me on how to confront this truth and stop holding myself back.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Self-Deception</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Kahneman taught: 'We are blind to our own blindness.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> The hardest person to see clearly is yourself.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What lie are you telling yourself that is holding you back?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Write down one truth about yourself that you have been avoiding. Sit with it for 10 minutes.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+ 
+<footer class="relative bg-cover bg-center bg-no-repeat py-20 border-t border-brand-border" style="background-image: url('');">
+    <div class="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 text-brand-text p-8 rounded-sm">
+        <div class="md:col-span-1">
+            <div class="flex flex-col items-start gap-2 mb-6">
+                <img src="https://ik.imagekit.io/bebell/AURELIUS/aurelius-logo-icon.svg" alt="Aurelius Logo" class="h-16 w-16 object-cover">
+                <span class="font-serif font-bold text-xl tracking-widest text-brand-text2">AURELIUS</span>
+            </div>
+            <p class="text-sm font-medium leading-relaxed text-brand-textSec">
+                Elevating human potential through strategic wisdom, critical thinking, and decisive action.
+            </p>
+        </div>
+        
+        <div>
+            <h4 class="font-bold uppercase tracking-wider text-sm mb-4 text-brand-text">Philosophy</h4>
+            <ul class="space-y-2 text-sm font-medium text-brand-textSec">
+                <li><a href="#" class="hover:text-brand-gold transition-colors">Core Principles</a></li>
+                <li><a href="#" class="hover:text-brand-gold transition-colors">The Algorithm</a></li>
+                <li><a href="#" class="hover:text-brand-gold transition-colors">Manifesto</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h4 class="font-bold uppercase tracking-wider text-sm mb-4 text-brand-text">Expertise</h4>
+            <ul class="space-y-2 text-sm font-medium text-brand-textSec">
+                <li><a href="#" class="hover:text-brand-gold transition-colors">Business Strategy</a></li>
+                <li><a href="#" class="hover:text-brand-gold transition-colors">Leadership</a></li>
+                <li><a href="#" class="hover:text-brand-gold transition-colors">Negotiation</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h4 class="font-bold uppercase tracking-wider text-sm mb-4 text-brand-text">Connect</h4>
+            <ul class="space-y-2 text-sm font-medium text-brand-textSec">
+                <li><a href="#cta" class="hover:text-brand-gold transition-colors">Start Conversation</a></li>
+                <li><a href="#" class="hover:text-brand-gold transition-colors">About</a></li>
+                <li><a href="#" class="hover:text-brand-gold transition-colors">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="relative z-10 max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-brand-text/10 text-center flex flex-col md:flex-row justify-between items-center text-sm font-medium text-brand-textSec p-4 rounded-sm">
+        <p>&copy; 2026 Aurelius AI. Truth Over Comfort.</p>
+        <div class="flex gap-4 mt-4 md:mt-0">
+            <a href="#" class="hover:text-brand-gold transition-colors">Privacy</a>
+            <a href="#" class="hover:text-brand-gold transition-colors">Terms</a>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+<script>
+    // GSAP Initialization
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Navbar blur on scroll
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+            nav.style.background = 'rgba(240, 235, 225, 0.9)';
+        } else {
+            nav.style.background = 'rgba(240, 235, 225, 0.6)';
+        }
+    });
+
+    // Mobile Menu Toggle
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const bars = menuToggle.querySelectorAll('span');
+        
+        menuToggle.addEventListener('click', function() {
+            const isOpen = mobileMenu.classList.toggle('max-h-0');
+            mobileMenu.classList.toggle('max-h-[400px]');
+            
+            const topBar = bars[0];
+            const middleBar = bars[1];
+            const bottomBar = bars[2];
+            
+            if (isOpen) {
+                topBar.style.transform = 'translateY(-8px) rotate(0deg)';
+                middleBar.style.opacity = '1';
+                bottomBar.style.transform = 'translateY(8px) rotate(0deg)';
+            } else {
+                topBar.style.transform = 'translateY(0px) rotate(45deg)';
+                middleBar.style.opacity = '0';
+                bottomBar.style.transform = 'translateY(0px) rotate(-45deg)';
+            }
+        });
+    });       
+
+    // Prompts Modal Logic
+    const promptsOverlay = document.getElementById('prompts-modal-overlay');
+    const promptsModal = document.getElementById('prompts-modal');
+    const closePromptsBtn = document.getElementById('close-prompts-btn');
+
+    window.openPrompts = function() {
+        promptsOverlay.classList.remove('opacity-0', 'pointer-events-none');
+        promptsModal.classList.remove('scale-95');
+    };
+
+    function closePrompts() {
+        promptsOverlay.classList.add('opacity-0', 'pointer-events-none');
+        promptsModal.classList.add('scale-95');
+    }
+
+    closePromptsBtn.addEventListener('click', closePrompts);
+    promptsOverlay.addEventListener('click', (e) => {
+        if (e.target === promptsOverlay) closePrompts();
+    });
+
+    // Accordion Logic for Default Prompts
+    window.toggleAccordion = function(id, iconId) {
+        const content = document.getElementById(id);
+        const icon = document.getElementById(iconId);
+        
+        // Check if currently open
+        const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+        // Close all other accordions for a cleaner UI
+        document.querySelectorAll('.accordion-content').forEach(el => el.style.maxHeight = '0px');
+        document.querySelectorAll('.accordion-icon').forEach(el => el.style.transform = 'rotate(0deg)');
+
+        // If it wasn't open, open it now
+        if (!isOpen) {
+            content.style.maxHeight = content.scrollHeight + 'px';
+            icon.style.transform = 'rotate(180deg)';
+        }
+    };
+
+    // ==========================================
+    // REVISED MESSAGE PASSING / REDIRECT LOGIC
+    // ==========================================
+
+    // Handle form submission - redirect to chatroom page with message
+    document.getElementById('chatRedirectForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const message = document.getElementById('chat-input').value.trim();
+        if (message) {
+            const encodedMessage = encodeURIComponent(message);
+            // Explicitly point to the /chatroom.html file instead of developer's generic chatbot.html
+            window.location.href = `chatroom.html?message=${encodedMessage}`;
+        }
+    });
+
+    // Update prompt card click handlers to redirect with pre-filled message
+    document.querySelectorAll('.prompt-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const promptTemplate = card.getAttribute('data-prompt');
+            if (promptTemplate) {
+                const encodedMessage = encodeURIComponent(promptTemplate);
+                window.location.href = `chatroom.html?message=${encodedMessage}`;
+            }
+        });
+    });
+
+    // Update the quick action buttons (Strategy, Influence, etc.)
+    document.querySelectorAll('.quick-action-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const category = this.getAttribute('data-category');
+            const encodedMessage = encodeURIComponent(`I am reflecting on ${category}. Guide me with your wisdom.`);
+            window.location.href = `chatroom.html?message=${encodedMessage}`;
+        });
+    });
+
+
+    // Hero GSAP Setup
+    gsap.from(".gsap-hero-text > *", {
+        y: 30, opacity: 0, duration: 1, stagger: 0.15, ease: "power3.out", delay: 0.2
+    });
+    gsap.from(".hero-img-container", {
+        y: 40, opacity: 0, duration: 1.2, ease: "power2.out"
+    });
+
+    // Lightning Canvas Effect specific to Hero Image Hover
+    const lCanvas = document.getElementById('lightning-canvas');
+    const lCtx = lCanvas.getContext('2d');
+    let lWidth, lHeight;
+    let isHoveringHero = false;
+
+    function resizeLightningCanvas() {
+        lWidth = window.innerWidth;
+        lHeight = document.querySelector('.hero-wrapper').offsetHeight;
+        lCanvas.width = lWidth;
+        lCanvas.height = lHeight;
+    }
+    window.addEventListener('resize', resizeLightningCanvas);
+    resizeLightningCanvas();
+
+    const heroImgTracker = document.getElementById('hero-img-tracker');
+    heroImgTracker.addEventListener('mouseenter', () => isHoveringHero = true);
+    heroImgTracker.addEventListener('mouseleave', () => {
+        isHoveringHero = false;
+    });
+
+    function drawLightningBolt(x, y, segments, color) {
+        lCtx.beginPath();
+        lCtx.moveTo(x, y);
+        let currX = x;
+        let currY = y;
+        
+        for(let i=0; i<segments; i++) {
+            currX += (Math.random() - 0.5) * 60;
+            currY += Math.random() * 40;
+            lCtx.lineTo(currX, currY);
+        }
+        
+        lCtx.strokeStyle = color;
+        lCtx.lineWidth = Math.random() * 2 + 1;
+        lCtx.stroke();
+    }
+
+    function animateLightning() {
+        // ALWAYS clear canvas to prevent white buildup and background blocking
+        lCtx.clearRect(0, 0, lWidth, lHeight);
+        
+        if (isHoveringHero) {
+            // Randomly trigger a bolt
+            if (Math.random() < 0.15) {
+                const startX = Math.random() * lWidth;
+                const startY = 0;
+                drawLightningBolt(startX, startY, 20, '#D4AF37'); // Gold
+                if(Math.random() > 0.5) drawLightningBolt(startX, startY, 15, '#8A957A'); // Pale Olive
+            }
+        }
+        requestAnimationFrame(animateLightning);
+    }
+    animateLightning();
+
+</script>
+
+<script>
+// Force minimum display time for loader
+let loaderStartTime = Date.now();
+const MIN_DISPLAY_TIME = 2500; // Reduced for Chat UI feel
+
+window.addEventListener('load', function() {
+  const loader = document.getElementById('page-loader');
+  if (loader) {
+    const elapsed = Date.now() - loaderStartTime;
+    const remaining = Math.max(0, MIN_DISPLAY_TIME - elapsed);
+    
+    setTimeout(() => {
+      loader.style.opacity = '0';
+      setTimeout(() => {
+        loader.style.display = 'none';
+      }, 500);
+    }, remaining);
+  }
+});
+</script>
+
+</body>
+</html>
