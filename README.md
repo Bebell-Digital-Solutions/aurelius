@@ -1,7 +1,7 @@
 # AURELIUS
 
 <p align="center">
-  <img src="https://ik.imagekit.io/bebell/AURELIUS/aurelius-socialshare-banner.png" alt="Aurelius Banner" width="100%">
+  <img src="https://ik.imagekit.io/bebell/AURELIUS/Macbook-Air-bebell-digital-solutions.github.io.webp" alt="Aurelius Banner" width="100%">
 </p>
 <p align="center">
   <strong>Strategist. Mentor. Advisor.</strong>
@@ -10,11 +10,11 @@
   An AI companion designed to challenge assumptions, sharpen thinking, and help users make better decisions across business, leadership, personal growth, and life.
 </p>
 <p align="center">
-  <img src="https://img.shields.io/github/license/YOUR_USERNAME/aurelius?style=for-the-badge" />
-  <img src="https://img.shields.io/github/stars/YOUR_USERNAME/aurelius?style=for-the-badge" />
-  <img src="https://img.shields.io/github/forks/YOUR_USERNAME/aurelius?style=for-the-badge" />
-  <img src="https://img.shields.io/github/issues/YOUR_USERNAME/aurelius?style=for-the-badge" />
-  <img src="https://img.shields.io/github/deployments/YOUR_USERNAME/aurelius/production?style=for-the-badge" />
+  <img src="https://img.shields.io/github/license/Bebell-Digital-Solutions/aurelius?style=for-the-badge" />
+  <img src="https://img.shields.io/github/stars/Bebell-Digital-Solutions/aurelius?style=for-the-badge" />
+  <img src="https://img.shields.io/github/forks/Bebell-Digital-Solutions/aurelius?style=for-the-badge" />
+  <img src="https://img.shields.io/github/issues/Bebell-Digital-Solutions/aurelius?style=for-the-badge" />
+  <img src="https://img.shields.io/github/deployments/Bebell-Digital-Solutions/aurelius/production?style=for-the-badge" />
 </p>
 
 ⸻
