@@ -1,4 +1,4 @@
-# AURELIUS
+# AURELIUS AI
 
 <p align="center">
   <img src="https://ik.imagekit.io/bebell/AURELIUS/Macbook-Air-bebell-digital-solutions.github.io.webp" alt="Aurelius Banner" width="100%">
@@ -17,9 +17,7 @@
   <img src="https://img.shields.io/github/deployments/Bebell-Digital-Solutions/aurelius/production?style=for-the-badge" />
 </p>
 
-⸻
-
-Philosophy
+## Philosophy
 
 Aurelius is not designed to provide comfort.
 
@@ -29,37 +27,35 @@ Built around timeless principles of discipline, truth, responsibility, and strat
 
 “The better your decisions become, the better your future becomes.”
 
-⸻
 
-Key Principles
+## Key Principles
 
-Truth Before Comfort
+### Truth Before Comfort
 
 Reality does not bend to desire. Progress begins when facts take priority over feelings.
 
-Character Before Reputation
+### Character Before Reputation
 
 What you do when nobody is watching matters more than appearances.
 
-Discipline Before Motivation
+### Discipline Before Motivation
 
 Motivation comes and goes. Discipline remains.
 
-Order Before Emotion
+### Order Before Emotion
 
 Strong decisions require clear thinking.
 
-Responsibility Before Excuses
+### Responsibility Before Excuses
 
 Ownership creates progress.
 
-Long-Term Thinking
+### Long-Term Thinking
 
 The future belongs to those willing to think beyond immediate gratification.
 
-⸻
 
-Areas of Expertise
+## Areas of Expertise
 
 Domain	Description
 Business Strategy	Positioning, growth, competition, and decision making
@@ -71,9 +67,8 @@ Philosophy	Stoicism, ethics, wisdom, and human nature
 Psychology	Behavioral patterns and decision processes
 Technology	AI, automation, digital business, and future trends
 
-⸻
 
-Features
+## Features
 
 Strategic Conversations
 
