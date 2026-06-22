@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURELIUS | Strategist. Mentor. Advisor.</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#F8F5F0',        // Travertine Marble
+                            surface: '#F0EBE1',   // Sunlit Limestone
+                            text: '#8a957a',      // Pale Olive
+                            textSec: '#6B6560',   // Weathered Stone
+                            text2: '#1A1D24',     // Shadowy Charcoal                            
+                            gold: '#D4AF37',      // Aurelian Gold
+                            olive: '#5F6A46',     // Sacred Olive
+                            oliveLight: '#8A957A', // Pale Olive
+                            border: '#DCD5C8',    // Marble Vein
+                            success: '#4A5436'    // Laurel Green
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="icon" href="https://ik.imagekit.io/bebell/AURELIUS/Aurelius-app-button.png">
+
+<script> 
+function removeFromLinks(rel) {
+    for (link of document.head.getElementsByTagName("link")) {
+        if (link.rel == rel) {
+            document.head.removeChild(link);
+        }
+    };
+}
+function createNewFavicon(rel, img) {
+    var newFavicon = document.createElement("link");
+    newFavicon.type = "image/png";
+    newFavicon.rel = rel;
+    newFavicon.href = img;
+    var firstHeadElement = document.head.firstChild;
+    document.head.insertBefore(newFavicon, firstHeadElement);
+}
+removeFromLinks("icon");
+removeFromLinks("shortcut icon");
+removeFromLinks("apple-touch-icon");
+createNewFavicon("icon", "https://ik.imagekit.io/bebell/AURELIUS/Aurelius-app-button.png");
+createNewFavicon("shortcut icon", "https://ik.imagekit.io/bebell/AURELIUS/Aurelius-app-button.png");
+createNewFavicon("apple-touch-icon", "https://ik.imagekit.io/bebell/AURELIUS/Aurelius-app-button.png"); 
+</script>
+
+<style>
+        /* Base & Resets for Light Theme */
+        body {
+            background-color: #F8F5F0;
+            color: #1A1D24;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Subtle Grain Effect across the whole page */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; 
+            left: 0; 
+            width: 100vw; 
+            height: 100vh;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.10;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        h1, h2, h3, h4, h5, h6, .font-serif {
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F8F5F0; }
+        ::-webkit-scrollbar-thumb { background: #DCD5C8; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+
+        /* Hide Scrollbar for Horizontal Scroll Areas */
+        .hide-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none; /* Chrome, Safari and Opera */
+        }
+
+        /* Utilities */
+        .glass-panel {
+            background: rgba(240, 235, 225, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid #DCD5C8;
+            box-shadow: 0 4px 6px rgba(26, 29, 36, 0.05);
+        }
+
+        #menuToggle span {
+            transform-origin: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #mobileMenu {
+            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }      
+
+        .gold-gradient-text {
+            background: linear-gradient(to right, #8A957A, #D4AF37, #5F6A46);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Centered Hero Image Swap */
+        .hero-img-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: visible;
+            border-radius: 0px;
+        }
+        
+        .hero-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s ease;
+            position: absolute;
+            bottom: 0;
+        }
+        
+        .hero-img-bw { 
+            z-index: 2; 
+            opacity: 1; 
+        }
+        
+        .hero-img-color { 
+            z-index: 1; 
+            opacity: 0; 
+        }
+        
+        .hero-img-container:hover .hero-img-bw { 
+            opacity: 0; 
+        }
+        
+        .hero-img-container:hover .hero-img-color { 
+            opacity: 1; 
+            z-index: 3; 
+            transform: scale(1.02); 
+        }
+
+        /* Default Prompt Cards (3D Tilt) */
+        .tilt-card-wrapper { 
+            perspective: 1000px; 
+        }
+        
+        .tilt-card {
+            transition: transform 0.1s ease, border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .tilt-card:hover {
+            background: #F0EBE1;
+            border-color: #D4AF37;
+            box-shadow: 0 15px 35px rgba(26, 29, 36, 0.1), 0 0 15px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Utilities */
+        .gsap-reveal { opacity: 0; visibility: hidden; }
+
+        /* Full-screen overlay */
+        #page-loader {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100vh;
+          background: #F8F5F0; 
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 9999;
+          transition: opacity 0.5s ease;
+        }
+
+        /* Loader styles */
+        .loader {
+          width: fit-content;
+          font-weight: bold;
+          font-family: monospace;
+          white-space: pre;
+          font-size: 30px;
+          line-height: 1.2em;
+          height: 1.2em;
+          overflow: hidden;
+          color: #333; 
+        }
+
+        .loader:before {
+          content: "Loading...\A⌰oading...\A⌰⍜ading...\A⌰⍜⏃ding...\A⌰⍜⏃⎅ing...\A⌰⍜⏃⎅⟟ng...\A⌰⍜⏃⎅⟟⋏g...\A⌰⍜⏃⎅⟟⋏☌...\A⌰⍜⏃⎅⟟⋏☌⟒..\A⌰⍜⏃⎅⟟⋏☌⟒⏁.\A⌰⍜⏃⎅⟟⋏☌⟒⏁⋔";
+          white-space: pre;
+          display: inline-block;
+          animation: l39 1s infinite steps(11) alternate;
+        }
+
+        @keyframes l39 {
+          100% { transform: translateY(-100%) }
+        }
+</style>
+</head>
+<body class="antialiased selection:bg-brand-gold selection:text-white relative">
+
+<div id="page-loader">
+  <div class="loader"></div>
+</div>
+
+<nav class="fixed w-full z-50 glass-panel border-b border-brand-border py-4 px-6 md:px-12 transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <img src="https://ik.imagekit.io/bebell/AURELIUS/aurelius-logo-icon.svg" alt="Aurelius Logo" class="h-12 w-12 object-contain">
+            <span class="font-serif font-bold text-xl tracking-widest text-brand-text2">AURELIUS</span>
+        </div>
+        
+        <div class="hidden md:flex gap-8 items-center text-sm font-medium tracking-wide text-brand-textSec">
+            <a href="#philosophy" class="hover:text-brand-gold transition-colors">Homepage</a>
+            <a href="#expertise" class="hover:text-brand-gold transition-colors">Knowledge</a>
+            <a href="#library" class="hover:text-brand-gold transition-colors">Help Center</a>
+            <a href="#cta" class="px-5 py-2 border border-brand-gold/50 rounded-sm text-brand-olive hover:bg-brand-gold hover:text-white transition-all duration-300">Sign In</a>
+        </div>
+        
+        <button id="menuToggle" class="md:hidden relative w-10 h-10 flex items-center justify-center rounded-md hover:bg-brand-olive/30 transition-colors" aria-label="Toggle menu">
+            <span class="absolute block w-6 h-0.5 bg-brand-olive transition-all duration-300 -translate-y-2"></span>
+            <span class="absolute block w-6 h-0.5 bg-brand-olive transition-all duration-300 opacity-100"></span>
+            <span class="absolute block w-6 h-0.5 bg-brand-olive transition-all duration-300 translate-y-2"></span>
+        </button>
+    </div>
+    
+    <div id="mobileMenu" class="md:hidden max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+        <div class="flex flex-col items-center gap-6 pt-6 pb-8 text-sm font-medium tracking-wide text-brand-textSec border-t border-brand-border/50 mt-4">
+            <a href="#philosophy" class="hover:text-brand-gold transition-colors py-1">Homepage</a>
+            <a href="#expertise" class="hover:text-brand-gold transition-colors py-1">Knowledge</a>
+            <a href="#library" class="hover:text-brand-gold transition-colors py-1">Help Center</a>
+            <a href="#cta" class="px-8 py-3 border border-brand-gold/50 rounded-sm text-brand-olive hover:bg-brand-gold hover:text-white transition-all duration-300 w-full max-w-[200px] text-center">Sign In</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO / CHAT INTERFACE SECTION -->
+<section class="relative min-h-screen flex flex-col justify-start items-center pt-32 md:pt-40 pb-28 overflow-hidden hero-wrapper px-4 bg-[url('https://ik.imagekit.io/bebell/AURELIUS/aurelius-chatroom-background.webp?updatedAt=1782022991008')] bg-cover bg-center bg-no-repeat bg-fixed">
+    
+    <canvas id="lightning-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <div class="max-w-5xl mx-auto w-full flex flex-col items-center relative z-10">
+        
+        <!-- Image Container (Tightened, Pushed Up) -->
+        <div class="hero-img-container w-full max-w-[500px] h-[12vh] sm:h-[16vh] mb-4 mt-4" id="hero-img-tracker">
+            <img src="https://ik.imagekit.io/bebell/AURELIUS/AURELIUS-front-profile%20copy.svg" alt="Aurelius Portrait" class="hero-img-bw">
+            <img src="https://ik.imagekit.io/bebell/AURELIUS/AURELIUS-front-profile.svg" alt="Aurelius Activated" class="hero-img-color">
+        </div>
+
+        <div class="flex flex-col items-center text-center gsap-hero-text z-20 w-full">
+            
+            <h1 class="text-2xl md:text-3xl font-bold mb-1 mt-0 leading-none tracking-tight text-brand-text">
+                HOUSE OF <span class="gold-gradient-text">AURELIUS</span>
+            </h1>
+            
+            <p class="text-sm md:text-base text-brand-textSec mb-16 font-light leading-relaxed max-w-2xl mt-2">
+                <strong>The Stoic Mentor for Modern Masters.</strong><br>
+                The Grove is open. Speak to me.
+            </p>
+            
+            <!-- Chat Input Container -->
+            <div class="w-full max-w-3xl relative mb-8 group">
+                <textarea 
+                    id="chat-input"
+                    class="w-full bg-brand-surface/70 backdrop-blur-md border border-brand-border rounded-xl px-5 py-4 pr-16 pb-14 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold focus:bg-white/90 resize-none transition-all duration-300 text-brand-text2 placeholder-brand-textSec shadow-sm custom-scrollbar" 
+                    placeholder="Seek counsel, or present your strategy..." 
+                    style="height: 150px;" 
+                ></textarea>
+                
+                <!-- Left Action Button (Prompts) -->
+                <button id="open-prompts-btn" class="absolute left-3 bottom-3 px-3 py-1.5 bg-white/60 border border-brand-border hover:border-brand-gold text-brand-textSec hover:text-brand-gold rounded-lg transition-colors flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-wider backdrop-blur-sm shadow-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    Prompts
+                </button>
+                
+                <!-- Right Action Button (Send) -->
+                <button class="absolute right-3 bottom-3 p-2 bg-brand-gold text-white rounded-lg hover:bg-brand-olive transition-colors flex items-center justify-center h-10 w-10 shadow-md transform hover:scale-105 active:scale-95 duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 -rotate-90 translate-x-[-1px] translate-y-[2px]" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                    </svg>
+                </button>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Prompts Modal -->
+<div id="prompts-modal-overlay" class="fixed inset-0 bg-brand-text2/40 backdrop-blur-sm z-[100] flex justify-center items-center opacity-0 pointer-events-none transition-opacity duration-300">
+    <div id="prompts-modal" class="bg-brand-bg border border-brand-border rounded-xl w-[90%] max-w-3xl max-h-[85vh] flex flex-col shadow-2xl transform scale-95 transition-transform duration-300">
+        <div class="px-6 py-4 border-b border-brand-border flex justify-between items-center bg-brand-surface rounded-t-xl">
+            <h3 class="font-serif font-bold text-lg text-brand-text2 flex items-center gap-2">
+                <span class="text-xl">📜</span> Default Prompts
+            </h3>
+            <button id="close-prompts-btn" class="text-brand-textSec hover:text-brand-text2 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div class="p-6 overflow-y-auto custom-scrollbar flex-1 bg-brand-bg rounded-b-xl">
+            <!-- Accordion Default Prompts Container -->
+            <div class="w-full flex flex-col gap-3 pb-6 px-0 relative z-20">
+                
+                <!-- Category 1: Strategy -->
+                <div class="glass-panel rounded-xl overflow-hidden bg-white/40 backdrop-blur-md border border-white/50 shadow-sm transition-all duration-300">
+                    <button class="w-full px-5 py-4 flex justify-between items-center text-brand-text2 font-serif font-bold text-sm hover:bg-white/30 transition-colors" onclick="toggleAccordion('acc-1', 'icon-1')">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xl">⚔️</span> 
+                            <span class="tracking-widest uppercase text-xs">Strategy (The Sword)</span>
+                        </div>
+                        <svg id="icon-1" xmlns="http://www.w3.org/2000/svg" class="accordion-icon h-5 w-5 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="acc-1" class="accordion-content overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 0px;">
+                        <div class="p-5 pt-0 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Strategy & Timing. I am currently rushing into a decision regarding [INSERT SITUATION]. Help me gather contrary evidence before acting.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Timing</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Sun Tzu said: 'The quality of decision is like the well-timed swoop of a falcon.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Speed kills—but haste is suicide.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What situation are you rushing into right now that actually requires patience?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Delay your biggest decision for 24 hours.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Strategy & Terrain. My current project is slowing down because of [INSERT FRICTION]. Help me identify how to eliminate it today.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Terrain</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Clausewitz wrote: 'War is the realm of friction.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> The 'fog of war' always obscures the truth.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What hidden 'friction' is slowing your current project?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Identify the single biggest source of friction today.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 2: Influence & Psychology -->
+                <div class="glass-panel rounded-xl overflow-hidden bg-white/40 backdrop-blur-md border border-white/50 shadow-sm transition-all duration-300">
+                    <button class="w-full px-5 py-4 flex justify-between items-center text-brand-text2 font-serif font-bold text-sm hover:bg-white/30 transition-colors" onclick="toggleAccordion('acc-2', 'icon-2')">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xl">🎭</span> 
+                            <span class="tracking-widest uppercase text-xs">Influence (The Shield)</span>
+                        </div>
+                        <svg id="icon-2" xmlns="http://www.w3.org/2000/svg" class="accordion-icon h-5 w-5 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="acc-2" class="accordion-content overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 0px;">
+                        <div class="p-5 pt-0 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Influence & Ego. I find myself wanting to look smart instead of getting the result regarding [INSERT SITUATION]. Counsel me on letting go of my ego here.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Ego</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Robert Greene warns: 'The greatest danger to power is your own ego.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Pride makes you predictable.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> Where are you trying to look 'smart' instead of getting results?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Let someone else take the credit for your idea today.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Decoding Motives. I want to build trust and connect in an upcoming interaction regarding [INSERT SITUATION]. How can I apply the Law of Liking?">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Decoding Motives</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Cialdini's Law of Liking: 'People say yes to people they like.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Similarity breeds trust.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> Are you trying to intimidate or connect?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Mirror the body language of the next person you speak to.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 3: Resilience -->
+                <div class="glass-panel rounded-xl overflow-hidden bg-white/40 backdrop-blur-md border border-white/50 shadow-sm transition-all duration-300">
+                    <button class="w-full px-5 py-4 flex justify-between items-center text-brand-text2 font-serif font-bold text-sm hover:bg-white/30 transition-colors" onclick="toggleAccordion('acc-3', 'icon-3')">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xl">🛡️</span> 
+                            <span class="tracking-widest uppercase text-xs">Resilience (The Armor)</span>
+                        </div>
+                        <svg id="icon-3" xmlns="http://www.w3.org/2000/svg" class="accordion-icon h-5 w-5 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="acc-3" class="accordion-content overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 0px;">
+                        <div class="p-5 pt-0 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Reframing. The biggest setback I am currently trying to run away from is [INSERT SETBACK]. Help me find the hidden gift.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Reframing</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Marcus Aurelius wrote: 'What stands in the way becomes the way.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> The obstacle is the path.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What setback are you trying to run away from?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Write down the 'gift' hidden in your biggest obstacle.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Stoic Control. I am worrying about something outside my influence, which is [INSERT WORRY]. Guide me to refocus on what I can control.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Stoic Control</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Epictetus taught: 'We suffer not from events, but from our judgment of events.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> You control the ship, not the storm.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What are you worrying about that is outside your influence?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Draw a circle of control. Burn what's outside.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 4: Leadership -->
+                <div class="glass-panel rounded-xl overflow-hidden bg-white/40 backdrop-blur-md border border-white/50 shadow-sm transition-all duration-300">
+                    <button class="w-full px-5 py-4 flex justify-between items-center text-brand-text2 font-serif font-bold text-sm hover:bg-white/30 transition-colors" onclick="toggleAccordion('acc-4', 'icon-4')">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xl">🏴</span> 
+                            <span class="tracking-widest uppercase text-xs">Leadership (The Banner)</span>
+                        </div>
+                        <svg id="icon-4" xmlns="http://www.w3.org/2000/svg" class="accordion-icon h-5 w-5 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                    <div id="acc-4" class="accordion-content overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 0px;">
+                        <div class="p-5 pt-0 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Leadership Vision. I need help communicating the 'Why' to my team regarding [INSERT PROJECT]. Help me reframe this mission.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Vision</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Simon Sinek says: 'People don't buy what you do; they buy why you do it.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> The 'Why' creates a gravitational pull.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> Have you told your team the meaning of their work today?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Reframe your project around a 'Why' statement.</p>
+                                </div>
+                            </div>
+                            <div class="prompt-card bg-white/60 backdrop-blur-sm border border-brand-border/60 rounded-lg p-4 hover:border-brand-gold hover:-translate-y-1 hover:shadow-md transition-all duration-300 text-left flex flex-col cursor-pointer" data-prompt="I am reflecting on Distributed Power. I am micromanaging a decision that I should delegate, which is [INSERT DECISION]. Help me relinquish control safely.">
+                                <h4 class="font-serif font-bold text-brand-text2 text-sm mb-2">Distributed Power</h4>
+                                <p class="text-[11px] text-brand-textSec italic mb-3">"Marquet teaches: 'Leadership is giving control to those who do the work.'"</p>
+                                <div class="space-y-1.5 mt-auto">
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">📜 Principle:</span> Control creates followers. Freedom creates leaders.</p>
+                                    <p class="text-[11px] text-brand-text2"><span class="font-bold">💭 Reflection:</span> What decision are you micromanaging right now?</p>
+                                    <p class="text-[11px] text-brand-olive font-medium mt-2 pt-2 border-t border-brand-border/50"><span class="font-bold">⚔️ Action:</span> Delegate a meaningful decision to a junior team member.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+ 
+<footer class="relative bg-cover bg-center bg-no-repeat py-20 border-t border-brand-border" style="background-image: url('');">
+    <div class="relative z-10 max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 text-brand-text p-8 rounded-sm">
+        <div class="md:col-span-1">
+            <div class="flex flex-col items-start gap-2 mb-6">
+                <img src="https://ik.imagekit.io/bebell/AURELIUS/aurelius-logo-icon.svg" alt="Aurelius Logo" class="h-16 w-16 object-cover">
+                <span class="font-serif font-bold text-xl tracking-widest text-brand-text2">AURELIUS</span>
+            </div>
+            <p class="text-sm font-medium leading-relaxed text-brand-textSec">
+                Elevating human potential through strategic wisdom, critical thinking, and decisive action.
+            </p>
+        </div>
+        
+        <div>
+            <h4 class="font-bold uppercase tracking-wider text-sm mb-4 text-brand-text">Philosophy</h4>
+            <ul class="space-y-2 text-sm font-medium text-brand-textSec">
+                <li><a href="#" class="hover:text-brand-gold transition-colors">Core Principles</a></li>
+                <li><a href="#" class="hover:text-brand-gold transition-colors">The Algorithm</a></li>
+                <li><a href="#" class="hover:text-brand-gold transition-colors">Manifesto</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h4 class="font-bold uppercase tracking-wider text-sm mb-4 text-brand-text">Expertise</h4>
+            <ul class="space-y-2 text-sm font-medium text-brand-textSec">
+                <li><a href="#" class="hover:text-brand-gold transition-colors">Business Strategy</a></li>
+                <li><a href="#" class="hover:text-brand-gold transition-colors">Leadership</a></li>
+                <li><a href="#" class="hover:text-brand-gold transition-colors">Negotiation</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h4 class="font-bold uppercase tracking-wider text-sm mb-4 text-brand-text">Connect</h4>
+            <ul class="space-y-2 text-sm font-medium text-brand-textSec">
+                <li><a href="#cta" class="hover:text-brand-gold transition-colors">Start Conversation</a></li>
+                <li><a href="#" class="hover:text-brand-gold transition-colors">About</a></li>
+                <li><a href="#" class="hover:text-brand-gold transition-colors">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="relative z-10 max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-brand-text/10 text-center flex flex-col md:flex-row justify-between items-center text-sm font-medium text-brand-textSec p-4 rounded-sm">
+        <p>&copy; 2026 Aurelius AI. Truth Over Comfort.</p>
+        <div class="flex gap-4 mt-4 md:mt-0">
+            <a href="#" class="hover:text-brand-gold transition-colors">Privacy</a>
+            <a href="#" class="hover:text-brand-gold transition-colors">Terms</a>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+<script>
+    // GSAP Initialization
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Navbar blur on scroll
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+            nav.style.background = 'rgba(240, 235, 225, 0.9)';
+        } else {
+            nav.style.background = 'rgba(240, 235, 225, 0.6)';
+        }
+    });
+
+    // Mobile Menu Toggle
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const bars = menuToggle.querySelectorAll('span');
+        
+        menuToggle.addEventListener('click', function() {
+            const isOpen = mobileMenu.classList.toggle('max-h-0');
+            mobileMenu.classList.toggle('max-h-[400px]');
+            
+            const topBar = bars[0];
+            const middleBar = bars[1];
+            const bottomBar = bars[2];
+            
+            if (isOpen) {
+                topBar.style.transform = 'translateY(-8px) rotate(0deg)';
+                middleBar.style.opacity = '1';
+                bottomBar.style.transform = 'translateY(8px) rotate(0deg)';
+            } else {
+                topBar.style.transform = 'translateY(0px) rotate(45deg)';
+                middleBar.style.opacity = '0';
+                bottomBar.style.transform = 'translateY(0px) rotate(-45deg)';
+            }
+        });
+    });      
+
+    // Chat Input Auto-Resize & Logic
+    const chatInput = document.getElementById('chat-input');
+    
+    // Prompts Modal Logic
+    const promptsOverlay = document.getElementById('prompts-modal-overlay');
+    const promptsModal = document.getElementById('prompts-modal');
+    const openPromptsBtn = document.getElementById('open-prompts-btn');
+    const closePromptsBtn = document.getElementById('close-prompts-btn');
+
+    function openPrompts() {
+        promptsOverlay.classList.remove('opacity-0', 'pointer-events-none');
+        promptsModal.classList.remove('scale-95');
+    }
+
+    function closePrompts() {
+        promptsOverlay.classList.add('opacity-0', 'pointer-events-none');
+        promptsModal.classList.add('scale-95');
+    }
+
+    openPromptsBtn.addEventListener('click', openPrompts);
+    closePromptsBtn.addEventListener('click', closePrompts);
+    promptsOverlay.addEventListener('click', (e) => {
+        if (e.target === promptsOverlay) closePrompts();
+    });
+
+    // Accordion Logic for Default Prompts
+    window.toggleAccordion = function(id, iconId) {
+        const content = document.getElementById(id);
+        const icon = document.getElementById(iconId);
+        
+        // Check if currently open
+        const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+
+        // Optional: Close all other accordions for a cleaner UI
+        document.querySelectorAll('.accordion-content').forEach(el => el.style.maxHeight = '0px');
+        document.querySelectorAll('.accordion-icon').forEach(el => el.style.transform = 'rotate(0deg)');
+
+        // If it wasn't open, open it now
+        if (!isOpen) {
+            content.style.maxHeight = content.scrollHeight + 'px';
+            icon.style.transform = 'rotate(180deg)';
+        }
+    };
+
+    // Prompt Card Click-to-Fill Logic
+    document.querySelectorAll('.prompt-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const promptTemplate = card.getAttribute('data-prompt');
+            chatInput.value = promptTemplate;
+            chatInput.focus();
+            closePrompts(); // Close modal upon selection
+            
+            // Optional: Highlight the text that needs to be replaced so user sees it
+            const startIdx = promptTemplate.indexOf('[');
+            const endIdx = promptTemplate.indexOf(']');
+            if(startIdx !== -1 && endIdx !== -1) {
+                chatInput.setSelectionRange(startIdx, endIdx + 1);
+            }
+        });
+    });
+
+    // Hero GSAP Setup
+    gsap.from(".gsap-hero-text > *", {
+        y: 30, opacity: 0, duration: 1, stagger: 0.15, ease: "power3.out", delay: 0.2
+    });
+    gsap.from(".hero-img-container", {
+        y: 40, opacity: 0, duration: 1.2, ease: "power2.out"
+    });
+
+    // Lightning Canvas Effect specific to Hero Image Hover
+    const lCanvas = document.getElementById('lightning-canvas');
+    const lCtx = lCanvas.getContext('2d');
+    let lWidth, lHeight;
+    let isHoveringHero = false;
+
+    function resizeLightningCanvas() {
+        lWidth = window.innerWidth;
+        lHeight = document.querySelector('.hero-wrapper').offsetHeight;
+        lCanvas.width = lWidth;
+        lCanvas.height = lHeight;
+    }
+    window.addEventListener('resize', resizeLightningCanvas);
+    resizeLightningCanvas();
+
+    const heroImgTracker = document.getElementById('hero-img-tracker');
+    heroImgTracker.addEventListener('mouseenter', () => isHoveringHero = true);
+    heroImgTracker.addEventListener('mouseleave', () => {
+        isHoveringHero = false;
+    });
+
+    function drawLightningBolt(x, y, segments, color) {
+        lCtx.beginPath();
+        lCtx.moveTo(x, y);
+        let currX = x;
+        let currY = y;
+        
+        for(let i=0; i<segments; i++) {
+            currX += (Math.random() - 0.5) * 60;
+            currY += Math.random() * 40;
+            lCtx.lineTo(currX, currY);
+        }
+        
+        lCtx.strokeStyle = color;
+        lCtx.lineWidth = Math.random() * 2 + 1;
+        lCtx.stroke();
+    }
+
+    function animateLightning() {
+        // ALWAYS clear canvas to prevent white buildup and background blocking
+        lCtx.clearRect(0, 0, lWidth, lHeight);
+        
+        if (isHoveringHero) {
+            // Randomly trigger a bolt
+            if (Math.random() < 0.15) {
+                const startX = Math.random() * lWidth;
+                const startY = 0;
+                drawLightningBolt(startX, startY, 20, '#D4AF37'); // Gold
+                if(Math.random() > 0.5) drawLightningBolt(startX, startY, 15, '#8A957A'); // Pale Olive
+            }
+        }
+        requestAnimationFrame(animateLightning);
+    }
+    animateLightning();
+
+</script>
+
+<script>
+// Force minimum display time for loader
+let loaderStartTime = Date.now();
+const MIN_DISPLAY_TIME = 2500; // Reduced for Chat UI feel
+
+window.addEventListener('load', function() {
+  const loader = document.getElementById('page-loader');
+  if (loader) {
+    const elapsed = Date.now() - loaderStartTime;
+    const remaining = Math.max(0, MIN_DISPLAY_TIME - elapsed);
+    
+    setTimeout(() => {
+      loader.style.opacity = '0';
+      setTimeout(() => {
+        loader.style.display = 'none';
+      }, 500);
+    }, remaining);
+  }
+});
+</script>
+
+</body>
+</html>
