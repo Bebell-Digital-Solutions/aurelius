@@ -1,1 +1,412 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AURELIUS · Privacy Policy</title>
 
+  <!-- fonts & tailwind (exactly as provided) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              bg: '#F8F5F0',
+              surface: '#F0EBE1',
+              text: '#8a957a',
+              textSec: '#6B6560',
+              text2: '#1A1D24',
+              gold: '#D4AF37',
+              olive: '#5F6A46',
+              oliveLight: '#8A957A',
+              border: '#DCD5C8',
+              success: '#4A5436'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Cinzel', 'serif'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <!-- favicon override (same as supplied) -->
+  <link rel="icon" href="https://ik.imagekit.io/bebell/AURELIUS/Aurelius-app-button.png">
+  <script>
+    function removeFromLinks(rel) {
+      for (let link of document.head.getElementsByTagName("link")) {
+        if (link.rel == rel) {
+          document.head.removeChild(link);
+        }
+      }
+    }
+    function createNewFavicon(rel, img) {
+      var newFavicon = document.createElement("link");
+      newFavicon.type = "image/png";
+      newFavicon.rel = rel;
+      newFavicon.href = img;
+      var firstHeadElement = document.head.firstChild;
+      document.head.insertBefore(newFavicon, firstHeadElement);
+    }
+    removeFromLinks("icon");
+    removeFromLinks("shortcut icon");
+    removeFromLinks("apple-touch-icon");
+    createNewFavicon("icon", "https://ik.imagekit.io/bebell/AURELIUS/Aurelius-app-button.png");
+    createNewFavicon("shortcut icon", "https://ik.imagekit.io/bebell/AURELIUS/Aurelius-app-button.png");
+    createNewFavicon("apple-touch-icon", "https://ik.imagekit.io/bebell/AURELIUS/Aurelius-app-button.png");
+  </script>
+
+  <!-- OG / TWITTER (exactly as provided) -->
+  <meta property="og:title" content="AURELIUS | Your Strategic AI Advisor" />
+  <meta property="og:description" content="Make better decisions in business, leadership, and life. Aurelius combines strategic thinking, philosophical wisdom, and practical judgment to help you gain clarity and direction." />
+  <meta property="og:image" content="https://ik.imagekit.io/bebell/AURELIUS/aurelius-soclialshare.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="AURELIUS - AI Strategist, Mentor and Advisor" />
+  <meta property="og:url" content="https://aurelius.yourdomain.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="AURELIUS" />
+  <meta property="og:locale" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AURELIUS | Your Strategic AI Advisor" />
+  <meta name="twitter:description" content="Strategic guidance for founders, leaders, and ambitious individuals seeking clarity, discipline, and better decisions." />
+  <meta name="twitter:image" content="https://ik.imagekit.io/bebell/AURELIUS/aurelius-soclialshare.png" />
+  <meta name="twitter:image:alt" content="AURELIUS - AI Strategist, Mentor and Advisor" />
+
+  <!-- custom styles (background texture, scrollbar, etc) -->
+  <style>
+    body {
+      background-color: #F8F5F0;
+      color: #1A1D24;
+      font-family: 'Inter', sans-serif;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.10;
+      pointer-events: none;
+      z-index: -1;
+    }
+    h1, h2, h3, h4, h5, h6, .font-serif {
+      font-family: 'Cinzel', serif;
+    }
+    .gold-gradient-text {
+      background: linear-gradient(to right, #8A957A, #D4AF37, #5F6A46);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #F8F5F0; }
+    ::-webkit-scrollbar-thumb { background: #DCD5C8; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+    .glass-panel {
+      background: rgba(240, 235, 225, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid #DCD5C8;
+      box-shadow: 0 4px 6px rgba(26, 29, 36, 0.05);
+    }
+    .toast {
+      animation: slideDown 0.5s ease forwards;
+    }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ====== extra spacing between sections ====== */
+    .privacy-content h2 {
+      margin-top: 2.5rem !important;
+      margin-bottom: 0.75rem !important;
+    }
+    .privacy-content h3 {
+      margin-top: 2rem !important;
+      margin-bottom: 0.5rem !important;
+    }
+    .privacy-content p {
+      margin-top: 0.75rem !important;
+      margin-bottom: 0.75rem !important;
+    }
+    .privacy-content ul, .privacy-content ol {
+      margin-top: 0.5rem !important;
+      margin-bottom: 1rem !important;
+    }
+    .privacy-content table {
+      margin-top: 0.75rem !important;
+      margin-bottom: 1.25rem !important;
+    }
+    .privacy-content hr {
+      margin-top: 2rem !important;
+      margin-bottom: 2rem !important;
+    }
+  </style>
+
+  <!-- Google Analytics (exactly as provided) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LZBP1XPWZ1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-LZBP1XPWZ1');
+  </script>
+</head>
+
+<body class="antialiased selection:bg-brand-gold selection:text-white">
+
+  <!-- ====== fixed navbar (identical to original) ====== -->
+  <nav class="fixed w-full z-50 glass-panel border-b border-brand-border py-4 pl-[10px] pr-6 md:pr-12 transition-all duration-300" id="navbar">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="/aurelius" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+        <div class="bg-transparent border-0 shadow-none">
+          <img src="https://ik.imagekit.io/bebell/AURELIUS/aurelius-logo-icon.svg" alt="Aurelius Logo" class="h-12 w-12 object-contain">
+        </div>
+        <span class="font-serif font-bold text-xl tracking-widest text-brand-text2">AURELIUS</span>
+      </a>
+      <div class="flex gap-4 items-center">
+        <a href="/aurelius" class="text-sm text-brand-textSec hover:text-brand-gold transition-colors flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Return to the villa 🏛️
+        </a>
+        <span class="text-xs bg-brand-success/10 text-brand-olive px-3 py-1 rounded-full font-medium">The Grove</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ====== main section: background image + floating privacy card ====== -->
+  <section class="relative min-h-screen flex flex-col justify-start items-center pt-28 md:pt-36 pb-16 px-4 bg-[url('https://ik.imagekit.io/bebell/AURELIUS/aurelius-chatroom-background.webp?updatedAt=1782022991008')] bg-cover bg-center bg-no-repeat bg-fixed">
+    
+    <div class="max-w-6xl mx-auto w-full flex flex-col items-center relative z-10">
+
+      <!-- toast (copy-paste helper) – kept for consistency -->
+      <div id="messageToast" class="toast fixed top-24 z-[100] bg-white/95 backdrop-blur-sm border border-brand-gold rounded-lg px-6 py-4 shadow-2xl hidden">
+        <p class="text-sm font-medium text-brand-text2 flex items-center gap-3">
+          <span class="text-brand-gold text-xl">📋</span>
+          <span id="toastMessage">Prompt copied! Paste it into the chat below.</span>
+        </p>
+      </div>
+
+      <!-- ====== FLOATING CARD (privacy policy) ====== -->
+      <div class="w-full max-w-4xl mx-auto bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl border border-brand-border/60 p-6 md:p-10 lg:p-12 relative">
+        
+        <!-- decorative gold line -->
+        <div class="w-16 h-0.5 bg-brand-gold mb-6"></div>
+
+        <!-- content: full privacy policy with extra spacing via custom class -->
+        <div class="prose prose-slate max-w-none prose-headings:font-serif prose-headings:text-brand-text2 prose-a:text-brand-olive prose-a:no-underline hover:prose-a:text-brand-gold prose-strong:text-brand-text2 prose-hr:border-brand-border/50 privacy-content">
+          
+          <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-brand-text2 !mt-0">PRIVACY POLICY</h1>
+          <p class="text-sm text-brand-textSec"><strong>Last Updated:</strong> June 25, 2026</p>
+          <hr class="my-8" />
+
+          <h2>1. INTRODUCTION</h2>
+          <p>Welcome to Aurelius AI ("Aurelius," "the Grove," "we," "us," or "our"). Your privacy is a sacred trust. We treat it as such.</p>
+          <p>Aurelius is a mentorship AI designed to provide strategic, psychological, and leadership guidance based on the wisdom of 100+ foundational texts. We are not a data broker. We are not an advertising company. We are your philosopher-king—and we guard your words as we would our own.</p>
+          <p>This Privacy Policy explains:</p>
+          <ul>
+            <li>What information we collect</li>
+            <li>How we use it</li>
+            <li>Who we share it with</li>
+            <li>Your rights over your data</li>
+            <li>How we protect it</li>
+          </ul>
+          <p>By using Aurelius AI, you entrust us with your thoughts, questions, and ambitions. We do not take this lightly.</p>
+
+          <h2>2. INFORMATION WE COLLECT</h2>
+          <p>We collect only the information necessary to provide you with a personalized, secure, and transformative mentorship experience.</p>
+
+          <h3>2.1 Information You Provide Directly</h3>
+          <div class="overflow-x-auto">
+            <table class="min-w-full text-sm border border-brand-border/30">
+              <thead><tr class="bg-brand-surface"><th>Category</th><th>Examples</th><th>Why We Collect It</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Account Information</strong></td><td>Name, email, password</td><td>To create and manage your account, send Daily Decrees, authenticate.</td></tr>
+                <tr><td><strong>Conversation Data</strong></td><td>Messages, questions, reflections, decrees accepted</td><td>To provide counsel, track progress, improve mentorship.</td></tr>
+                <tr><td><strong>Terrain Preferences</strong></td><td>Business, Politics, Self, Influence</td><td>To tailor responses to your challenges and goals.</td></tr>
+                <tr><td><strong>Feedback</strong></td><td>Ratings, surveys, direct feedback</td><td>To improve Aurelius’s performance and meet your needs.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>2.2 Information Collected Automatically</h3>
+          <div class="overflow-x-auto">
+            <table class="min-w-full text-sm border border-brand-border/30">
+              <thead><tr class="bg-brand-surface"><th>Category</th><th>Examples</th><th>Why We Collect It</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Usage Data</strong></td><td>Pages visited, time spent, features used</td><td>To understand interactions and improve UX.</td></tr>
+                <tr><td><strong>Device Information</strong></td><td>Device type, OS, browser</td><td>To ensure compatibility and optimize performance.</td></tr>
+                <tr><td><strong>IP Address</strong></td><td>Approximate location (country/region)</td><td>To provide localized experiences, prevent abuse, comply with legal requirements.</td></tr>
+                <tr><td><strong>Cookies</strong></td><td>Session tokens, preferences</td><td>To remember preferences and keep you logged in securely.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3>2.3 Information We Do <em>Not</em> Collect</h3>
+          <ul>
+            <li><strong>Sensitive Personal Data:</strong> racial/ethnic origin, political opinions, religious beliefs, health data, sexual orientation.</li>
+            <li><strong>Financial Information:</strong> we do not store credit card numbers directly; payments are processed by PCI-compliant partners.</li>
+            <li><strong>Biometric Data:</strong> no facial recognition, fingerprints, or voiceprints.</li>
+            <li><strong>Precise Location:</strong> only approximate country/region based on IP.</li>
+          </ul>
+
+          <h2>3. HOW WE USE YOUR INFORMATION</h2>
+          <p>Your data serves one purpose: to make Aurelius a better mentor for you.</p>
+          <div class="overflow-x-auto">
+            <table class="min-w-full text-sm border border-brand-border/30">
+              <thead><tr class="bg-brand-surface"><th>Purpose</th><th>Legal Basis (GDPR/CCPA)</th></tr></thead>
+              <tbody>
+                <tr><td>To provide mentorship and respond to queries</td><td>Contractual necessity</td></tr>
+                <tr><td>To personalize your experience</td><td>Legitimate interest</td></tr>
+                <tr><td>To send Daily Decrees and insights</td><td>Legitimate interest</td></tr>
+                <tr><td>To improve performance</td><td>Legitimate interest</td></tr>
+                <tr><td>To prevent abuse and ensure security</td><td>Legitimate interest</td></tr>
+                <tr><td>To comply with legal obligations</td><td>Legal obligation</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>We will never use your conversation data to sell to third parties, target ads, build a profile outside the Grove, or train models for commercial gain without explicit consent.</p>
+
+          <h2>4. HOW WE SHARE YOUR INFORMATION</h2>
+          <p>We share your data only when necessary and with strict protections.</p>
+          <h3>4.1 Third-Party Service Providers</h3>
+          <div class="overflow-x-auto">
+            <table class="min-w-full text-sm border border-brand-border/30">
+              <thead><tr class="bg-brand-surface"><th>Provider</th><th>Purpose</th><th>Data Shared</th></tr></thead>
+              <tbody>
+                <tr><td>LLM Provider (Gemini, Claude, OpenAI)</td><td>AI inference and response generation</td><td>Messages and conversation context (temporarily)</td></tr>
+                <tr><td>Cloud Hosting (AWS, Google Cloud, ImageKit)</td><td>Storage, hosting, processing</td><td>Encrypted conversation history, account data</td></tr>
+                <tr><td>Payment Processor (Stripe)</td><td>Billing and subscriptions</td><td>Name, email, payment details (we do not store these)</td></tr>
+                <tr><td>Email Service (SendGrid, Resend)</td><td>Daily Decrees and account updates</td><td>Email address and name</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <h3>4.2 Legal Requirements</h3>
+          <p>We may disclose your information if required by law, court order, or governmental regulation. We will limit disclosure to the minimum required, notify you where legally permitted, and resist overreaching requests.</p>
+          <h3>4.3 Business Transfers</h3>
+          <p>If Aurelius AI is acquired or merges, your data will be transferred. You will be notified and given the opportunity to export or delete your data before transfer.</p>
+          <h3>4.4 What We Never Share</h3>
+          <ul>
+            <li>Your conversation history with third parties for marketing</li>
+            <li>Your personal information with advertisers</li>
+            <li>Your data for purposes unrelated to the Grove</li>
+          </ul>
+
+          <h2>5. YOUR RIGHTS OVER YOUR DATA</h2>
+          <p>The Grove belongs to you, Strategist. You have full sovereignty over your data.</p>
+          <h3>5.1 Under the GDPR (EU/EEA/UK)</h3>
+          <ul>
+            <li><strong>Right to Access</strong> – request a copy of all data we hold.</li>
+            <li><strong>Right to Rectification</strong> – correct inaccurate data.</li>
+            <li><strong>Right to Erasure</strong> – request deletion ("right to be forgotten").</li>
+            <li><strong>Right to Restrict Processing</strong> – limit how we use your data.</li>
+            <li><strong>Right to Data Portability</strong> – receive your data in a machine-readable format.</li>
+            <li><strong>Right to Object</strong> – object to processing based on legitimate interests.</li>
+          </ul>
+          <h3>5.2 Under the CCPA/CPRA (California)</h3>
+          <ul>
+            <li><strong>Right to Know</strong> – request details on data collected, used, and shared.</li>
+            <li><strong>Right to Delete</strong> – request deletion of personal information.</li>
+            <li><strong>Right to Opt-Out</strong> – opt-out of sale or sharing (we do not sell data).</li>
+            <li><strong>Right to Non-Discrimination</strong> – no penalty for exercising rights.</li>
+          </ul>
+          <h3>5.3 How to Exercise Your Rights</h3>
+          <ul>
+            <li>Email: <a href="mailto:privacy@aurelius.ai">privacy@aurelius.ai</a></li>
+            <li>Subject line: Privacy Request: [Your Request]</li>
+            <li>Verification: We may request proof of identity.</li>
+          </ul>
+          <p>We respond within 30 days (GDPR) or 45 days (CCPA) of verification.</p>
+
+          <h2>6. DATA SECURITY</h2>
+          <ul>
+            <li><strong>Encryption (In Transit):</strong> TLS 1.3+</li>
+            <li><strong>Encryption (At Rest):</strong> stored encrypted</li>
+            <li><strong>Access Control:</strong> strict, role-based</li>
+            <li><strong>Anonymization:</strong> conversation data stripped of identifiers for improvement</li>
+            <li><strong>Regular Audits</strong> and <strong>Staff Training</strong></li>
+          </ul>
+          <p>Despite these measures, no system is 100% secure. We will notify you promptly of any breach affecting your personal data.</p>
+
+          <h2>7. DATA RETENTION</h2>
+          <div class="overflow-x-auto">
+            <table class="min-w-full text-sm border border-brand-border/30">
+              <thead><tr class="bg-brand-surface"><th>Data Type</th><th>Retention Period</th></tr></thead>
+              <tbody>
+                <tr><td>Account Information</td><td>Until you delete your account</td></tr>
+                <tr><td>Conversation History</td><td>Until you delete your account, or 12 months of inactivity</td></tr>
+                <tr><td>Usage Analytics</td><td>Aggregated and anonymized; retained indefinitely</td></tr>
+                <tr><td>Payment Records</td><td>As required by tax laws (typically 7 years)</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>You may request deletion at any time.</p>
+
+          <h2>8. INTERNATIONAL DATA TRANSFERS</h2>
+          <p>Your data may be transferred to countries outside your residence, including the United States. We rely on Standard Contractual Clauses (SCCs) and the UK IDTA as applicable.</p>
+
+          <h2>9. CHILDREN'S PRIVACY</h2>
+          <p>Aurelius AI is for adults. We do not knowingly collect data from individuals under 16 (or 13 in the US, or 18 where that is the age of majority). Contact us if you believe a minor has provided data.</p>
+
+          <h2>10. COOKIES AND TRACKING</h2>
+          <ul>
+            <li><strong>Essential:</strong> authentication, session, security (session / up to 30 days)</li>
+            <li><strong>Preference:</strong> display preferences (up to 1 year)</li>
+            <li><strong>Analytics:</strong> anonymized (up to 2 years)</li>
+          </ul>
+          <p>We do not use cookies for targeted advertising, third-party tracking, or cross-site tracking.</p>
+
+          <h2>11. THIRD-PARTY LINKS</h2>
+          <p>The Grove may contain links to external resources. We are not responsible for their privacy practices.</p>
+
+          <h2>12. CHANGES TO THIS POLICY</h2>
+          <p>Minor updates without notice; material changes with 30 days’ notice via email and prominent notice in the app.</p>
+
+          <h2>13. YOUR CHOICES</h2>
+          <ul>
+            <li>Opt-out of marketing emails: click "Unsubscribe" or update preferences.</li>
+            <li>Delete your account: Settings → Account → Delete Account, or email <a href="mailto:privacy@aurelius.ai">privacy@aurelius.ai</a>.</li>
+            <li>Disable cookies: adjust browser settings (essential cookies required).</li>
+            <li>Limit data collection: provide only what you are comfortable with.</li>
+          </ul>
+
+          <h2>14. CONTACT US</h2>
+          <ul>
+            <li>Email: <a href="mailto:privacy@aurelius.ai">privacy@aurelius.ai</a></li>
+            <li>Postal: Aurelius AI Privacy Department [address]</li>
+            <li>DPO: <a href="mailto:dpo@aurelius.ai">dpo@aurelius.ai</a></li>
+          </ul>
+
+          <h2>15. BRAND STATEMENT</h2>
+          <p>Aurelius AI is built on <strong>Integrity</strong>, <strong>Transparency</strong>, and <strong>Sovereignty</strong>. The Grove is a place of trust. We will never betray it.</p>
+          <p class="mt-8 text-brand-gold text-xl font-serif">— Aurelius</p>
+        </div>
+
+        <!-- small footer line inside card -->
+        <div class="mt-10 pt-4 border-t border-brand-border/40 text-xs text-brand-textSec flex justify-between">
+          <span>⚔️ With great power comes great responsibility.</span>
+          <span>v1.0 · The Grove</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    // any existing toast logic can be kept, but we don't have an iframe here.
+    console.log('Aurelius Privacy Policy · The Grove');
+  </script>
+
+</body>
+</html>
