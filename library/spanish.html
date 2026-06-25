@@ -1,1 +1,1779 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurelius Knowledge Library</title>
+    
+    
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="icon" href="https://ik.imagekit.io/bebell/AURELIUS/Aurelius-app-button.png">
+
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+    :root {
+        /* Aurelius Brand Colors */
+        --bg-main: #F8F5F0;        /* Travertine Marble */
+        --bg-surface: #F0EBE1;     /* Sunlit Limestone */
+        --text-primary: #1A1D24;   /* Shadowy Charcoal */
+        --text-secondary: #6B6560; /* Weathered Stone */
+        --text-muted: #8A957A;     /* Pale Olive */
+        --gold: #D4AF37;           /* Aurelian Gold */
+        --olive: #5F6A46;          /* Sacred Olive */
+        --olive-light: #8A957A;    /* Pale Olive */
+        --border: #DCD5C8;         /* Marble Vein */
+        --success: #4A5436;        /* Laurel Green */
+        --white: #FFFFFF;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+        
+        
+        
+    /* Scrollbar Styling (Optional) */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--white);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--gold);
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--olive);
+    }        
+        
+        
+        
+        
+    body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        background-color: var(--bg-main);
+        color: var(--text-primary);
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    /* Headings in Cinzel (Roman Imperial Font) */
+    h1, h2, h3, h4, h5, h6,
+    .cinzel,
+    .hero h1,
+    .footer-quote,
+    .book-title {
+        font-family: 'Cinzel', serif;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+    }
+
+    /* Hero Section */
+    .hero {
+        position: relative;
+        background-image: linear-gradient(rgba(26, 29, 36, 0.75), rgba(26, 29, 36, 0.85)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1600&q=80');
+        background-size: cover;
+        background-position: center;
+        padding: 80px 20px;
+        text-align: center;
+        color: white;
+        border-bottom: 4px solid var(--gold);
+    }
+
+    .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .hero h1 {
+        font-size: 2.75rem;
+        font-weight: 800;
+        margin: 0 0 12px 0;
+        letter-spacing: 0.05em;
+        color: var(--white);
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero p {
+        font-size: 1.125rem;
+        color: var(--olive-light);
+        margin: 0 0 32px 0;
+        font-weight: 300;
+    }
+
+    .search-container {
+        position: relative;
+        max-width: 540px;
+        margin: 0 auto;
+    }
+
+    .search-input {
+        width: 100%;
+        padding: 14px 20px 14px 48px;
+        border-radius: 50px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background-color: rgba(255, 255, 255, 0.95);
+        color: var(--text-primary);
+        font-size: 1rem;
+        font-family: 'Inter', sans-serif;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        outline: none;
+        transition: all 0.2s;
+        box-sizing: border-box;
+    }
+
+    .search-input:focus {
+        background-color: #ffffff;
+        box-shadow: 0 10px 25px -5px rgba(212, 175, 55, 0.3);
+        border-color: var(--gold);
+    }
+
+    .search-icon {
+        position: absolute;
+        left: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2rem;
+        color: var(--text-secondary);
+        pointer-events: none;
+    }
+
+    /* Controls Area */
+    .controls-container {
+        max-width: 1200px;
+        margin: 40px auto 24px;
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .categories-flex {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .category-pill {
+        padding: 8px 16px;
+        border-radius: 50px;
+        border: 1px solid var(--border);
+        background-color: var(--bg-surface);
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        font-weight: 500;
+        font-family: 'Inter', sans-serif;
+        cursor: pointer;
+        transition: all 0.2s;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .category-pill:hover {
+        border-color: var(--gold);
+        color: var(--text-primary);
+        background-color: var(--bg-main);
+    }
+
+    .category-pill.active {
+        background-color: var(--olive);
+        color: white;
+        border-color: var(--olive);
+        box-shadow: 0 4px 6px -1px rgba(95, 106, 70, 0.3);
+    }
+
+    .toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 12px;
+    }
+
+    .results-count {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        font-weight: 500;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .toggle-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        background-color: var(--bg-surface);
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        font-weight: 500;
+        font-family: 'Inter', sans-serif;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .toggle-btn:hover {
+        background-color: var(--bg-main);
+        color: var(--text-primary);
+        border-color: var(--gold);
+    }
+
+    /* Books Container */
+    .books-container {
+        max-width: 1200px;
+        margin: 0 auto 60px;
+        padding: 0 20px;
+        box-sizing: border-box;
+        flex: 1;
+    }
+
+    /* Book Card */
+    .book-card {
+        background-color: var(--bg-surface);
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.04);
+        overflow: hidden;
+        transition: transform 0.2s, box-shadow 0.2s;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    .book-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.05);
+        border-color: var(--gold);
+    }
+
+    .book-category {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--olive);
+        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .book-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin: 0 0 4px 0;
+        line-height: 1.3;
+        font-family: 'Cinzel', serif;
+    }
+
+    .book-author {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        margin-bottom: 12px;
+        font-weight: 500;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .book-rating {
+        color: var(--gold);
+        font-weight: bold;
+        letter-spacing: 1px;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .book-desc {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin: 0 0 20px 0;
+        font-family: 'Inter', sans-serif;
+        flex-grow: 1;
+    }
+
+    .book-cta {
+        margin-top: auto;
+        align-self: flex-start;
+        padding: 8px 18px;
+        background-color: var(--bg-main);
+        color: var(--olive);
+        text-decoration: none;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        font-family: 'Inter', sans-serif;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .book-cta:hover {
+        background-color: var(--olive);
+        color: white;
+        border-color: var(--olive);
+    }
+
+    .book-cover-image {
+        object-fit: contain;
+        border-radius: 4px;
+        box-shadow: 0 4px 10px rgba(15, 23, 42, 0.15);
+        display: block;
+    }
+
+    /* Grid Layout */
+    .books-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+    }
+
+/* List Layout */
+    .books-list .book-card {
+        display: grid;
+        grid-template-columns: 1fr 100px; /* 2 columns: 1fr (left content), 100px (right image) */
+        gap: 20px;
+        align-items: start;
+        text-align: left; /* Enforces left alignment for content */
+    }
+
+    .books-list .book-cover-image {
+        width: 100px;
+        height: auto;
+        grid-column: 2; /* Forces the image into the right column */
+        grid-row: 1 / span 4; /* Spans rows to stretch alongside left content */
+    }
+
+    .books-list .book-cta {
+        grid-column: 1; /* Moves the CTA into the left column under the text */
+        grid-row: auto;
+        align-self: start;
+    }
+
+    @media (max-width: 768px) {
+        .books-list .book-card {
+            grid-template-columns: 1fr; /* Stacks the columns on mobile */
+            gap: 12px;
+        }
+
+        .books-list .book-cover-image {
+            width: 100%;
+            max-width: 120px;
+            grid-column: 1; /* Resets to normal flow for mobile */
+            grid-row: auto;
+        }
+
+        .books-list .book-cta {
+            grid-column: 1;
+            grid-row: auto;
+            align-self: flex-start;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+        }
+
+        .toolbar {
+            flex-direction: column;
+            gap: 12px;
+            align-items: flex-start;
+        }
+    }
+
+        /* ----------------------------------
+           GRID VIEW SPECIFIC LAYOUT STYLES 
+        ------------------------------------- */
+        .books-container.grid-view {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 24px;
+        }
+
+        @media (min-width: 768px) { .books-container.grid-view { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .books-container.grid-view { grid-template-columns: repeat(3, 1fr); } }
+
+        .grid-view .book-card {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            grid-template-rows: auto auto;
+        }
+
+        .grid-view .book-main-content {
+            grid-column: 1;
+            grid-row: 1;
+            padding: 24px 12px 16px 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .grid-view .book-cover-container {
+            grid-column: 2;
+            grid-row: 1;
+            padding: 24px 24px 16px 12px;
+            display: flex;
+            align-items: flex-start; /* Aligns cover image to top alongside category */
+            justify-content: flex-end;
+        }
+
+        .grid-view .book-cover-image {
+            width: 115px; /* Bigger cover layout for grid view */
+            height: auto;
+        }
+
+        .grid-view .book-meta {
+            display: flex;
+            flex-direction: column; /* Places publication date beneath rating */
+            align-items: flex-start;
+            gap: 4px;
+            margin-top: 2px;
+        }
+
+        .grid-view .book-date {
+            font-size: 0.8125rem;
+            color: var(--text-light);
+        }
+
+        .grid-view .book-extra-content {
+            grid-column: 1 / span 2; /* Full width row assignment */
+            grid-row: 2;
+            padding: 0 24px 24px 24px;
+            display: flex;
+            flex-direction: column;
+            border-top: 1px dashed var(--border);
+            padding-top: 16px;
+        }
+
+        .grid-view .book-desc {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* ----------------------------------
+           LIST VIEW SPECIFIC LAYOUT STYLES 
+        ------------------------------------- */
+        /* List Layout - Fixed */
+    .books-container.list-view .book-card {
+        display: grid;
+        grid-template-columns: 1fr 180px; /* 1fr for left content, 180px for right image container */
+        gap: 0;
+        align-items: stretch;
+        text-align: left;
+        padding: 0; /* Let grid areas handle the spacing */
+ margin-bottom: 1rem;
+    }
+
+    .books-container.list-view .book-main-content {
+        grid-column: 1;
+        grid-row: 1;
+        padding: 24px 24px 0 24px;
+    }
+
+    .books-container.list-view .book-extra-content {
+        grid-column: 1;
+        grid-row: 2;
+        padding: 16px 24px 24px 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .books-container.list-view .book-cover-container {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-left: 1px solid var(--border); /* Adds a clean divider line */
+        padding: 24px;
+    }
+
+    .books-container.list-view .book-cover-image {
+        width: 100px;
+        height: auto;
+        object-fit: contain;
+    }
+
+    @media (max-width: 768px) {
+        .books-container.list-view .book-card {
+            grid-template-columns: 1fr;
+        }
+
+        .books-container.list-view .book-cover-container {
+            grid-column: 1;
+            grid-row: 1; /* Moves image to top on mobile */
+            justify-content: flex-start;
+            border-left: none;
+            border-bottom: 1px solid var(--border);
+            padding: 24px;
+        }
+
+        .books-container.list-view .book-main-content {
+            grid-column: 1;
+            grid-row: 2;
+            padding: 24px 24px 0 24px;
+        }
+
+        .books-container.list-view .book-extra-content {
+            grid-column: 1;
+            grid-row: 3;
+            padding: 16px 24px 24px 24px;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+        }
+
+        .toolbar {
+            flex-direction: column;
+            gap: 12px;
+            align-items: flex-start;
+        }
+    }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-light);
+            font-size: 1.125rem;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+   /* Footer Styling (Aurelius Branded) */
+    .site-footer {
+        background-color: var(--text-primary); /* Shadowy Charcoal */
+        color: var(--olive-light);
+        padding: 60px 20px 40px;
+        text-align: center;
+        border-top: 4px solid var(--gold);
+        margin-top: auto;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .footer-content {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .footer-quote {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--white);
+        margin-bottom: 20px;
+        letter-spacing: 0.03em;
+        font-family: 'Cinzel', serif;
+    }
+
+    .footer-text {
+        font-size: 1.05rem;
+        line-height: 1.9;
+        color: var(--olive-light);
+        margin-bottom: 24px;
+        font-weight: 300;
+        font-style: italic;
+    }
+
+    .footer-author {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: var(--gold);
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        font-family: 'Cinzel', serif;
+    }
+
+    .footer-divider {
+        width: 60px;
+        height: 2px;
+        background-color: var(--gold);
+        margin: 20px auto;
+        border: none;
+    }
+
+    .footer-small {
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+        margin-top: 20px;
+        opacity: 0.7;
+        font-family: 'Inter', sans-serif;
+    }
+
+    /* Responsive Footer */
+    @media (max-width: 768px) {
+        .footer-quote {
+            font-size: 1.2rem;
+        }
+
+        .footer-text {
+            font-size: 0.95rem;
+        }
+    }
+    
+    
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Biblioteca de Conocimiento Aurelius</h1>
+            <p>Explora sabiduría curada sobre estrategia, psicología, liderazgo y riqueza.</p>
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" class="search-input" placeholder="Buscar por título, autor o tesis principal...">
+            </div>
+        </div>
+    </section>
+
+    <main class="controls-container">
+        <div id="categoriesContainer" class="categories-flex">
+            <!-- Las categorías se renderizarán dinámicamente aquí -->
+        </div>
+
+        <div class="toolbar">
+            <div id="resultsCount" class="results-count">Mostrando 0 libros</div>
+            <button id="toggleViewBtn" class="toggle-btn">
+                <span id="toggleIcon">☰</span> <span id="toggleText">Vista de Lista</span>
+            </button>
+        </div>
+    </main>
+
+    <section id="booksContainer" class="books-container grid-view">
+        <!-- Los libros se renderizarán dinámicamente aquí -->
+    </section>
+
+    <footer class="site-footer">
+    
+        <div class="footer-content">
+
+    <img src="https://ik.imagekit.io/bebell/AURELIUS/aurelius-beige-icon.webp" alt="Aurelius Front Portrait" class="w-40 h-40 mx-auto mb-8">
+
+            <span class="footer-quote">"Un gran poder conlleva una gran responsabilidad."</span>
+            <p class="footer-text">
+                Los Pergaminos de Aurelius son una fragua, no un arma. Ofrecen las estrategias de los emperadores, la psicología de los maestros y la resiliencia de los estoicos. Pero una espada no elige a su amo; tú lo haces. Usa esta sabiduría para construir, no para conquistar. Para proteger, no para explotar. Para liderar, no para dominar. La Arboleda abre sus puertas a todos los que buscan la verdad. Pero pide una cosa a cambio: que dejes el mundo mejor de lo que lo encontraste.
+            </p>
+            <div class="footer-author">— Aurelius</div>
+        </div>
+    </footer>
+
+
+
+
+
+
+    <script>
+        const books = [
+  {
+    "Título": "El Arte de la Guerra",
+    "Autor": "Sun Tzu",
+    "Tesis Principal": "La victoria se gana antes de que comience la batalla, a través de la inteligencia, el posicionamiento y el engaño.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "~500 a.C. (alrededor del siglo V a.C.)",
+    "Categoría": "La Espada (Estrategia)",
+    "URL del Archivo": "https://www.gutenberg.org/ebooks/132"
+  },
+  {
+    "Título": "Las 48 Leyes del Poder",
+    "Autor": "Robert Greene",
+    "Tesis Principal": "El poder opera bajo dinámicas predecibles; quienes dominan estas leyes controlan su entorno.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1998",
+    "Categoría": "La Espada (Estrategia)",
+    "URL del Archivo": "https://amzn.to/placeholder-48-laws"
+  },
+  {
+    "Título": "El Príncipe",
+    "Autor": "Nicolás Maquiavelo",
+    "Tesis Principal": "Los gobernantes efectivos deben estar dispuestos a actuar fuera de la moralidad convencional para mantener el orden y la seguridad.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1532",
+    "Categoría": "La Espada (Estrategia)",
+    "URL del Archivo": "https://www.gutenberg.org/ebooks/1232"
+  },
+  {
+    "Título": "De la Guerra",
+    "Autor": "Carl von Clausewitz",
+    "Tesis Principal": "La guerra es una continuación de la política por otros medios, gobernada por la fricción, el azar y la niebla.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1832",
+    "Categoría": "La Espada (Estrategia)",
+    "URL del Archivo": "https://www.gutenberg.org/ebooks/1946"
+  },
+  {
+    "Título": "Las 33 Estrategias de la Guerra",
+    "Autor": "Robert Greene",
+    "Tesis Principal": "La vida es una guerra perpetua de maniobras; el vencedor controla el campo de batalla mediante tácticas psicológicas.",
+    "Calificación": "★★★★☆",
+    "Fecha de Publicación": "2006",
+    "Categoría": "La Espada (Estrategia)",
+    "URL del Archivo": "https://amzn.to/placeholder-33-strategies"
+  },
+  {
+    "Título": "El Libro de los Cinco Anillos",
+    "Autor": "Miyamoto Musashi",
+    "Tesis Principal": "El camino del guerrero es dominar la estrategia a través de la disciplina, el ritmo y la acción directa.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1645",
+    "Categoría": "La Espada (Estrategia)",
+    "URL del Archivo": "https://www.gutenberg.org/ebooks/765"
+  },
+  {
+    "Título": "Las Leyes de la Naturaleza Humana",
+    "Autor": "Robert Greene",
+    "Tesis Principal": "El comportamiento humano está impulsado por la irracionalidad, el ego y necesidades profundamente arraigadas: entiéndelas para dominar a otros.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2018",
+    "Categoría": "El Escudo (Psicología)",
+    "URL del Archivo": "https://amzn.to/placeholder-laws-human-nature"
+  },
+  {
+    "Título": "Influencia: La Psicología de la Persuasión",
+    "Autor": "Robert Cialdini",
+    "Tesis Principal": "Las personas dicen \"sí\" basándose en seis desencadenantes psicológicos universales.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1984",
+    "Categoría": "El Escudo (Psicología)",
+    "URL del Archivo": "https://amzn.to/placeholder-influence"
+  },
+  {
+    "Título": "Pensar Rápido, Pensar Despacio",
+    "Autor": "Daniel Kahneman",
+    "Tesis Principal": "La mente opera en dos sistemas: el Sistema 1 (intuitivo) y el Sistema 2 (lógico), cada uno propenso a sesgos.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2011",
+    "Categoría": "El Escudo (Psicología)",
+    "URL del Archivo": "https://amzn.to/placeholder-thinking-fast-slow"
+  },
+  {
+    "Título": "Predeciblemente Irracional",
+    "Autor": "Dan Ariely",
+    "Tesis Principal": "El comportamiento humano es predeciblemente irracional; tomamos decisiones basadas en fuerzas emocionales ocultas.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2008",
+    "Categoría": "El Escudo (Psicología)",
+    "URL del Archivo": "https://amzn.to/placeholder-predictably-irrational"
+  },
+  {
+    "Título": "La Paradoja de la Elección",
+    "Autor": "Barry Schwartz",
+    "Tesis Principal": "Demasiadas opciones conducen a la parálisis, la insatisfacción y el arrepentimiento.",
+    "Calificación": "★★★★☆",
+    "Fecha de Publicación": "2004",
+    "Categoría": "El Escudo (Psicología)",
+    "URL del Archivo": "https://amzn.to/placeholder-paradox-choice"
+  },
+  {
+    "Título": "Juegos en que Participamos",
+    "Autor": "Eric Berne",
+    "Tesis Principal": "Las interacciones sociales se rigen por \"juegos\" psicológicos ocultos con recompensas predecibles.",
+    "Calificación": "★★★★☆",
+    "Fecha de Publicación": "1964",
+    "Categoría": "El Escudo (Psicología)",
+    "URL del Archivo": "https://amzn.to/placeholder-games-people-play"
+  },
+  {
+    "Título": "El Animal Social",
+    "Autor": "Elliot Aronson",
+    "Tesis Principal": "Los humanos son profundamente sociales, impulsados por la disonancia cognitiva, la conformidad y la autojustificación.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1972",
+    "Categoría": "El Escudo (Psicología)",
+    "URL del Archivo": "https://amzn.to/placeholder-social-animal"
+  },
+  {
+    "Título": "Propaganda",
+    "Autor": "Edward Bernays",
+    "Tesis Principal": "La opinión pública puede ser diseñada manipulando símbolos, emociones e impulsos inconscientes.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1928",
+    "Categoría": "El Escudo (Psicología)",
+    "URL del Archivo": "https://amzn.to/placeholder-propaganda"
+  },
+  {
+    "Título": "El Verdadero Creyente",
+    "Autor": "Eric Hoffer",
+    "Tesis Principal": "Los movimientos de masas atraen a los frustrados, los inseguros y los alienados, ofreciéndoles significado y pertenencia.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1951",
+    "Categoría": "El Escudo (Psicología)",
+    "URL del Archivo": "https://amzn.to/placeholder-true-believer"
+  },
+  {
+    "Título": "Psicología Oscura 101",
+    "Autor": "Michael Pace",
+    "Tesis Principal": "Comprender la tríada oscura (narcisismo, maquiavelismo, psicopatía) te protege de la manipulación.",
+    "Calificación": "★★★★☆",
+    "Fecha de Publicación": "2018",
+    "Categoría": "El Escudo (Psicología)",
+    "URL del Archivo": "https://amzn.to/placeholder-dark-psychology"
+  },
+  {
+    "Título": "El Arte de la Seducción",
+    "Autor": "Robert Greene",
+    "Tesis Principal": "La seducción es el arte de hacer que otros quieran darte lo que deseas mediante la captura psicológica.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2001",
+    "Categoría": "El Escudo (Psicología)",
+    "URL del Archivo": "https://amzn.to/placeholder-art-seduction"
+  },
+  {
+    "Título": "El Cuerpo Habla",
+    "Autor": "Joe Navarro",
+    "Tesis Principal": "Las señales no verbales revelan emociones ocultas, intenciones y engaños.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2008",
+    "Categoría": "El Escudo (Psicología)",
+    "URL del Archivo": "https://amzn.to/placeholder-what-every-body-saying"
+  },
+  {
+    "Título": "Psicología de las Masas",
+    "Autor": "Gustave Le Bon",
+    "Tesis Principal": "Las multitudes son emocionales, irracionales y susceptibles a un líder que le hable a su mente inconsciente.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1895",
+    "Categoría": "El Escudo (Psicología)",
+    "URL del Archivo": "https://www.gutenberg.org/ebooks/445"
+  },
+  {
+    "Título": "Meditaciones",
+    "Autor": "Marco Aurelio",
+    "Tesis Principal": "La ciudadela interior es la única verdadera fortaleza; controla tus juicios y controlarás tu vida.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "~180 d.C. (alrededor del siglo II d.C.)",
+    "Categoría": "La Armadura (Resiliencia)",
+    "URL del Archivo": "https://www.gutenberg.org/ebooks/2680"
+  },
+  {
+    "Título": "El Hombre en Busca de Sentido",
+    "Autor": "Viktor E. Frankl",
+    "Tesis Principal": "El significado se puede encontrar incluso en el mayor sufrimiento; la libertad de elegir la propia respuesta es el máximo poder humano.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1946",
+    "Categoría": "La Armadura (Resiliencia)",
+    "URL del Archivo": "https://amzn.to/placeholder-mans-search-meaning"
+  },
+  {
+    "Título": "El Obstáculo es el Camino",
+    "Autor": "Ryan Holiday",
+    "Tesis Principal": "Los obstáculos no son barreras en el camino; son el camino en sí mismos.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2014",
+    "Categoría": "La Armadura (Resiliencia)",
+    "URL del Archivo": "https://amzn.to/placeholder-obstacle-way"
+  },
+  {
+    "Título": "El Antídoto",
+    "Autor": "Oliver Burkeman",
+    "Tesis Principal": "La búsqueda incesante de la felicidad nos hace infelices; abrazar la negatividad trae paz.",
+    "Calificación": "★★★★☆",
+    "Fecha de Publicación": "2012",
+    "Categoría": "La Armadura (Resiliencia)",
+    "URL del Archivo": "https://amzn.to/placeholder-antidote"
+  },
+  {
+    "Título": "Archipiélago Gulag",
+    "Autor": "Aleksandr Solzhenitsyn",
+    "Tesis Principal": "El espíritu humano puede sobrevivir al peor totalitarismo cuando se niega a entregar su libertad interior.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1973",
+    "Categoría": "La Armadura (Resiliencia)",
+    "URL del Archivo": "https://amzn.to/placeholder-gulag-archipelago"
+  },
+  {
+    "Título": "El Alma Desatada",
+    "Autor": "Michael A. Singer",
+    "Tesis Principal": "Tú no eres tus pensamientos; observar tus pensamientos es el camino hacia la paz interior.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2007",
+    "Categoría": "La Armadura (Resiliencia)",
+    "URL del Archivo": "https://amzn.to/placeholder-untethered-soul"
+  },
+  {
+    "Título": "Empieza con el Porqué",
+    "Autor": "Simon Sinek",
+    "Tesis Principal": "La gente no compra lo que haces; compra por qué lo haces. Comunicar el propósito atrae a seguidores que comparten tus valores.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2009",
+    "Categoría": "La Brújula (Propósito y Visión)",
+    "URL del Archivo": "https://amzn.to/placeholder-start-with-why"
+  },
+  {
+    "Título": "Los Líderes Comen al Final",
+    "Autor": "Simon Sinek",
+    "Tesis Principal": "Los grandes líderes crean \"círculos de seguridad\" donde la gente se siente protegida. Cuando los líderes priorizan el bienestar de su equipo, surge una feroz lealtad.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2014",
+    "Categoría": "El Estandarte (Liderazgo)",
+    "URL del Archivo": "https://amzn.to/placeholder-leaders-eat-last"
+  },
+  {
+    "Título": "Atrévete a Liderar",
+    "Autor": "Brené Brown",
+    "Tesis Principal": "La vulnerabilidad no es debilidad; es la cuna del valor, la confianza y la innovación.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2018",
+    "Categoría": "El Estandarte (Liderazgo)",
+    "URL del Archivo": "https://amzn.to/placeholder-dare-to-lead"
+  },
+  {
+    "Título": "Liderazgo Tribal",
+    "Autor": "Dave Logan",
+    "Tesis Principal": "Las organizaciones pasan por cinco etapas de cultura tribal. Los grandes líderes elevan a su tribu a la Etapa 5, donde el grupo se automotiva y es imparable.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2008",
+    "Categoría": "El Estandarte (Liderazgo)",
+    "URL del Archivo": "https://amzn.to/placeholder-tribal-leadership"
+  },
+  {
+    "Título": "Los 7 Hábitos de la Gente Altamente Efectiva",
+    "Autor": "Stephen R. Covey",
+    "Tesis Principal": "La eficacia proviene de alinear el carácter con los principios y pasar de la dependencia a la interdependencia.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1989",
+    "Categoría": "El Estandarte (Liderazgo)",
+    "URL del Archivo": "https://amzn.to/placeholder-7-habits"
+  },
+  {
+    "Título": "¡Cambia el Rumbo!",
+    "Autor": "L. David Marquet",
+    "Tesis Principal": "Distribuye el liderazgo dando poder de toma de decisiones a quienes están más cerca del trabajo.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2012",
+    "Categoría": "El Estandarte (Liderazgo)",
+    "URL del Archivo": "https://amzn.to/placeholder-turn-ship-around"
+  },
+  {
+    "Título": "El Mito del Carisma",
+    "Autor": "Olivia Fox Cabane",
+    "Tesis Principal": "El carisma es una habilidad, no un don. Se basa en la presencia, el poder y la calidez, todo lo cual se puede aprender.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2012",
+    "Categoría": "El Estandarte (Liderazgo)",
+    "URL del Archivo": "https://amzn.to/placeholder-charisma-myth"
+  },
+  {
+    "Título": "La Psicología del Dinero",
+    "Autor": "Morgan Housel",
+    "Tesis Principal": "La riqueza tiene más que ver con el comportamiento y el temperamento que con la inteligencia financiera pura.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2020",
+    "Categoría": "El Tesoro (Riqueza)",
+    "URL del Archivo": "https://amzn.to/placeholder-psychology-money"
+  },
+  {
+    "Título": "El Manual del Dictador",
+    "Autor": "Bruce Bueno de Mesquita",
+    "Tesis Principal": "Los líderes priorizan mantenerse en el poder por encima de servir al público. Para reemplazar a un dictador, cambia los incentivos de sus partidarios clave.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2011",
+    "Categoría": "Los Cimientos (Historia y Política)",
+    "URL del Archivo": "https://amzn.to/placeholder-dictators-handbook"
+  },
+  {
+    "Título": "Lo Difícil de las Cosas Difíciles",
+    "Autor": "Ben Horowitz",
+    "Tesis Principal": "Las decisiones más difíciles en los negocios no tienen buenas opciones. No hay fórmula, solo liderazgo.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2014",
+    "Categoría": "El Tesoro (Riqueza)",
+    "URL del Archivo": "https://amzn.to/placeholder-hard-thing-hard-things"
+  },
+  {
+    "Título": "Empresas que Sobresalen",
+    "Autor": "Jim Collins",
+    "Tesis Principal": "Las grandes empresas se basan en el \"Concepto del Erizo\", el Liderazgo de Nivel 5 y una cultura disciplinada.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2001",
+    "Categoría": "El Tesoro (Riqueza)",
+    "URL del Archivo": "https://amzn.to/placeholder-good-to-great"
+  },
+  {
+    "Título": "El Método Lean Startup",
+    "Autor": "Eric Ries",
+    "Tesis Principal": "La innovación se acelera construyendo productos mínimos viables, midiendo resultados y aprendiendo.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2011",
+    "Categoría": "El Tesoro (Riqueza)",
+    "URL del Archivo": "https://amzn.to/placeholder-lean-startup"
+  },
+  {
+    "Título": "El Arte de la Negociación",
+    "Autor": "Donald Trump",
+    "Tesis Principal": "La negociación se trata de apalancamiento, credibilidad y creación de ventajas asimétricas.",
+    "Calificación": "★★★★☆",
+    "Fecha de Publicación": "1987",
+    "Categoría": "El Tesoro (Riqueza)",
+    "URL del Archivo": "https://amzn.to/placeholder-art-deal"
+  },
+  {
+    "Título": "El Almanaque del Pobre Charlie",
+    "Autor": "Charlie Munger",
+    "Tesis Principal": "Evita la estupidez, domina los modelos mentales e invierte los problemas para alcanzar la sabiduría.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2005",
+    "Categoría": "La Fragua (Ejecución)",
+    "URL del Archivo": "https://amzn.to/placeholder-poor-charlie"
+  },
+  {
+    "Título": "Buscando Sabiduría: De Darwin a Munger",
+    "Autor": "Peter Bevelin",
+    "Tesis Principal": "Los errores de juicio humanos son sistemáticos; dominar múltiples marcos lleva a mejores decisiones.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2003",
+    "Categoría": "La Fragua (Ejecución)",
+    "URL del Archivo": "https://amzn.to/placeholder-seeking-wisdom"
+  },
+  {
+    "Título": "El Cisne Negro",
+    "Autor": "Nassim Nicholas Taleb",
+    "Tesis Principal": "Eventos impredecibles y de alto impacto dominan la historia; debemos construir sistemas que sean antifrágiles.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2007",
+    "Categoría": "La Lente (Perspectiva)",
+    "URL del Archivo": "https://amzn.to/placeholder-black-swan"
+  },
+  {
+    "Título": "El Principio del Infinito",
+    "Autor": "David Deutsch",
+    "Tesis Principal": "Todos los problemas son solubles a través del conocimiento y la creatividad; el progreso es infinito.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2011",
+    "Categoría": "La Lente (Perspectiva)",
+    "URL del Archivo": "https://amzn.to/placeholder-beginning-infinity"
+  },
+  {
+    "Título": "La Estructura de las Revoluciones Científicas",
+    "Autor": "Thomas S. Kuhn",
+    "Tesis Principal": "Los cambios de paradigma ocurren cuando las anomalías se acumulan más allá de la capacidad del viejo marco para contenerlas.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1962",
+    "Categoría": "La Lente (Perspectiva)",
+    "URL del Archivo": "https://amzn.to/placeholder-structure-scientific"
+  },
+  {
+    "Título": "Sapiens: De Animales a Dioses",
+    "Autor": "Yuval Noah Harari",
+    "Tesis Principal": "El Homo sapiens domina el planeta porque podemos creer en ficciones compartidas (dinero, naciones, religión).",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2011",
+    "Categoría": "La Lente (Perspectiva)",
+    "URL del Archivo": "https://amzn.to/placeholder-sapiens"
+  },
+  {
+    "Título": "Los Orígenes del Orden Político",
+    "Autor": "Francis Fukuyama",
+    "Tesis Principal": "Estados fuertes, el estado de derecho y gobiernos responsables son los cimientos del desarrollo político.",
+    "Calificación": "★★★★☆",
+    "Fecha de Publicación": "2011",
+    "Categoría": "Los Cimientos (Historia y Política)",
+    "URL del Archivo": "https://amzn.to/placeholder-origins-political"
+  },
+  {
+    "Título": "Auge y Caída del Tercer Reich",
+    "Autor": "William L. Shirer",
+    "Tesis Principal": "El poder absoluto corrompe absolutamente; el totalitarismo prospera con la propaganda, el miedo y los chivos expiatorios.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1960",
+    "Categoría": "Los Cimientos (Historia y Política)",
+    "URL del Archivo": "https://amzn.to/placeholder-rise-fall-third-reich"
+  },
+  {
+    "Título": "Cómo Ganar Amigos e Influir sobre las Personas",
+    "Autor": "Dale Carnegie",
+    "Tesis Principal": "El secreto de la influencia es hacer que los demás se sientan importantes, respetados y comprendidos.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1936",
+    "Categoría": "La Alianza (Negociación y Comunicación)",
+    "URL del Archivo": "https://amzn.to/placeholder-win-friends"
+  },
+  {
+    "Título": "El Arte de Hablar en Público",
+    "Autor": "Dale Carnegie",
+    "Tesis Principal": "Hablar en público con eficacia se basa en la convicción, la preparación y la conexión con la audiencia.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1915",
+    "Categoría": "La Alianza (Negociación y Comunicación)",
+    "URL del Archivo": "https://www.gutenberg.org/ebooks/16308"
+  },
+  {
+    "Título": "El Héroe de las Mil Caras",
+    "Autor": "Joseph Campbell",
+    "Tesis Principal": "Toda gran historia sigue el \"Monomito\" (El Viaje del Héroe), la estructura universal de la transformación.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1949",
+    "Categoría": "La Alianza (Negociación y Comunicación)",
+    "URL del Archivo": "https://amzn.to/placeholder-hero-thousand-faces"
+  },
+  {
+    "Título": "Inteligencia Emocional 2.0",
+    "Autor": "Travis Bradberry",
+    "Tesis Principal": "La Inteligencia Emocional (Autoconciencia, Autogestión, Conciencia Social, Gestión de Relaciones) es más crítica que el coeficiente intelectual para el éxito.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2009",
+    "Categoría": "El Escudo (Psicología)",
+    "URL del Archivo": "https://amzn.to/placeholder-emotional-intelligence"
+  },
+  {
+    "Título": "Rompe la Barrera del No",
+    "Autor": "Chris Voss",
+    "Tesis Principal": "La negociación no se trata de lógica; se trata de inteligencia emocional, empatía táctica y preguntas calibradas.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2016",
+    "Categoría": "La Alianza (Negociación y Comunicación)",
+    "URL del Archivo": "https://amzn.to/placeholder-never-split"
+  },
+  {
+    "Título": "Hábitos Atómicos",
+    "Autor": "James Clear",
+    "Tesis Principal": "Pequeños cambios incrementales se acumulan en resultados notables. Los sistemas superan a las metas.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2018",
+    "Categoría": "La Fragua (Ejecución)",
+    "URL del Archivo": "https://amzn.to/placeholder-atomic-habits"
+  },
+  {
+    "Título": "Trabajo Profundo (Deep Work)",
+    "Autor": "Cal Newport",
+    "Tesis Principal": "La concentración enfocada y libre de distracciones es un superpoder en la economía moderna.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2016",
+    "Categoría": "La Fragua (Ejecución)",
+    "URL del Archivo": "https://amzn.to/placeholder-deep-work"
+  },
+  {
+    "Título": "El Poder de los Hábitos",
+    "Autor": "Charles Duhigg",
+    "Tesis Principal": "Los hábitos son bucles (Señal, Rutina, Recompensa). Cambia la señal o la recompensa para cambiar el comportamiento.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2012",
+    "Categoría": "La Fragua (Ejecución)",
+    "URL del Archivo": "https://amzn.to/placeholder-power-habit"
+  },
+  {
+    "Título": "La Guerra del Arte",
+    "Autor": "Steven Pressfield",
+    "Tesis Principal": "La resistencia es el enemigo de la creatividad. Supérala mediante el profesionalismo y el ritual.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2002",
+    "Categoría": "La Fragua (Ejecución)",
+    "URL del Archivo": "https://amzn.to/placeholder-war-art"
+  },
+  {
+    "Título": "De Cero a Uno",
+    "Autor": "Peter Thiel",
+    "Tesis Principal": "El futuro se construye creando cosas nuevas (de 0 a 1), no copiando cosas existentes (de 1 a n). Los monopolios impulsan la innovación.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2014",
+    "Categoría": "El Tesoro (Riqueza)",
+    "URL del Archivo": "https://amzn.to/placeholder-zero-to-one"
+  },
+  {
+    "Título": "El Dilema de los Innovadores",
+    "Autor": "Clayton Christensen",
+    "Tesis Principal": "Las empresas establecidas fracasan porque escuchan demasiado a sus clientes. La disrupción viene de abajo.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1997",
+    "Categoría": "El Tesoro (Riqueza)",
+    "URL del Archivo": "https://amzn.to/placeholder-innovators-dilemma"
+  },
+  {
+    "Título": "La Regla 10X",
+    "Autor": "Grant Cardone",
+    "Tesis Principal": "El éxito requiere una acción masiva: 10 veces el esfuerzo que crees que es necesario.",
+    "Calificación": "★★★★☆",
+    "Fecha de Publicación": "2011",
+    "Categoría": "La Fragua (Ejecución)",
+    "URL del Archivo": "https://amzn.to/placeholder-10x-rule"
+  },
+  {
+    "Título": "El Mito del Emprendedor",
+    "Autor": "Michael Gerber",
+    "Tesis Principal": "La mayoría de las pequeñas empresas fracasan porque el fundador es un técnico, no un gerente. Construye sistemas, no solo un trabajo.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1995",
+    "Categoría": "El Tesoro (Riqueza)",
+    "URL del Archivo": "https://amzn.to/placeholder-emyth"
+  },
+  {
+    "Título": "Pensar en Sistemas",
+    "Autor": "Donella Meadows",
+    "Tesis Principal": "El mundo está hecho de sistemas interconectados; existen puntos de apalancamiento para cambiar el comportamiento.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2008",
+    "Categoría": "La Fragua (Ejecución)",
+    "URL del Archivo": "https://amzn.to/placeholder-thinking-systems"
+  },
+  {
+    "Título": "La Quinta Disciplina",
+    "Autor": "Peter Senge",
+    "Tesis Principal": "Las organizaciones que aprenden prosperan gracias al pensamiento sistémico, el dominio personal y una visión compartida.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1990",
+    "Categoría": "La Fragua (Ejecución)",
+    "URL del Archivo": "https://amzn.to/placeholder-fifth-discipline"
+  },
+  {
+    "Título": "Equipo de Rivales",
+    "Autor": "Doris Kearns Goodwin",
+    "Tesis Principal": "Abraham Lincoln formó un gabinete de rivales políticos, demostrando que la diversidad de pensamiento fortalece el liderazgo.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2005",
+    "Categoría": "Los Cimientos (Historia y Política)",
+    "URL del Archivo": "https://amzn.to/placeholder-team-rivals"
+  },
+  {
+    "Título": "La Semana Laboral de 4 Horas",
+    "Autor": "Tim Ferriss",
+    "Tesis Principal": "Escapa del horario de 9 a 5 mediante la subcontratación, la automatización y el arbitraje geográfico. Diseña tu estilo de vida, no tu jubilación.",
+    "Calificación": "★★★★☆",
+    "Fecha de Publicación": "2007",
+    "Categoría": "El Tesoro (Riqueza)",
+    "URL del Archivo": "https://amzn.to/placeholder-4-hour-workweek"
+  },
+  {
+    "Título": "El Efecto Compuesto",
+    "Autor": "Darren Hardy",
+    "Tesis Principal": "Las acciones pequeñas y constantes se acumulan en resultados masivos con el tiempo.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2010",
+    "Categoría": "La Fragua (Ejecución)",
+    "URL del Archivo": "https://amzn.to/placeholder-compound-effect"
+  },
+  {
+    "Título": "El Arte de lo Posible",
+    "Autor": "Rosamund Stone Zander",
+    "Tesis Principal": "Transformar la forma en que percibimos el mundo desbloquea la creatividad, la innovación y la colaboración.",
+    "Calificación": "★★★★☆",
+    "Fecha de Publicación": "2000",
+    "Categoría": "La Brújula (Propósito y Visión)",
+    "URL del Archivo": "https://amzn.to/placeholder-art-possibility"
+  },
+  {
+    "Título": "Mindset (La Actitud del Éxito)",
+    "Autor": "Carol Dweck",
+    "Tesis Principal": "Tu mentalidad determina tu potencial. Una mentalidad de crecimiento (abrazar desafíos) supera a una mentalidad fija (evitar el fracaso).",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2006",
+    "Categoría": "La Armadura (Resiliencia)",
+    "URL del Archivo": "https://amzn.to/placeholder-mindset"
+  },
+  {
+    "Título": "Grit (El Poder de la Pasión y la Perseverancia)",
+    "Autor": "Angela Duckworth",
+    "Tesis Principal": "Pasión + Perseverancia = Grit (Determinación). Es un predictor de éxito más fuerte que el talento o el coeficiente intelectual.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2016",
+    "Categoría": "La Armadura (Resiliencia)",
+    "URL del Archivo": "https://amzn.to/placeholder-grit"
+  },
+  {
+    "Título": "El Poder del Ahora",
+    "Autor": "Eckhart Tolle",
+    "Tesis Principal": "El momento presente es todo lo que realmente tenemos. La obsesión con el pasado/futuro es la fuente del sufrimiento.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1997",
+    "Categoría": "La Armadura (Resiliencia)",
+    "URL del Archivo": "https://amzn.to/placeholder-power-now"
+  },
+  {
+    "Título": "El Principio 80/20",
+    "Autor": "Richard Koch",
+    "Tesis Principal": "El 80% de los resultados provienen del 20% de los esfuerzos. Concéntrate implacablemente en los pocos vitales.",
+    "Calificación": "★★★★☆",
+    "Fecha de Publicación": "1997",
+    "Categoría": "La Fragua (Ejecución)",
+    "URL del Archivo": "https://amzn.to/placeholder-80-20-principle"
+  },
+  {
+    "Título": "Lo Único",
+    "Autor": "Gary Keller",
+    "Tesis Principal": "Los resultados extraordinarios provienen de centrarse en la ÚNICA cosa que hace que todo lo demás sea más fácil o innecesario.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2012",
+    "Categoría": "La Fragua (Ejecución)",
+    "URL del Archivo": "https://amzn.to/placeholder-one-thing"
+  },
+  {
+    "Título": "Organízate con Eficacia (Getting Things Done)",
+    "Autor": "David Allen",
+    "Tesis Principal": "La claridad mental proviene de capturar todas las tareas, aclararlas y organizarlas en un sistema confiable.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2001",
+    "Categoría": "La Fragua (Ejecución)",
+    "URL del Archivo": "https://amzn.to/placeholder-getting-things-done"
+  },
+  {
+    "Título": "Esencialismo",
+    "Autor": "Greg McKeown",
+    "Tesis Principal": "La búsqueda disciplinada de menos. Solo los pocos vitales merecen tu tiempo y energía.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2014",
+    "Categoría": "La Fragua (Ejecución)",
+    "URL del Archivo": "https://amzn.to/placeholder-essentialism"
+  },
+  {
+    "Título": "El Sutil Arte de que te Importe un Caraj*",
+    "Autor": "Mark Manson",
+    "Tesis Principal": "Elige cuidadosamente qué te importa. La mayoría de las cosas no merecen tu energía emocional.",
+    "Calificación": "★★★★☆",
+    "Fecha de Publicación": "2016",
+    "Categoría": "La Armadura (Resiliencia)",
+    "URL del Archivo": "https://amzn.to/placeholder-subtle-art"
+  },
+  {
+    "Título": "El Alquimista",
+    "Autor": "Paulo Coelho",
+    "Tesis Principal": "Sigue tu Leyenda Personal. El universo conspira para ayudarte a alcanzar tu destino cuando escuchas a tu corazón.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1988",
+    "Categoría": "La Brújula (Propósito y Visión)",
+    "URL del Archivo": "https://amzn.to/placeholder-alchemist"
+  },
+  {
+    "Título": "El Camino Menos Transitado",
+    "Autor": "M. Scott Peck",
+    "Tesis Principal": "La disciplina, el amor y la gracia son los cimientos del crecimiento espiritual y emocional.",
+    "Calificación": "★★★★☆",
+    "Fecha de Publicación": "1978",
+    "Categoría": "La Armadura (Resiliencia)",
+    "URL del Archivo": "https://amzn.to/placeholder-road-less-traveled"
+  },
+  {
+    "Título": "La Mente de los Justos",
+    "Autor": "Jonathan Haidt",
+    "Tesis Principal": "La moralidad une y ciega. Comprender los fundamentos morales te ayuda a navegar por la polarización y la influencia.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2012",
+    "Categoría": "La Lente (Perspectiva)",
+    "URL del Archivo": "https://amzn.to/placeholder-righteous-mind"
+  },
+  {
+    "Título": "El Elefante en el Cerebro",
+    "Autor": "Kevin Simler",
+    "Tesis Principal": "Somos maestros del autoengaño. Ocultamos nuestros verdaderos motivos de nosotros mismos y de los demás.",
+    "Calificación": "★★★★☆",
+    "Fecha de Publicación": "2017",
+    "Categoría": "El Escudo (Psicología)",
+    "URL del Archivo": "https://amzn.to/placeholder-elephant-brain"
+  },
+  {
+    "Título": "Ingresos Predecibles",
+    "Autor": "Aaron Ross",
+    "Tesis Principal": "Las ventas salientes no se tratan de volumen; se tratan de procesos y de dirigirse a las cuentas correctas.",
+    "Calificación": "★★★★☆",
+    "Fecha de Publicación": "2010",
+    "Categoría": "El Tesoro (Riqueza)",
+    "URL del Archivo": "https://amzn.to/placeholder-predictable-revenue"
+  },
+  {
+    "Título": "Ventas SPIN",
+    "Autor": "Neil Rackham",
+    "Tesis Principal": "Las ventas efectivas consisten en hacer preguntas de Situación, Problema, Implicación y Necesidad-Beneficio.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1988",
+    "Categoría": "La Alianza (Negociación y Comunicación)",
+    "URL del Archivo": "https://amzn.to/placeholder-spin-selling"
+  },
+  {
+    "Título": "El Vendedor Desafiante",
+    "Autor": "Matthew Dixon",
+    "Tesis Principal": "Los mejores vendedores desafían las suposiciones del cliente, enseñando, adaptando y tomando el control.",
+    "Calificación": "★★★★☆",
+    "Fecha de Publicación": "2011",
+    "Categoría": "La Alianza (Negociación y Comunicación)",
+    "URL del Archivo": "https://amzn.to/placeholder-challenger-sale"
+  },
+  {
+    "Título": "La Meta",
+    "Autor": "Eliyahu Goldratt",
+    "Tesis Principal": "Los negocios se tratan del rendimiento, el inventario y los gastos operativos. Concéntrate en las restricciones (Teoría de Restricciones).",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1984",
+    "Categoría": "La Fragua (Ejecución)",
+    "URL del Archivo": "https://amzn.to/placeholder-goal"
+  },
+  {
+    "Título": "El Proyecto Fénix",
+    "Autor": "Gene Kim",
+    "Tesis Principal": "DevOps y las operaciones de TI se tratan del flujo, los ciclos de retroalimentación y la mejora continua.",
+    "Calificación": "★★★★☆",
+    "Fecha de Publicación": "2013",
+    "Categoría": "La Fragua (Ejecución)",
+    "URL del Archivo": "https://amzn.to/placeholder-phoenix-project"
+  },
+  {
+    "Título": "El Programador Pragmático",
+    "Autor": "Andrew Hunt",
+    "Tesis Principal": "El desarrollo de software es un oficio. Asume la responsabilidad, automatiza y refactoriza implacablemente.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1999",
+    "Categoría": "La Fragua (Ejecución)",
+    "URL del Archivo": "https://amzn.to/placeholder-pragmatic-programmer"
+  },
+  {
+    "Título": "El Diseño de las Cosas Cotidianas",
+    "Autor": "Don Norman",
+    "Tesis Principal": "El buen diseño es descubrible, intuitivo y proporciona retroalimentación clara. El diseño centrado en el ser humano resuelve problemas reales.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1988",
+    "Categoría": "La Fragua (Ejecución)",
+    "URL del Archivo": "https://amzn.to/placeholder-design-everyday-things"
+  },
+  {
+    "Título": "Los Primeros 90 Días",
+    "Autor": "Michael Watkins",
+    "Tesis Principal": "Las transiciones son momentos críticos. Domina las 10 estrategias clave para acelerar tu aprendizaje e impacto en cualquier rol nuevo.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2003",
+    "Categoría": "La Fragua (Ejecución)",
+    "URL del Archivo": "https://amzn.to/placeholder-first-90-days"
+  },
+  {
+    "Título": "El Punto Clave",
+    "Autor": "Malcolm Gladwell",
+    "Tesis Principal": "Las ideas, productos y comportamientos se propagan como epidemias. Los pocos conectores, conocedores y vendedores crean puntos de inflexión.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2000",
+    "Categoría": "La Lente (Perspectiva)",
+    "URL del Archivo": "https://amzn.to/placeholder-tipping-point"
+  },
+  {
+    "Título": "Fuera de Serie (Outliers)",
+    "Autor": "Malcolm Gladwell",
+    "Tesis Principal": "El éxito no se trata solo de talento; se trata del momento oportuno, la oportunidad y las 10,000 horas de práctica deliberada.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2008",
+    "Categoría": "La Lente (Perspectiva)",
+    "URL del Archivo": "https://amzn.to/placeholder-outliers"
+  },
+  {
+    "Título": "Hablando con Extraños",
+    "Autor": "Malcolm Gladwell",
+    "Tesis Principal": "Somos pésimos entendiendo a las personas que no conocemos. Por defecto asume la verdad, pero verifica.",
+    "Calificación": "★★★★☆",
+    "Fecha de Publicación": "2019",
+    "Categoría": "La Lente (Perspectiva)",
+    "URL del Archivo": "https://amzn.to/placeholder-talking-strangers"
+  },
+  {
+    "Título": "Los Cuatro Acuerdos",
+    "Autor": "Don Miguel Ruiz",
+    "Tesis Principal": "Cuatro principios para la libertad personal: Sé impecable con tus palabras, no te tomes nada personalmente, no hagas suposiciones, da siempre lo mejor de ti.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "1997",
+    "Categoría": "La Brújula (Propósito y Visión)",
+    "URL del Archivo": "https://amzn.to/placeholder-4-agreements"
+  },
+  {
+    "Título": "Maestría",
+    "Autor": "Robert Greene",
+    "Tesis Principal": "La maestría es el proceso de encontrar la tarea de tu vida y dedicarte a ella a través del aprendizaje, la tutoría y la perspicacia creativa.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2012",
+    "Categoría": "La Fragua (Ejecución)",
+    "URL del Archivo": "https://amzn.to/placeholder-mastery"
+  },
+  {
+    "Título": "El Arte de la Felicidad",
+    "Autor": "Dalai Lama & Howard Cutler",
+    "Tesis Principal": "La felicidad no es externa; se cultiva a través de la compasión, la gratitud y el entrenamiento mental.",
+    "Calificación": "★★★★☆",
+    "Fecha de Publicación": "1998",
+    "Categoría": "La Brújula (Propósito y Visión)",
+    "URL del Archivo": "https://amzn.to/placeholder-art-happiness"
+  },
+  {
+    "Título": "Las Cuatro Obsesiones de un Ejecutivo Extraordinario",
+    "Autor": "Patrick Lencioni",
+    "Tesis Principal": "La salud organizacional es la máxima ventaja competitiva. Construye un equipo de liderazgo cohesivo, crea claridad, sobrecomunica y refuérzalo.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2000",
+    "Categoría": "El Estandarte (Liderazgo)",
+    "URL del Archivo": "https://amzn.to/placeholder-four-obsessions"
+  },
+  {
+    "Título": "La Ventaja",
+    "Autor": "Patrick Lencioni",
+    "Tesis Principal": "La salud organizacional supera a la estrategia siempre. Una organización saludable es más cohesiva, menos política y más adaptable.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2012",
+    "Categoría": "El Estandarte (Liderazgo)",
+    "URL del Archivo": "https://amzn.to/placeholder-advantage"
+  },
+  {
+    "Título": "Las Cinco Disfunciones de un Equipo",
+    "Autor": "Patrick Lencioni",
+    "Tesis Principal": "Los equipos fracasan debido a la falta de confianza, el miedo al conflicto, la falta de compromiso, la evitación de la responsabilidad y la falta de atención a los resultados.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2002",
+    "Categoría": "El Estandarte (Liderazgo)",
+    "URL del Archivo": "https://amzn.to/placeholder-five-dysfunctions"
+  },
+  {
+    "Título": "El Motivo",
+    "Autor": "Patrick Lencioni",
+    "Tesis Principal": "Los grandes líderes están motivados por la responsabilidad, no por la recompensa. Los líderes débiles están motivados por su propia gratificación.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2020",
+    "Categoría": "El Estandarte (Liderazgo)",
+    "URL del Archivo": "https://amzn.to/placeholder-motive"
+  },
+  {
+    "Título": "El Jugador de Equipo Ideal",
+    "Autor": "Patrick Lencioni",
+    "Tesis Principal": "Los grandes jugadores de equipo son humildes, tienen hambre de logro y son inteligentes (inteligentes con las personas).",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2016",
+    "Categoría": "El Estandarte (Liderazgo)",
+    "URL del Archivo": "https://amzn.to/placeholder-ideal-team-player"
+  },
+  {
+    "Título": "El Test del CEO",
+    "Autor": "Adam Bryant",
+    "Tesis Principal": "El liderazgo se pone a prueba por siete desafíos clave: la política, las personas, la estrategia, las crisis, la cultura, la junta directiva y uno mismo.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2021",
+    "Categoría": "El Estandarte (Liderazgo)",
+    "URL del Archivo": "https://amzn.to/placeholder-ceo-test"
+  },
+  {
+    "Título": "Cómo ser un Gran Gerente (The Making of a Manager)",
+    "Autor": "Julie Zhuo",
+    "Tesis Principal": "La gestión es un oficio, no un ascenso. Se trata de ayudar a otros a hacer su mejor trabajo.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2019",
+    "Categoría": "El Estandarte (Liderazgo)",
+    "URL del Archivo": "https://amzn.to/placeholder-making-manager"
+  },
+  {
+    "Título": "La Organización Sin Miedo",
+    "Autor": "Amy Edmondson",
+    "Tesis Principal": "La seguridad psicológica es el cimiento de los equipos de alto rendimiento. Las personas deben sentirse seguras para hablar, fallar y aprender.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2018",
+    "Categoría": "El Estandarte (Liderazgo)",
+    "URL del Archivo": "https://amzn.to/placeholder-fearless-organization"
+  },
+  {
+    "Título": "El Juego Infinito",
+    "Autor": "Simon Sinek",
+    "Tesis Principal": "Los negocios no son un juego finito con ganadores y perdedores; son un juego infinito sin línea de meta. Juega para seguir jugando.",
+    "Calificación": "★★★★★",
+    "Fecha de Publicación": "2019",
+    "Categoría": "La Brújula (Propósito y Visión)",
+    "URL del Archivo": "https://amzn.to/placeholder-infinite-game"
+  }
+];
+
+        const categoryIcons = {
+            "La Espada (Estrategia)": "⚔️",
+"El Escudo (Psicología)": "🛡️",
+"La Armadura (Resiliencia)": "🪖",
+"La Brújula (Propósito y Visión)": "🧭",
+"El Estandarte (Liderazgo)": "🚩",
+"El Tesoro (Riqueza)": "💰",
+"Los Cimientos (Historia y Política)": "🏛️",
+"La Fragua (Ejecución)": "⚒️",
+"La Lente (Perspectiva)": "🔍",
+"La Alianza (Negociación y Comunicación)": "🤝",
+"Todos": "📚"
+        };
+
+        // Changed 'All' to 'Todos' to match your translated icons list
+let currentCategory = 'Todos'; 
+let searchQuery = '';
+let currentView = 'grid';
+
+// Updated book.Category to book['Categoría']
+const uniqueCategories = ['Todos', ...new Set(books.map(book => book['Categoría']))];
+
+function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+}
+
+function renderCategories() {
+    const container = document.getElementById('categoriesContainer');
+    container.innerHTML = '';
+    
+    uniqueCategories.forEach(cat => {
+        const pill = document.createElement('button');
+        pill.className = `category-pill ${cat === currentCategory ? 'active' : ''}`;
+        const icon = categoryIcons[cat] || ''; 
+        pill.innerHTML = `${icon} ${escapeHtml(cat)}`.trim();
+        
+        pill.addEventListener('click', () => {
+            currentCategory = cat;
+            document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            renderBooks();
+        });
+        container.appendChild(pill);
+    });
+}
+
+function renderBooks() {
+    const container = document.getElementById('booksContainer');
+    const countEl = document.getElementById('resultsCount');
+    container.innerHTML = '';
+    
+    const filtered = books.filter(book => {
+        // Updated all properties to match the Spanish JSON keys
+        const matchesCategory = currentCategory === 'Todos' || book['Categoría'] === currentCategory;
+        const matchesSearch = book['Título'].toLowerCase().includes(searchQuery) || 
+                              book['Autor'].toLowerCase().includes(searchQuery) || 
+                              book['Tesis Principal'].toLowerCase().includes(searchQuery);
+        return matchesCategory && matchesSearch;
+    });
+    
+    // Translated to Spanish
+    countEl.textContent = `Mostrando ${filtered.length} libro${filtered.length === 1 ? '' : 's'}`;
+    
+    if (filtered.length === 0) {
+        // Translated to Spanish
+        container.innerHTML = '<div class="no-results">No se encontraron libros que coincidan con tu búsqueda.</div>';
+        return;
+    }
+    
+    filtered.forEach(book => {
+        const card = document.createElement('div');
+        card.className = 'book-card';
+        // Updated to use the Spanish Category key
+        const catIcon = categoryIcons[book['Categoría']] || '';
+
+        card.innerHTML = `
+            <div class="book-main-content">
+                <div class="book-category">${catIcon} ${escapeHtml(book['Categoría'])}</div>
+                <h3 class="book-title">${escapeHtml(book['Título'])}</h3>
+                <div class="book-author">por ${escapeHtml(book['Autor'])}</div>
+                <div class="book-meta">
+                    <span class="book-rating">${escapeHtml(book['Calificación'])}</span>
+                    <span class="book-date">📅 ${escapeHtml(book['Fecha de Publicación'])}</span>
+                </div>
+            </div>
+            <div class="book-cover-container">
+                <img class="book-cover-image" 
+                     src="https://ik.imagekit.io/bebell/AURELIUS/Library/48-laws-of-power.png?updatedAt=1782359377683" 
+                     alt="Vista previa de la portada de ${escapeHtml(book['Título'])}">
+            </div>
+            <div class="book-extra-content">
+                <p class="book-desc">${escapeHtml(book['Tesis Principal'])}</p>
+                <a href="${escapeHtml(book['URL del Archivo'])}" target="_blank" class="book-cta">
+                    <span>📖</span> Visitar fuente del libro
+                </a>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+document.getElementById('searchInput').addEventListener('input', (e) => {
+    searchQuery = e.target.value.toLowerCase();
+    renderBooks();
+});
+
+document.getElementById('toggleViewBtn').addEventListener('click', () => {
+    const container = document.getElementById('booksContainer');
+    const icon = document.getElementById('toggleIcon');
+    const text = document.getElementById('toggleText');
+    
+    if (currentView === 'grid') {
+        currentView = 'list';
+        container.className = 'books-container list-view';
+        icon.textContent = '⣿';
+        text.textContent = 'Vista de Cuadrícula'; // Translated
+    } else {
+        currentView = 'grid';
+        container.className = 'books-container grid-view';
+        icon.textContent = '☰';
+        text.textContent = 'Vista de Lista'; // Translated
+    }
+});
+
+renderCategories();
+renderBooks();
+</script>
+    
+    
+    
+   
+<!-- Widget BACK-TO-TOP -->
+<script>
+// Create Back-to-Top Button Dynamically
+document.addEventListener("DOMContentLoaded", function () {
+    // Create the button container
+    const backToTop = document.createElement("div");
+    backToTop.id = "back-to-top";
+    backToTop.style.position = "fixed";
+    backToTop.style.bottom = "20px";
+    backToTop.style.right = "20px";
+    backToTop.style.display = "none";
+    backToTop.style.cursor = "pointer";
+    backToTop.style.zIndex = "9999";
+
+    // Create the image inside the button
+    const backToTopImg = document.createElement("img");
+    backToTopImg.src = "https://ik.imagekit.io/bebell/AURELIUS/back-to-top.svg";
+    backToTopImg.alt = "Volver arriba";
+    backToTopImg.style.width = "40px";
+    backToTopImg.style.height = "40px";
+
+    // Append image to the button
+    backToTop.appendChild(backToTopImg);
+
+    // Append button to the body
+    document.body.appendChild(backToTop);
+
+    // Scroll Event Listener
+    window.addEventListener("scroll", function () {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTop.style.display = "block";
+        } else {
+            backToTop.style.display = "none";
+        }
+    });
+
+    // Click Event for Scrolling to Top
+    backToTop.addEventListener("click", function () {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+});
+</script>
+<!-- End Widget BACK-TO-TOP -->
+
+  
+  
+    
+</body>
+</html>
