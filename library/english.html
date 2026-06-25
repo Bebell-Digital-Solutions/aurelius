@@ -1,0 +1,1788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurelius Knowledge Library</title>
+    
+    
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="icon" href="https://ik.imagekit.io/bebell/AURELIUS/Aurelius-app-button.png">
+
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+    :root {
+        /* Aurelius Brand Colors */
+        --bg-main: #F8F5F0;        /* Travertine Marble */
+        --bg-surface: #F0EBE1;     /* Sunlit Limestone */
+        --text-primary: #1A1D24;   /* Shadowy Charcoal */
+        --text-secondary: #6B6560; /* Weathered Stone */
+        --text-muted: #8A957A;     /* Pale Olive */
+        --gold: #D4AF37;           /* Aurelian Gold */
+        --olive: #5F6A46;          /* Sacred Olive */
+        --olive-light: #8A957A;    /* Pale Olive */
+        --border: #DCD5C8;         /* Marble Vein */
+        --success: #4A5436;        /* Laurel Green */
+        --white: #FFFFFF;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+        
+        
+        
+    /* Scrollbar Styling (Optional) */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--white);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--gold);
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--olive);
+    }        
+        
+        
+        
+        
+    body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        background-color: var(--bg-main);
+        color: var(--text-primary);
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    /* Headings in Cinzel (Roman Imperial Font) */
+    h1, h2, h3, h4, h5, h6,
+    .cinzel,
+    .hero h1,
+    .footer-quote,
+    .book-title {
+        font-family: 'Cinzel', serif;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+    }
+
+    /* Hero Section */
+    .hero {
+        position: relative;
+        background-image: linear-gradient(rgba(26, 29, 36, 0.75), rgba(26, 29, 36, 0.85)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1600&q=80');
+        background-size: cover;
+        background-position: center;
+        padding: 80px 20px;
+        text-align: center;
+        color: white;
+        border-bottom: 4px solid var(--gold);
+    }
+
+    .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .hero h1 {
+        font-size: 2.75rem;
+        font-weight: 800;
+        margin: 0 0 12px 0;
+        letter-spacing: 0.05em;
+        color: var(--white);
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero p {
+        font-size: 1.125rem;
+        color: var(--olive-light);
+        margin: 0 0 32px 0;
+        font-weight: 300;
+    }
+
+    .search-container {
+        position: relative;
+        max-width: 540px;
+        margin: 0 auto;
+    }
+
+    .search-input {
+        width: 100%;
+        padding: 14px 20px 14px 48px;
+        border-radius: 50px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background-color: rgba(255, 255, 255, 0.95);
+        color: var(--text-primary);
+        font-size: 1rem;
+        font-family: 'Inter', sans-serif;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+        outline: none;
+        transition: all 0.2s;
+        box-sizing: border-box;
+    }
+
+    .search-input:focus {
+        background-color: #ffffff;
+        box-shadow: 0 10px 25px -5px rgba(212, 175, 55, 0.3);
+        border-color: var(--gold);
+    }
+
+    .search-icon {
+        position: absolute;
+        left: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2rem;
+        color: var(--text-secondary);
+        pointer-events: none;
+    }
+
+    /* Controls Area */
+    .controls-container {
+        max-width: 1200px;
+        margin: 40px auto 24px;
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .categories-flex {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .category-pill {
+        padding: 8px 16px;
+        border-radius: 50px;
+        border: 1px solid var(--border);
+        background-color: var(--bg-surface);
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        font-weight: 500;
+        font-family: 'Inter', sans-serif;
+        cursor: pointer;
+        transition: all 0.2s;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .category-pill:hover {
+        border-color: var(--gold);
+        color: var(--text-primary);
+        background-color: var(--bg-main);
+    }
+
+    .category-pill.active {
+        background-color: var(--olive);
+        color: white;
+        border-color: var(--olive);
+        box-shadow: 0 4px 6px -1px rgba(95, 106, 70, 0.3);
+    }
+
+    .toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 12px;
+    }
+
+    .results-count {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        font-weight: 500;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .toggle-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        background-color: var(--bg-surface);
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        font-weight: 500;
+        font-family: 'Inter', sans-serif;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .toggle-btn:hover {
+        background-color: var(--bg-main);
+        color: var(--text-primary);
+        border-color: var(--gold);
+    }
+
+    /* Books Container */
+    .books-container {
+        max-width: 1200px;
+        margin: 0 auto 60px;
+        padding: 0 20px;
+        box-sizing: border-box;
+        flex: 1;
+    }
+
+    /* Book Card */
+    .book-card {
+        background-color: var(--bg-surface);
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.04);
+        overflow: hidden;
+        transition: transform 0.2s, box-shadow 0.2s;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    .book-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.05);
+        border-color: var(--gold);
+    }
+
+    .book-category {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--olive);
+        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .book-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin: 0 0 4px 0;
+        line-height: 1.3;
+        font-family: 'Cinzel', serif;
+    }
+
+    .book-author {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        margin-bottom: 12px;
+        font-weight: 500;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .book-rating {
+        color: var(--gold);
+        font-weight: bold;
+        letter-spacing: 1px;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .book-desc {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin: 0 0 20px 0;
+        font-family: 'Inter', sans-serif;
+        flex-grow: 1;
+    }
+
+    .book-cta {
+        margin-top: auto;
+        align-self: flex-start;
+        padding: 8px 18px;
+        background-color: var(--bg-main);
+        color: var(--olive);
+        text-decoration: none;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        font-family: 'Inter', sans-serif;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .book-cta:hover {
+        background-color: var(--olive);
+        color: white;
+        border-color: var(--olive);
+    }
+
+    .book-cover-image {
+        object-fit: contain;
+        border-radius: 4px;
+        box-shadow: 0 4px 10px rgba(15, 23, 42, 0.15);
+        display: block;
+    }
+
+    /* Grid Layout */
+    .books-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+    }
+
+/* List Layout */
+    .books-list .book-card {
+        display: grid;
+        grid-template-columns: 1fr 100px; /* 2 columns: 1fr (left content), 100px (right image) */
+        gap: 20px;
+        align-items: start;
+        text-align: left; /* Enforces left alignment for content */
+    }
+
+    .books-list .book-cover-image {
+        width: 100px;
+        height: auto;
+        grid-column: 2; /* Forces the image into the right column */
+        grid-row: 1 / span 4; /* Spans rows to stretch alongside left content */
+    }
+
+    .books-list .book-cta {
+        grid-column: 1; /* Moves the CTA into the left column under the text */
+        grid-row: auto;
+        align-self: start;
+    }
+
+    @media (max-width: 768px) {
+        .books-list .book-card {
+            grid-template-columns: 1fr; /* Stacks the columns on mobile */
+            gap: 12px;
+        }
+
+        .books-list .book-cover-image {
+            width: 100%;
+            max-width: 120px;
+            grid-column: 1; /* Resets to normal flow for mobile */
+            grid-row: auto;
+        }
+
+        .books-list .book-cta {
+            grid-column: 1;
+            grid-row: auto;
+            align-self: flex-start;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+        }
+
+        .toolbar {
+            flex-direction: column;
+            gap: 12px;
+            align-items: flex-start;
+        }
+    }
+
+        /* ----------------------------------
+           GRID VIEW SPECIFIC LAYOUT STYLES 
+        ------------------------------------- */
+        .books-container.grid-view {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 24px;
+        }
+
+        @media (min-width: 768px) { .books-container.grid-view { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .books-container.grid-view { grid-template-columns: repeat(3, 1fr); } }
+
+        .grid-view .book-card {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            grid-template-rows: auto auto;
+        }
+
+        .grid-view .book-main-content {
+            grid-column: 1;
+            grid-row: 1;
+            padding: 24px 12px 16px 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .grid-view .book-cover-container {
+            grid-column: 2;
+            grid-row: 1;
+            padding: 24px 24px 16px 12px;
+            display: flex;
+            align-items: flex-start; /* Aligns cover image to top alongside category */
+            justify-content: flex-end;
+        }
+
+        .grid-view .book-cover-image {
+            width: 115px; /* Bigger cover layout for grid view */
+            height: auto;
+        }
+
+        .grid-view .book-meta {
+            display: flex;
+            flex-direction: column; /* Places publication date beneath rating */
+            align-items: flex-start;
+            gap: 4px;
+            margin-top: 2px;
+        }
+
+        .grid-view .book-date {
+            font-size: 0.8125rem;
+            color: var(--text-light);
+        }
+
+        .grid-view .book-extra-content {
+            grid-column: 1 / span 2; /* Full width row assignment */
+            grid-row: 2;
+            padding: 0 24px 24px 24px;
+            display: flex;
+            flex-direction: column;
+            border-top: 1px dashed var(--border);
+            padding-top: 16px;
+        }
+
+        .grid-view .book-desc {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* ----------------------------------
+           LIST VIEW SPECIFIC LAYOUT STYLES 
+        ------------------------------------- */
+        /* List Layout - Fixed */
+    .books-container.list-view .book-card {
+        display: grid;
+        grid-template-columns: 1fr 180px; /* 1fr for left content, 180px for right image container */
+        gap: 0;
+        align-items: stretch;
+        text-align: left;
+        padding: 0; /* Let grid areas handle the spacing */
+ margin-bottom: 1rem;
+    }
+
+    .books-container.list-view .book-main-content {
+        grid-column: 1;
+        grid-row: 1;
+        padding: 24px 24px 0 24px;
+    }
+
+    .books-container.list-view .book-extra-content {
+        grid-column: 1;
+        grid-row: 2;
+        padding: 16px 24px 24px 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .books-container.list-view .book-cover-container {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-left: 1px solid var(--border); /* Adds a clean divider line */
+        padding: 24px;
+    }
+
+    .books-container.list-view .book-cover-image {
+        width: 100px;
+        height: auto;
+        object-fit: contain;
+    }
+
+    @media (max-width: 768px) {
+        .books-container.list-view .book-card {
+            grid-template-columns: 1fr;
+        }
+
+        .books-container.list-view .book-cover-container {
+            grid-column: 1;
+            grid-row: 1; /* Moves image to top on mobile */
+            justify-content: flex-start;
+            border-left: none;
+            border-bottom: 1px solid var(--border);
+            padding: 24px;
+        }
+
+        .books-container.list-view .book-main-content {
+            grid-column: 1;
+            grid-row: 2;
+            padding: 24px 24px 0 24px;
+        }
+
+        .books-container.list-view .book-extra-content {
+            grid-column: 1;
+            grid-row: 3;
+            padding: 16px 24px 24px 24px;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+        }
+
+        .toolbar {
+            flex-direction: column;
+            gap: 12px;
+            align-items: flex-start;
+        }
+    }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-light);
+            font-size: 1.125rem;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+   /* Footer Styling (Aurelius Branded) */
+    .site-footer {
+        background-color: var(--text-primary); /* Shadowy Charcoal */
+        color: var(--olive-light);
+        padding: 60px 20px 40px;
+        text-align: center;
+        border-top: 4px solid var(--gold);
+        margin-top: auto;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .footer-content {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .footer-quote {
+        display: block;
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--white);
+        margin-bottom: 20px;
+        letter-spacing: 0.03em;
+        font-family: 'Cinzel', serif;
+    }
+
+    .footer-text {
+        font-size: 1.05rem;
+        line-height: 1.9;
+        color: var(--olive-light);
+        margin-bottom: 24px;
+        font-weight: 300;
+        font-style: italic;
+    }
+
+    .footer-author {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: var(--gold);
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        font-family: 'Cinzel', serif;
+    }
+
+    .footer-divider {
+        width: 60px;
+        height: 2px;
+        background-color: var(--gold);
+        margin: 20px auto;
+        border: none;
+    }
+
+    .footer-small {
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+        margin-top: 20px;
+        opacity: 0.7;
+        font-family: 'Inter', sans-serif;
+    }
+
+    /* Responsive Footer */
+    @media (max-width: 768px) {
+        .footer-quote {
+            font-size: 1.2rem;
+        }
+
+        .footer-text {
+            font-size: 0.95rem;
+        }
+    }
+    
+    
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Aurelius Knowledge Library</h1>
+            <p>Explore curated wisdom across strategy, psychology, leadership, and wealth.</p>
+            <div class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" class="search-input" placeholder="Search by title, author, or core thesis...">
+            </div>
+        </div>
+    </section>
+
+    <main class="controls-container">
+        <div id="categoriesContainer" class="categories-flex">
+            <!-- Categories will be rendered dynamically here -->
+        </div>
+
+        <div class="toolbar">
+            <div id="resultsCount" class="results-count">Showing 0 books</div>
+            <button id="toggleViewBtn" class="toggle-btn">
+                <span id="toggleIcon">☰</span> <span id="toggleText">List View</span>
+            </button>
+        </div>
+    </main>
+
+    <section id="booksContainer" class="books-container grid-view">
+        <!-- Books will be rendered dynamically here -->
+    </section>
+
+
+
+
+
+    <footer class="site-footer">
+    
+        <div class="footer-content">
+
+    <img src="https://ik.imagekit.io/bebell/AURELIUS/aurelius-beige-icon.webp" alt="Aurelius Front Portrait" class="w-40 h-40 mx-auto mb-8">
+
+            <span class="footer-quote">"With great power comes great responsibility."</span>
+            <p class="footer-text">
+                The Scrolls of Aurelius are a forge, not a weapon. They offer the strategies of emperors, the psychology of masters, and the resilience of the Stoics. But a sword does not choose its master; you do. Use this wisdom to build, not to conquer. To protect, not to exploit. To lead, not to dominate. The Grove opens its gates to all who seek truth. But it asks one thing in return: that you leave the world better than you found it.
+            </p>
+            <div class="footer-author">— Aurelius</div>
+        </div>
+    </footer>
+
+    <script>
+        const books = [
+          {
+            "Title": "The Art of War",
+            "Author": "Sun Tzu",
+            "Core Thesis": "Victory is won before the battle begins, through intelligence, positioning, and deception.",
+            "Rating": "★★★★★",
+            "Publishing Date": "~500 BC (circa 5th century BC)",
+            "Category": "The Sword (Strategy)",
+            "File URL": "https://www.gutenberg.org/ebooks/132"
+          },
+          {
+            "Title": "The 48 Laws of Power",
+            "Author": "Robert Greene",
+            "Core Thesis": "Power operates on predictable dynamics; those who master these laws control their environment.",
+            "Rating": "★★★★★",
+            "Publishing Date": "1998",
+            "Category": "The Sword (Strategy)",
+            "File URL": "https://amzn.to/placeholder-48-laws"
+          },
+          {
+            "Title": "The Prince",
+            "Author": "Niccolò Machiavelli",
+            "Core Thesis": "Effective rulers must be willing to act outside conventional morality to maintain order and security.",
+            "Rating": "★★★★★",
+            "Publishing Date": "1532",
+            "Category": "The Sword (Strategy)",
+            "File URL": "https://www.gutenberg.org/ebooks/1232"
+          },
+          {
+            "Title": "On War",
+            "Author": "Carl von Clausewitz",
+            "Core Thesis": "War is a continuation of politics by other means, governed by friction, chance, and fog.",
+            "Rating": "★★★★★",
+            "Publishing Date": "1832",
+            "Category": "The Sword (Strategy)",
+            "File URL": "https://www.gutenberg.org/ebooks/1946"
+          },
+          {
+            "Title": "The 33 Strategies of War",
+            "Author": "Robert Greene",
+            "Core Thesis": "Life is a perpetual war of maneuver; the victor controls the battlefield through psychological tactics.",
+            "Rating": "★★★★☆",
+            "Publishing Date": "2006",
+            "Category": "The Sword (Strategy)",
+            "File URL": "https://amzn.to/placeholder-33-strategies"
+          },
+          {
+            "Title": "The Book of Five Rings",
+            "Author": "Miyamoto Musashi",
+            "Core Thesis": "The way of the warrior is to master strategy through discipline, rhythm, and direct action.",
+            "Rating": "★★★★★",
+            "Publishing Date": "1645",
+            "Category": "The Sword (Strategy)",
+            "File URL": "https://www.gutenberg.org/ebooks/765"
+          },
+          {
+            "Title": "The Laws of Human Nature",
+            "Author": "Robert Greene",
+            "Core Thesis": "Human behavior is driven by irrationality, ego, and deep-seated needs—understand these to master others.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2018",
+            "Category": "The Shield (Psychology)",
+            "File URL": "https://amzn.to/placeholder-laws-human-nature"
+          },
+          {
+            "Title": "Influence: The Psychology of Persuasion",
+            "Author": "Robert Cialdini",
+            "Core Thesis": "People say \"yes\" based on six universal psychological triggers.",
+            "Rating": "★★★★★",
+            "Publishing Date": "1984",
+            "Category": "The Shield (Psychology)",
+            "File URL": "https://amzn.to/placeholder-influence"
+          },
+          {
+            "Title": "Thinking, Fast and Slow",
+            "Author": "Daniel Kahneman",
+            "Core Thesis": "The mind operates on two systems: System 1 (intuitive) and System 2 (logical), each prone to biases.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2011",
+            "Category": "The Shield (Psychology)",
+            "File URL": "https://amzn.to/placeholder-thinking-fast-slow"
+          },
+          {
+            "Title": "Predictably Irrational",
+            "Author": "Dan Ariely",
+            "Core Thesis": "Human behavior is predictably irrational; we make decisions based on hidden emotional forces.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2008",
+            "Category": "The Shield (Psychology)",
+            "File URL": "https://amzn.to/placeholder-predictably-irrational"
+          },
+          {
+            "Title": "The Paradox of Choice",
+            "Author": "Barry Schwartz",
+            "Core Thesis": "Too many options lead to paralysis, dissatisfaction, and regret.",
+            "Rating": "★★★★☆",
+            "Publishing Date": "2004",
+            "Category": "The Shield (Psychology)",
+            "File URL": "https://amzn.to/placeholder-paradox-choice"
+          },
+          {
+            "Title": "Games People Play",
+            "Author": "Eric Berne",
+            "Core Thesis": "Social interactions are governed by hidden psychological \"games\" with predictable payoffs.",
+            "Rating": "★★★★☆",
+            "Publishing Date": "1964",
+            "Category": "The Shield (Psychology)",
+            "File URL": "https://amzn.to/placeholder-games-people-play"
+          },
+          {
+            "Title": "The Social Animal",
+            "Author": "Elliot Aronson",
+            "Core Thesis": "Humans are deeply social, driven by cognitive dissonance, conformity, and self-justification.",
+            "Rating": "★★★★★",
+            "Publishing Date": "1972",
+            "Category": "The Shield (Psychology)",
+            "File URL": "https://amzn.to/placeholder-social-animal"
+          },
+          {
+            "Title": "Propaganda",
+            "Author": "Edward Bernays",
+            "Core Thesis": "Public opinion can be engineered by manipulating symbols, emotions, and unconscious drives.",
+            "Rating": "★★★★★",
+            "Publishing Date": "1928",
+            "Category": "The Shield (Psychology)",
+            "File URL": "https://amzn.to/placeholder-propaganda"
+          },
+          {
+            "Title": "The True Believer",
+            "Author": "Eric Hoffer",
+            "Core Thesis": "Mass movements attract the frustrated, the insecure, and the alienated—offering meaning and belonging.",
+            "Rating": "★★★★★",
+            "Publishing Date": "1951",
+            "Category": "The Shield (Psychology)",
+            "File URL": "https://amzn.to/placeholder-true-believer"
+          },
+          {
+            "Title": "Dark Psychology 101",
+            "Author": "Michael Pace",
+            "Core Thesis": "Understanding the dark triad (narcissism, Machiavellianism, psychopathy) protects you from manipulation.",
+            "Rating": "★★★★☆",
+            "Publishing Date": "2018",
+            "Category": "The Shield (Psychology)",
+            "File URL": "https://amzn.to/placeholder-dark-psychology"
+          },
+          {
+            "Title": "The Art of Seduction",
+            "Author": "Robert Greene",
+            "Core Thesis": "Seduction is the art of making others want to give you what you want through psychological capture.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2001",
+            "Category": "The Shield (Psychology)",
+            "File URL": "https://amzn.to/placeholder-art-seduction"
+          },
+          {
+            "Title": "What Every Body is Saying",
+            "Author": "Joe Navarro",
+            "Core Thesis": "Non-verbal cues reveal hidden emotions, intentions, and deception.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2008",
+            "Category": "The Shield (Psychology)",
+            "File URL": "https://amzn.to/placeholder-what-every-body-saying"
+          },
+          {
+            "Title": "The Crowd: A Study of the Popular Mind",
+            "Author": "Gustave Le Bon",
+            "Core Thesis": "Crowds are emotional, irrational, and susceptible to a leader who speaks to their unconscious mind.",
+            "Rating": "★★★★★",
+            "Publishing Date": "1895",
+            "Category": "The Shield (Psychology)",
+            "File URL": "https://www.gutenberg.org/ebooks/445"
+          },
+          {
+            "Title": "Meditations",
+            "Author": "Marcus Aurelius",
+            "Core Thesis": "The inner citadel is the only true fortress; control your judgments, and you control your life.",
+            "Rating": "★★★★★",
+            "Publishing Date": "~180 AD (circa 2nd century AD)",
+            "Category": "The Armor (Resilience)",
+            "File URL": "https://www.gutenberg.org/ebooks/2680"
+          },
+          {
+            "Title": "Man's Search for Meaning",
+            "Author": "Viktor E. Frankl",
+            "Core Thesis": "Meaning can be found in even the most suffering; the freedom to choose one's response is the ultimate human power.",
+            "Rating": "★★★★★",
+            "Publishing Date": "1946",
+            "Category": "The Armor (Resilience)",
+            "File URL": "https://amzn.to/placeholder-mans-search-meaning"
+          },
+          {
+            "Title": "The Obstacle Is the Way",
+            "Author": "Ryan Holiday",
+            "Core Thesis": "Obstacles are not barriers to the path—they are the path itself.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2014",
+            "Category": "The Armor (Resilience)",
+            "File URL": "https://amzn.to/placeholder-obstacle-way"
+          },
+          {
+            "Title": "The Antidote",
+            "Author": "Oliver Burkeman",
+            "Core Thesis": "The relentless pursuit of happiness makes us unhappy; embracing negativity brings peace.",
+            "Rating": "★★★★☆",
+            "Publishing Date": "2012",
+            "Category": "The Armor (Resilience)",
+            "File URL": "https://amzn.to/placeholder-antidote"
+          },
+          {
+            "Title": "The Gulag Archipelago",
+            "Author": "Aleksandr Solzhenitsyn",
+            "Core Thesis": "The human spirit can survive the worst totalitarianism when it refuses to surrender its inner freedom.",
+            "Rating": "★★★★★",
+            "Publishing Date": "1973",
+            "Category": "The Armor (Resilience)",
+            "File URL": "https://amzn.to/placeholder-gulag-archipelago"
+          },
+          {
+            "Title": "The Untethered Soul",
+            "Author": "Michael A. Singer",
+            "Core Thesis": "You are not your thoughts; the observer of thoughts is the path to inner peace.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2007",
+            "Category": "The Armor (Resilience)",
+            "File URL": "https://amzn.to/placeholder-untethered-soul"
+          },
+          {
+            "Title": "Start with Why",
+            "Author": "Simon Sinek",
+            "Core Thesis": "People do not buy what you do; they buy why you do it. Communicating purpose attracts followers who share your values.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2009",
+            "Category": "The Compass (Purpose & Vision)",
+            "File URL": "https://amzn.to/placeholder-start-with-why"
+          },
+          {
+            "Title": "Leaders Eat Last",
+            "Author": "Simon Sinek",
+            "Core Thesis": "Great leaders create \"circles of safety\" where people feel protected. When leaders prioritize their team's well-being, fierce loyalty follows.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2014",
+            "Category": "The Banner (Leadership)",
+            "File URL": "https://amzn.to/placeholder-leaders-eat-last"
+          },
+          {
+            "Title": "Dare to Lead",
+            "Author": "Brené Brown",
+            "Core Thesis": "Vulnerability is not weakness—it is the birthplace of courage, trust, and innovation.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2018",
+            "Category": "The Banner (Leadership)",
+            "File URL": "https://amzn.to/placeholder-dare-to-lead"
+          },
+          {
+            "Title": "Tribal Leadership",
+            "Author": "Dave Logan",
+            "Core Thesis": "Organizations move through five stages of tribal culture. Great leaders elevate their tribe to Stage 5—where the group is self-motivated and unstoppable.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2008",
+            "Category": "The Banner (Leadership)",
+            "File URL": "https://amzn.to/placeholder-tribal-leadership"
+          },
+          {
+            "Title": "The 7 Habits of Highly Effective People",
+            "Author": "Stephen R. Covey",
+            "Core Thesis": "Effectiveness comes from aligning character with principles and moving from dependence to interdependence.",
+            "Rating": "★★★★★",
+            "Publishing Date": "1989",
+            "Category": "The Banner (Leadership)",
+            "File URL": "https://amzn.to/placeholder-7-habits"
+          },
+          {
+            "Title": "Turn the Ship Around!",
+            "Author": "L. David Marquet",
+            "Core Thesis": "Distribute leadership by giving decision-making power to those closest to the work.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2012",
+            "Category": "The Banner (Leadership)",
+            "File URL": "https://amzn.to/placeholder-turn-ship-around"
+          },
+          {
+            "Title": "The Charisma Myth",
+            "Author": "Olivia Fox Cabane",
+            "Core Thesis": "Charisma is a skill, not a gift. It is built on presence, power, and warmth—all of which can be learned.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2012",
+            "Category": "The Banner (Leadership)",
+            "File URL": "https://amzn.to/placeholder-charisma-myth"
+          },
+          {
+            "Title": "The Psychology of Money",
+            "Author": "Morgan Housel",
+            "Core Thesis": "Wealth is more about behavior and temperament than raw financial intelligence.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2020",
+            "Category": "The Treasury (Wealth)",
+            "File URL": "https://amzn.to/placeholder-psychology-money"
+          },
+          {
+            "Title": "The Dictator's Handbook",
+            "Author": "Bruce Bueno de Mesquita",
+            "Core Thesis": "Leaders prioritize staying in power over serving the public. To replace a dictator, change their key supporters' incentives.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2011",
+            "Category": "The Foundation (History & Politics)",
+            "File URL": "https://amzn.to/placeholder-dictators-handbook"
+          },
+          {
+            "Title": "The Hard Thing About Hard Things",
+            "Author": "Ben Horowitz",
+            "Core Thesis": "The most difficult decisions in business have no good options. There is no formula—only leadership.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2014",
+            "Category": "The Treasury (Wealth)",
+            "File URL": "https://amzn.to/placeholder-hard-thing-hard-things"
+          },
+          {
+            "Title": "Good to Great",
+            "Author": "Jim Collins",
+            "Core Thesis": "Great companies are built on the \"Hedgehog Concept,\" Level 5 Leadership, and disciplined culture.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2001",
+            "Category": "The Treasury (Wealth)",
+            "File URL": "https://amzn.to/placeholder-good-to-great"
+          },
+          {
+            "Title": "The Lean Startup",
+            "Author": "Eric Ries",
+            "Core Thesis": "Innovation is accelerated by building minimal viable products, measuring results, and learning.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2011",
+            "Category": "The Treasury (Wealth)",
+            "File URL": "https://amzn.to/placeholder-lean-startup"
+          },
+          {
+            "Title": "The Art of the Deal",
+            "Author": "Donald Trump",
+            "Core Thesis": "Negotiation is about leverage, credibility, and creating asymmetrical advantages.",
+            "Rating": "★★★★☆",
+            "Publishing Date": "1987",
+            "Category": "The Treasury (Wealth)",
+            "File URL": "https://amzn.to/placeholder-art-deal"
+          },
+          {
+            "Title": "Poor Charlie's Almanack",
+            "Author": "Charlie Munger",
+            "Core Thesis": "Avoid stupidity, master mental models, and invert problems to achieve wisdom.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2005",
+            "Category": "The Forge (Execution)",
+            "File URL": "https://amzn.to/placeholder-poor-charlie"
+          },
+          {
+            "Title": "Seeking Wisdom: From Darwin to Munger",
+            "Author": "Peter Bevelin",
+            "Core Thesis": "Human misjudgment is systematic; mastering multiple frameworks leads to better decisions.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2003",
+            "Category": "The Forge (Execution)",
+            "File URL": "https://amzn.to/placeholder-seeking-wisdom"
+          },
+          {
+            "Title": "The Black Swan",
+            "Author": "Nassim Nicholas Taleb",
+            "Core Thesis": "High-impact, unpredictable events dominate history; we must build systems that are antifragile.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2007",
+            "Category": "The Lens (Perspective)",
+            "File URL": "https://amzn.to/placeholder-black-swan"
+          },
+          {
+            "Title": "The Beginning of Infinity",
+            "Author": "David Deutsch",
+            "Core Thesis": "All problems are solvable through knowledge and creativity; progress is infinite.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2011",
+            "Category": "The Lens (Perspective)",
+            "File URL": "https://amzn.to/placeholder-beginning-infinity"
+          },
+          {
+            "Title": "The Structure of Scientific Revolutions",
+            "Author": "Thomas S. Kuhn",
+            "Core Thesis": "Paradigm shifts occur when anomalies accumulate beyond the old framework's ability to contain them.",
+            "Rating": "★★★★★",
+            "Publishing Date": "1962",
+            "Category": "The Lens (Perspective)",
+            "File URL": "https://amzn.to/placeholder-structure-scientific"
+          },
+          {
+            "Title": "Sapiens",
+            "Author": "Yuval Noah Harari",
+            "Core Thesis": "Homo sapiens dominate the planet because we can believe in shared fictions (money, nations, religion).",
+            "Rating": "★★★★★",
+            "Publishing Date": "2011",
+            "Category": "The Lens (Perspective)",
+            "File URL": "https://amzn.to/placeholder-sapiens"
+          },
+          {
+            "Title": "The Origins of Political Order",
+            "Author": "Francis Fukuyama",
+            "Core Thesis": "Strong states, the rule of law, and accountable government are the foundations of political development.",
+            "Rating": "★★★★☆",
+            "Publishing Date": "2011",
+            "Category": "The Foundation (History & Politics)",
+            "File URL": "https://amzn.to/placeholder-origins-political"
+          },
+          {
+            "Title": "The Rise and Fall of the Third Reich",
+            "Author": "William L. Shirer",
+            "Core Thesis": "Absolute power corrupts absolutely; totalitarianism thrives on propaganda, fear, and scapegoating.",
+            "Rating": "★★★★★",
+            "Publishing Date": "1960",
+            "Category": "The Foundation (History & Politics)",
+            "File URL": "https://amzn.to/placeholder-rise-fall-third-reich"
+          },
+          {
+            "Title": "How to Win Friends and Influence People",
+            "Author": "Dale Carnegie",
+            "Core Thesis": "The secret to influence is making others feel important, respected, and understood.",
+            "Rating": "★★★★★",
+            "Publishing Date": "1936",
+            "Category": "The Alliance (Negotiation & Communication)",
+            "File URL": "https://amzn.to/placeholder-win-friends"
+          },
+          {
+            "Title": "The Art of Public Speaking",
+            "Author": "Dale Carnegie",
+            "Core Thesis": "Effective public speaking is rooted in conviction, preparation, and connecting with the audience.",
+            "Rating": "★★★★★",
+            "Publishing Date": "1915",
+            "Category": "The Alliance (Negotiation & Communication)",
+            "File URL": "https://www.gutenberg.org/ebooks/16308"
+          },
+          {
+            "Title": "The Hero with a Thousand Faces",
+            "Author": "Joseph Campbell",
+            "Core Thesis": "Every great story follows the \"Monomyth\" (The Hero's Journey)—the universal structure of transformation.",
+            "Rating": "★★★★★",
+            "Publishing Date": "1949",
+            "Category": "The Alliance (Negotiation & Communication)",
+            "File URL": "https://amzn.to/placeholder-hero-thousand-faces"
+          },
+          {
+            "Title": "Emotional Intelligence 2.0",
+            "Author": "Travis Bradberry",
+            "Core Thesis": "EQ (Self-awareness, Self-management, Social Awareness, Relationship Management) is more critical than IQ for success.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2009",
+            "Category": "The Shield (Psychology)",
+            "File URL": "https://amzn.to/placeholder-emotional-intelligence"
+          },
+          {
+            "Title": "Never Split the Difference",
+            "Author": "Chris Voss",
+            "Core Thesis": "Negotiation is not about logic—it is about emotional intelligence, tactical empathy, and calibrated questions.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2016",
+            "Category": "The Alliance (Negotiation & Communication)",
+            "File URL": "https://amzn.to/placeholder-never-split"
+          },
+          {
+            "Title": "Atomic Habits",
+            "Author": "James Clear",
+            "Core Thesis": "Small, incremental changes compound into remarkable results. Systems beat goals.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2018",
+            "Category": "The Forge (Execution)",
+            "File URL": "https://amzn.to/placeholder-atomic-habits"
+          },
+          {
+            "Title": "Deep Work",
+            "Author": "Cal Newport",
+            "Core Thesis": "Focused, distraction-free concentration is a superpower in the modern economy.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2016",
+            "Category": "The Forge (Execution)",
+            "File URL": "https://amzn.to/placeholder-deep-work"
+          },
+          {
+            "Title": "The Power of Habit",
+            "Author": "Charles Duhigg",
+            "Core Thesis": "Habits are loops (Cue, Routine, Reward). Change the cue or reward to change the behavior.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2012",
+            "Category": "The Forge (Execution)",
+            "File URL": "https://amzn.to/placeholder-power-habit"
+          },
+          {
+            "Title": "The War of Art",
+            "Author": "Steven Pressfield",
+            "Core Thesis": "Resistance is the enemy of creativity. Overcome it through professionalism and ritual.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2002",
+            "Category": "The Forge (Execution)",
+            "File URL": "https://amzn.to/placeholder-war-art"
+          },
+          {
+            "Title": "Zero to One",
+            "Author": "Peter Thiel",
+            "Core Thesis": "The future is built by creating new things (0 to 1), not copying existing things (1 to n). Monopolies drive innovation.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2014",
+            "Category": "The Treasury (Wealth)",
+            "File URL": "https://amzn.to/placeholder-zero-to-one"
+          },
+          {
+            "Title": "The Innovator's Dilemma",
+            "Author": "Clayton Christensen",
+            "Core Thesis": "Established companies fail because they listen too closely to their customers. Disruption comes from below.",
+            "Rating": "★★★★★",
+            "Publishing Date": "1997",
+            "Category": "The Treasury (Wealth)",
+            "File URL": "https://amzn.to/placeholder-innovators-dilemma"
+          },
+          {
+            "Title": "The 10X Rule",
+            "Author": "Grant Cardone",
+            "Core Thesis": "Success requires massive action—10 times the effort you think is necessary.",
+            "Rating": "★★★★☆",
+            "Publishing Date": "2011",
+            "Category": "The Forge (Execution)",
+            "File URL": "https://amzn.to/placeholder-10x-rule"
+          },
+          {
+            "Title": "The E-Myth Revisited",
+            "Author": "Michael Gerber",
+            "Core Thesis": "Most small businesses fail because the founder is a technician, not a manager. Build systems, not just a job.",
+            "Rating": "★★★★★",
+            "Publishing Date": "1995",
+            "Category": "The Treasury (Wealth)",
+            "File URL": "https://amzn.to/placeholder-emyth"
+          },
+          {
+            "Title": "Thinking in Systems",
+            "Author": "Donella Meadows",
+            "Core Thesis": "The world is made of interconnected systems; leverage points exist to change behavior.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2008",
+            "Category": "The Forge (Execution)",
+            "File URL": "https://amzn.to/placeholder-thinking-systems"
+          },
+          {
+            "Title": "The Fifth Discipline",
+            "Author": "Peter Senge",
+            "Core Thesis": "Learning organizations thrive on systems thinking, personal mastery, and shared vision.",
+            "Rating": "★★★★★",
+            "Publishing Date": "1990",
+            "Category": "The Forge (Execution)",
+            "File URL": "https://amzn.to/placeholder-fifth-discipline"
+          },
+          {
+            "Title": "Team of Rivals",
+            "Author": "Doris Kearns Goodwin",
+            "Core Thesis": "Abraham Lincoln built a cabinet of political rivals, proving that diversity of thought strengthens leadership.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2005",
+            "Category": "The Foundation (History & Politics)",
+            "File URL": "https://amzn.to/placeholder-team-rivals"
+          },
+          {
+            "Title": "The 4-Hour Workweek",
+            "Author": "Tim Ferriss",
+            "Core Thesis": "Escape the 9-5 by outsourcing, automating, and geo-arbitraging. Design your lifestyle, not your retirement.",
+            "Rating": "★★★★☆",
+            "Publishing Date": "2007",
+            "Category": "The Treasury (Wealth)",
+            "File URL": "https://amzn.to/placeholder-4-hour-workweek"
+          },
+          {
+            "Title": "The Compound Effect",
+            "Author": "Darren Hardy",
+            "Core Thesis": "Small, consistent actions compound into massive results over time.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2010",
+            "Category": "The Forge (Execution)",
+            "File URL": "https://amzn.to/placeholder-compound-effect"
+          },
+          {
+            "Title": "The Art of Possibility",
+            "Author": "Rosamund Stone Zander",
+            "Core Thesis": "Transforming how we perceive the world unlocks creativity, innovation, and collaboration.",
+            "Rating": "★★★★☆",
+            "Publishing Date": "2000",
+            "Category": "The Compass (Purpose & Vision)",
+            "File URL": "https://amzn.to/placeholder-art-possibility"
+          },
+          {
+            "Title": "Mindset",
+            "Author": "Carol Dweck",
+            "Core Thesis": "Your mindset determines your potential. A growth mindset (embracing challenges) outpaces a fixed mindset (avoiding failure).",
+            "Rating": "★★★★★",
+            "Publishing Date": "2006",
+            "Category": "The Armor (Resilience)",
+            "File URL": "https://amzn.to/placeholder-mindset"
+          },
+          {
+            "Title": "Grit",
+            "Author": "Angela Duckworth",
+            "Core Thesis": "Passion + Perseverance = Grit. It is a stronger predictor of success than talent or IQ.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2016",
+            "Category": "The Armor (Resilience)",
+            "File URL": "https://amzn.to/placeholder-grit"
+          },
+          {
+            "Title": "The Power of Now",
+            "Author": "Eckhart Tolle",
+            "Core Thesis": "The present moment is all we ever truly have. Obsession with past/future is the source of suffering.",
+            "Rating": "★★★★★",
+            "Publishing Date": "1997",
+            "Category": "The Armor (Resilience)",
+            "File URL": "https://amzn.to/placeholder-power-now"
+          },
+          {
+            "Title": "The 80/20 Principle",
+            "Author": "Richard Koch",
+            "Core Thesis": "80% of results come from 20% of efforts. Focus relentlessly on the vital few.",
+            "Rating": "★★★★☆",
+            "Publishing Date": "1997",
+            "Category": "The Forge (Execution)",
+            "File URL": "https://amzn.to/placeholder-80-20-principle"
+          },
+          {
+            "Title": "The One Thing",
+            "Author": "Gary Keller",
+            "Core Thesis": "Extraordinary results come from focusing on the ONE thing that makes everything else easier or unnecessary.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2012",
+            "Category": "The Forge (Execution)",
+            "File URL": "https://amzn.to/placeholder-one-thing"
+          },
+          {
+            "Title": "Getting Things Done",
+            "Author": "David Allen",
+            "Core Thesis": "Mental clarity comes from capturing all tasks, clarifying them, and organizing them in a trusted system.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2001",
+            "Category": "The Forge (Execution)",
+            "File URL": "https://amzn.to/placeholder-getting-things-done"
+          },
+          {
+            "Title": "Essentialism",
+            "Author": "Greg McKeown",
+            "Core Thesis": "The disciplined pursuit of less. Only the vital few deserve your time and energy.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2014",
+            "Category": "The Forge (Execution)",
+            "File URL": "https://amzn.to/placeholder-essentialism"
+          },
+          {
+            "Title": "The Subtle Art of Not Giving a F*ck",
+            "Author": "Mark Manson",
+            "Core Thesis": "Choose what to care about carefully. Most things do not deserve your emotional energy.",
+            "Rating": "★★★★☆",
+            "Publishing Date": "2016",
+            "Category": "The Armor (Resilience)",
+            "File URL": "https://amzn.to/placeholder-subtle-art"
+          },
+          {
+            "Title": "The Alchemist",
+            "Author": "Paulo Coelho",
+            "Core Thesis": "Follow your Personal Legend. The universe conspires to help you achieve your destiny when you listen to your heart.",
+            "Rating": "★★★★★",
+            "Publishing Date": "1988",
+            "Category": "The Compass (Purpose & Vision)",
+            "File URL": "https://amzn.to/placeholder-alchemist"
+          },
+          {
+            "Title": "The Road Less Traveled",
+            "Author": "M. Scott Peck",
+            "Core Thesis": "Discipline, love, and grace are the foundations of spiritual and emotional growth.",
+            "Rating": "★★★★☆",
+            "Publishing Date": "1978",
+            "Category": "The Armor (Resilience)",
+            "File URL": "https://amzn.to/placeholder-road-less-traveled"
+          },
+          {
+            "Title": "The Righteous Mind",
+            "Author": "Jonathan Haidt",
+            "Core Thesis": "Morality binds and blinds. Understanding moral foundations helps you navigate polarization and influence.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2012",
+            "Category": "The Lens (Perspective)",
+            "File URL": "https://amzn.to/placeholder-righteous-mind"
+          },
+          {
+            "Title": "The Elephant in the Brain",
+            "Author": "Kevin Simler",
+            "Core Thesis": "We are masters of self-deception. We hide our true motives from ourselves and others.",
+            "Rating": "★★★★☆",
+            "Publishing Date": "2017",
+            "Category": "The Shield (Psychology)",
+            "File URL": "https://amzn.to/placeholder-elephant-brain"
+          },
+          {
+            "Title": "Predictable Revenue",
+            "Author": "Aaron Ross",
+            "Core Thesis": "Outbound sales is not about volume—it is about process and targeting the right accounts.",
+            "Rating": "★★★★☆",
+            "Publishing Date": "2010",
+            "Category": "The Treasury (Wealth)",
+            "File URL": "https://amzn.to/placeholder-predictable-revenue"
+          },
+          {
+            "Title": "SPIN Selling",
+            "Author": "Neil Rackham",
+            "Core Thesis": "Effective sales is about asking Situation, Problem, Implication, Need-Payoff questions.",
+            "Rating": "★★★★★",
+            "Publishing Date": "1988",
+            "Category": "The Alliance (Negotiation & Communication)",
+            "File URL": "https://amzn.to/placeholder-spin-selling"
+          },
+          {
+            "Title": "The Challenger Sale",
+            "Author": "Matthew Dixon",
+            "Core Thesis": "The best salespeople challenge the customer's assumptions, teaching, tailoring, and taking control.",
+            "Rating": "★★★★☆",
+            "Publishing Date": "2011",
+            "Category": "The Alliance (Negotiation & Communication)",
+            "File URL": "https://amzn.to/placeholder-challenger-sale"
+          },
+          {
+            "Title": "The Goal",
+            "Author": "Eliyahu Goldratt",
+            "Core Thesis": "Business is about throughput, inventory, and operational expense. Focus on constraints (Theory of Constraints).",
+            "Rating": "★★★★★",
+            "Publishing Date": "1984",
+            "Category": "The Forge (Execution)",
+            "File URL": "https://amzn.to/placeholder-goal"
+          },
+          {
+            "Title": "The Phoenix Project",
+            "Author": "Gene Kim",
+            "Core Thesis": "DevOps and IT operations are about flow, feedback loops, and continuous improvement.",
+            "Rating": "★★★★☆",
+            "Publishing Date": "2013",
+            "Category": "The Forge (Execution)",
+            "File URL": "https://amzn.to/placeholder-phoenix-project"
+          },
+          {
+            "Title": "The Pragmatic Programmer",
+            "Author": "Andrew Hunt",
+            "Core Thesis": "Software development is a craft. Take ownership, automate, and refactor relentlessly.",
+            "Rating": "★★★★★",
+            "Publishing Date": "1999",
+            "Category": "The Forge (Execution)",
+            "File URL": "https://amzn.to/placeholder-pragmatic-programmer"
+          },
+          {
+            "Title": "The Design of Everyday Things",
+            "Author": "Don Norman",
+            "Core Thesis": "Good design is discoverable, intuitive, and provides clear feedback. Human-centered design solves real problems.",
+            "Rating": "★★★★★",
+            "Publishing Date": "1988",
+            "Category": "The Forge (Execution)",
+            "File URL": "https://amzn.to/placeholder-design-everyday-things"
+          },
+          {
+            "Title": "The First 90 Days",
+            "Author": "Michael Watkins",
+            "Core Thesis": "Transitions are critical moments. Master the 10 key strategies to accelerate your learning and impact in any new role.",
+            "Rating": "★★★★★",
+            "Publishing Date": "2003",
+            "Category": "The Forge (Execution)",
+            "File URL": "https://amzn.to/placeholder-first-90-days"
+          },
+          {
+    "Title": "The Tipping Point",
+    "Author": "Malcolm Gladwell",
+    "Core Thesis": "Ideas, products, and behaviors spread like epidemics. The few connectors, mavens, and salespeople create tipping points.",
+    "Rating": "★★★★★",
+    "Publishing Date": "2000",
+    "Category": "The Lens (Perspective)",
+    "File URL": "https://amzn.to/placeholder-tipping-point"
+  },
+  {
+    "Title": "Outliers",
+    "Author": "Malcolm Gladwell",
+    "Core Thesis": "Success is not just about talent—it is about timing, opportunity, and 10,000 hours of deliberate practice.",
+    "Rating": "★★★★★",
+    "Publishing Date": "2008",
+    "Category": "The Lens (Perspective)",
+    "File URL": "https://amzn.to/placeholder-outliers"
+  },
+  {
+    "Title": "Talking to Strangers",
+    "Author": "Malcolm Gladwell",
+    "Core Thesis": "We are terrible at understanding people we do not know. Default to truth, but verify.",
+    "Rating": "★★★★☆",
+    "Publishing Date": "2019",
+    "Category": "The Lens (Perspective)",
+    "File URL": "https://amzn.to/placeholder-talking-strangers"
+  },
+  {
+    "Title": "The 4 Agreements",
+    "Author": "Don Miguel Ruiz",
+    "Core Thesis": "Four principles for personal freedom: Be impeccable with your word, don't take anything personally, don't make assumptions, always do your best.",
+    "Rating": "★★★★★",
+    "Publishing Date": "1997",
+    "Category": "The Compass (Purpose & Vision)",
+    "File URL": "https://amzn.to/placeholder-4-agreements"
+  },
+  {
+    "Title": "Mastery",
+    "Author": "Robert Greene",
+    "Core Thesis": "Mastery is the process of finding your life's task and devoting yourself to it through apprenticeship, mentorship, and creative insight.",
+    "Rating": "★★★★★",
+    "Publishing Date": "2012",
+    "Category": "The Forge (Execution)",
+    "File URL": "https://amzn.to/placeholder-mastery"
+  },
+  {
+    "Title": "The Art of Happiness",
+    "Author": "Dalai Lama & Howard Cutler",
+    "Core Thesis": "Happiness is not external—it is cultivated through compassion, gratitude, and mental training.",
+    "Rating": "★★★★☆",
+    "Publishing Date": "1998",
+    "Category": "The Compass (Purpose & Vision)",
+    "File URL": "https://amzn.to/placeholder-art-happiness"
+  },
+  {
+    "Title": "The Four Obsessions of an Extraordinary Executive",
+    "Author": "Patrick Lencioni",
+    "Core Thesis": "Organizational health is the ultimate competitive advantage. Build a cohesive leadership team, create clarity, overcommunicate, and reinforce it.",
+    "Rating": "★★★★★",
+    "Publishing Date": "2000",
+    "Category": "The Banner (Leadership)",
+    "File URL": "https://amzn.to/placeholder-four-obsessions"
+  },
+  {
+    "Title": "The Advantage",
+    "Author": "Patrick Lencioni",
+    "Core Thesis": "Organizational health beats strategy every time. A healthy organization is more cohesive, less political, and more adaptable.",
+    "Rating": "★★★★★",
+    "Publishing Date": "2012",
+    "Category": "The Banner (Leadership)",
+    "File URL": "https://amzn.to/placeholder-advantage"
+  },
+  {
+    "Title": "The Five Dysfunctions of a Team",
+    "Author": "Patrick Lencioni",
+    "Core Thesis": "Teams fail due to absence of trust, fear of conflict, lack of commitment, avoidance of accountability, and inattention to results.",
+    "Rating": "★★★★★",
+    "Publishing Date": "2002",
+    "Category": "The Banner (Leadership)",
+    "File URL": "https://amzn.to/placeholder-five-dysfunctions"
+  },
+  {
+    "Title": "The Motive",
+    "Author": "Patrick Lencioni",
+    "Core Thesis": "Great leaders are motivated by responsibility, not reward. Weak leaders are motivated by their own gratification.",
+    "Rating": "★★★★★",
+    "Publishing Date": "2020",
+    "Category": "The Banner (Leadership)",
+    "File URL": "https://amzn.to/placeholder-motive"
+  },
+  {
+    "Title": "The Ideal Team Player",
+    "Author": "Patrick Lencioni",
+    "Core Thesis": "Great team players are humble, hungry, and smart (people-smart).",
+    "Rating": "★★★★★",
+    "Publishing Date": "2016",
+    "Category": "The Banner (Leadership)",
+    "File URL": "https://amzn.to/placeholder-ideal-team-player"
+  },
+  {
+    "Title": "The CEO Test",
+    "Author": "Adam Bryant",
+    "Core Thesis": "Leadership is tested by seven key challenges: politics, people, strategy, crisis, culture, board, and yourself.",
+    "Rating": "★★★★★",
+    "Publishing Date": "2021",
+    "Category": "The Banner (Leadership)",
+    "File URL": "https://amzn.to/placeholder-ceo-test"
+  },
+  {
+    "Title": "The Making of a Manager",
+    "Author": "Julie Zhuo",
+    "Core Thesis": "Management is a craft—not a promotion. It is about helping others do their best work.",
+    "Rating": "★★★★★",
+    "Publishing Date": "2019",
+    "Category": "The Banner (Leadership)",
+    "File URL": "https://amzn.to/placeholder-making-manager"
+  },
+  {
+    "Title": "The Fearless Organization",
+    "Author": "Amy Edmondson",
+    "Core Thesis": "Psychological safety is the foundation of high-performing teams. People must feel safe to speak up, fail, and learn.",
+    "Rating": "★★★★★",
+    "Publishing Date": "2018",
+    "Category": "The Banner (Leadership)",
+    "File URL": "https://amzn.to/placeholder-fearless-organization"
+  },
+  {
+    "Title": "The Infinite Game",
+    "Author": "Simon Sinek",
+    "Core Thesis": "Business is not a finite game with winners and losers—it is an infinite game with no finish line. Play to keep playing.",
+    "Rating": "★★★★★",
+    "Publishing Date": "2019",
+    "Category": "The Compass (Purpose & Vision)",
+    "File URL": "https://amzn.to/placeholder-infinite-game"
+  }
+        ];
+
+        const categoryIcons = {
+            "The Sword (Strategy)": "⚔️",
+            "The Shield (Psychology)": "🛡️",
+            "The Armor (Resilience)": "🪖",
+            "The Compass (Purpose & Vision)": "🧭",
+            "The Banner (Leadership)": "🚩",
+            "The Treasury (Wealth)": "💰",
+            "The Foundation (History & Politics)": "🏛️",
+            "The Forge (Execution)": "⚒️",
+            "The Lens (Perspective)": "🔍",
+            "The Alliance (Negotiation & Communication)": "🤝",
+            "All": "📚"
+        };
+
+        let currentCategory = 'All';
+        let searchQuery = '';
+        let currentView = 'grid';
+
+        const uniqueCategories = ['All', ...new Set(books.map(book => book.Category))];
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+        }
+
+        function renderCategories() {
+            const container = document.getElementById('categoriesContainer');
+            container.innerHTML = '';
+            
+            uniqueCategories.forEach(cat => {
+                const pill = document.createElement('button');
+                pill.className = `category-pill ${cat === currentCategory ? 'active' : ''}`;
+                const icon = categoryIcons[cat] || '';
+                pill.innerHTML = `${icon} ${escapeHtml(cat)}`.trim();
+                
+                pill.addEventListener('click', () => {
+                    currentCategory = cat;
+                    document.querySelectorAll('.category-pill').forEach(p => p.classList.remove('active'));
+                    pill.classList.add('active');
+                    renderBooks();
+                });
+                container.appendChild(pill);
+            });
+        }
+
+        function renderBooks() {
+            const container = document.getElementById('booksContainer');
+            const countEl = document.getElementById('resultsCount');
+            container.innerHTML = '';
+            
+            const filtered = books.filter(book => {
+                const matchesCategory = currentCategory === 'All' || book.Category === currentCategory;
+                const matchesSearch = book.Title.toLowerCase().includes(searchQuery) || 
+                                      book.Author.toLowerCase().includes(searchQuery) || 
+                                      book.CoreThesis.toLowerCase().includes(searchQuery);
+                return matchesCategory && matchesSearch;
+            });
+            
+            countEl.textContent = `Showing ${filtered.length} book${filtered.length === 1 ? '' : 's'}`;
+            
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="no-results">No books found matching your criteria.</div>';
+                return;
+            }
+            
+            filtered.forEach(book => {
+                const card = document.createElement('div');
+                card.className = 'book-card';
+                const catIcon = categoryIcons[book.Category] || '';
+
+                card.innerHTML = `
+                    <div class="book-main-content">
+                        <div class="book-category">${catIcon} ${escapeHtml(book.Category)}</div>
+                        <h3 class="book-title">${escapeHtml(book.Title)}</h3>
+                        <div class="book-author">by ${escapeHtml(book.Author)}</div>
+                        <div class="book-meta">
+                            <span class="book-rating">${escapeHtml(book.Rating)}</span>
+                            <span class="book-date">📅 ${escapeHtml(book['Publishing Date'])}</span>
+                        </div>
+                    </div>
+                    <div class="book-cover-container">
+                        <img class="book-cover-image" 
+                             src="https://ik.imagekit.io/bebell/AURELIUS/Library/48-laws-of-power.png?updatedAt=1782359377683" 
+                             alt="${escapeHtml(book.Title)} Cover Preview">
+                    </div>
+                    <div class="book-extra-content">
+                        <p class="book-desc">${escapeHtml(book['Core Thesis'])}</p>
+                        <a href="${escapeHtml(book['File URL'])}" target="_blank" class="book-cta">
+                            <span>📖</span> Visit Book Source
+                        </a>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            searchQuery = e.target.value.toLowerCase();
+            renderBooks();
+        });
+
+        document.getElementById('toggleViewBtn').addEventListener('click', () => {
+            const container = document.getElementById('booksContainer');
+            const icon = document.getElementById('toggleIcon');
+            const text = document.getElementById('toggleText');
+            
+            if (currentView === 'grid') {
+                currentView = 'list';
+                container.className = 'books-container list-view';
+                icon.textContent = '⣿';
+                text.textContent = 'Grid View';
+            } else {
+                currentView = 'grid';
+                container.className = 'books-container grid-view';
+                icon.textContent = '☰';
+                text.textContent = 'List View';
+            }
+        });
+
+        renderCategories();
+        renderBooks();
+    </script>
+    
+    
+    
+    
+      
+  <script>
+(function(m,a,i,l,e,r){ m['MailerLiteObject']=e;function f(){
+var c={ a:arguments,q:[]};var r=this.push(c);return "number"!=typeof r?r:f.bind(c.q);}
+f.q=f.q||[];m[e]=m[e]||f.bind(f.q);m[e].q=m[e].q||f.q;r=a.createElement(i);
+var _=a.getElementsByTagName(i)[0];r.async=1;r.src=l+'?v'+(~~(new Date().getTime()/1000000));
+_.parentNode.insertBefore(r,_);})(window, document, 'script', 'https://static.mailerlite.com/js/universal.js', 'ml');
+
+var ml_account = ml('accounts', '3336910', 't8p6n6m7b3', 'load');
+</script>
+
+<script>
+    var ml_webform_6119246 = ml_account('webforms', '6119246', 'h1b9p6', 'load');
+    ml_webform_6119246('animation', 'fadeIn');
+</script>  
+    
+    
+   
+<!-- Widget BACK-TO-TOP -->
+<script>
+// Create Back-to-Top Button Dynamically
+document.addEventListener("DOMContentLoaded", function () {
+    // Create the button container
+    const backToTop = document.createElement("div");
+    backToTop.id = "back-to-top";
+    backToTop.style.position = "fixed";
+    backToTop.style.bottom = "20px";
+    backToTop.style.right = "20px";
+    backToTop.style.display = "none";
+    backToTop.style.cursor = "pointer";
+    backToTop.style.zIndex = "9999";
+
+    // Create the image inside the button
+    const backToTopImg = document.createElement("img");
+    backToTopImg.src = "https://ik.imagekit.io/bebell/AURELIUS/back-to-top.svg";
+    backToTopImg.alt = "Volver arriba";
+    backToTopImg.style.width = "40px";
+    backToTopImg.style.height = "40px";
+
+    // Append image to the button
+    backToTop.appendChild(backToTopImg);
+
+    // Append button to the body
+    document.body.appendChild(backToTop);
+
+    // Scroll Event Listener
+    window.addEventListener("scroll", function () {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTop.style.display = "block";
+        } else {
+            backToTop.style.display = "none";
+        }
+    });
+
+    // Click Event for Scrolling to Top
+    backToTop.addEventListener("click", function () {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+});
+</script>
+<!-- End Widget BACK-TO-TOP -->
+
+  
+    
+</body>
+</html>
